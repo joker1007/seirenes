@@ -1,4 +1,9 @@
 language: ruby
+before_script:
+  - "cp config/database.sample.yml config/database.yml"
+  - sudo ci/install_phantomjs
+  - "export PATH=phantomjs/bin:$PATH"
+  - phantomjs --version
 script: "bundle exec rake spec"
 rvm:
   - 2.0.0
