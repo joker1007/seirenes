@@ -4,6 +4,8 @@ before_script:
   - sudo ci/install_phantomjs
   - "export PATH=phantomjs/bin:$PATH"
   - phantomjs --version
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
 script: "bundle exec rake spec"
 rvm:
   - 2.0.0
