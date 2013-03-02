@@ -6,6 +6,7 @@ before_script:
   - phantomjs --version
   - bundle exec rake db:create
   - bundle exec rake db:migrate
+  - "echo '--color' > .rspec"
 script: "bundle exec rake spec"
 rvm:
   - 2.0.0
