@@ -103,3 +103,5 @@ gem 'oj'
 
 gem "faraday"
 gem "faraday_middleware"
+
+gem "nico_downloader", github: "joker1007/nico_downloader"

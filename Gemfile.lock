@@ -12,6 +12,15 @@ GIT
     jasmine-spec-extras (0.0.2)
 
 GIT
+  remote: git://github.com/joker1007/nico_downloader.git
+  revision: 10fdbf69afa8de5d32a50d2f6df8574d1855736c
+  specs:
+    nico_downloader (0.0.1)
+      lumberjack
+      mechanize
+      pit
+
+GIT
   remote: git://github.com/joker1007/rspec-formatter-git_auto_commit.git
   revision: 82fd92c72cb90ec90b07ef0bd2b13f3cb0ee6736
   specs:
@@ -211,6 +220,7 @@ GEM
     parallel (0.6.2)
     parallel_tests (0.10.0)
       parallel
+    pit (0.0.7)
     poltergeist (1.1.0)
       capybara (~> 2.0, >= 2.0.1)
       faye-websocket (~> 0.4, >= 0.4.4)
@@ -361,6 +371,7 @@ DEPENDENCIES
   libnotify
   minitest
   mysql2
+  nico_downloader!
   oj
   omniauth
   omniauth-twitter
