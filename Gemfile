@@ -53,7 +53,7 @@ group :development, :test do
   gem "spring", github: "jonleighton/spring"
 
   gem "capybara"
-  gem "capybara-webkit"
+  gem "poltergeist"
 
   gem "minitest"
   gem "launchy"

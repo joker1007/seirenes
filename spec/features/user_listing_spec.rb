@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 feature "User Feature" do
-  scenario "Listing User" do
-    FactoryGirl.create(:user)
+  scenario "Listing User", js: true do
     visit users_path
-    puts page.body
+    page.driver.render("test.png", full: true)
   end
 end

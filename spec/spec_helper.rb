@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -60,13 +61,18 @@ RSpec.configure do |config|
   require "webmock/rspec"
   require "vcr"
   # Webmock & VCR
-  WebMock.allow_net_connect!(:net_http_connect_on_start => true)
+  WebMock.allow_net_connect!
 
   VCR.configure do |c|
+    c.allow_http_connections_when_no_cassette = true
     c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
     c.hook_into :webmock
   end
 
   # for Delorean
   config.include Delorean
+
+  # for poltergeist
+  require "capybara/poltergeist"
+  Capybara.javascript_driver = :poltergeist
 end
