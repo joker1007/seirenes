@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20130304154057) do
     t.datetime "updated_at"
   end
 
+  add_index "pasokaras", ["md5_hash"], name: "index_pasokaras_on_md5_hash", unique: true
+  add_index "pasokaras", ["nico_vid"], name: "index_pasokaras_on_nico_vid", unique: true
+
   create_table "user_auths", force: true do |t|
     t.string   "provider",   null: false
     t.string   "uid",        null: false

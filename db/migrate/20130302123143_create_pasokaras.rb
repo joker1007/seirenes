@@ -9,9 +9,12 @@ class CreatePasokaras < ActiveRecord::Migration
       t.integer :nico_view_count, null: false, default: 0
       t.integer :nico_mylist_count, null: false, default: 0
       t.integer :duration
-      t.string :nico_description
+      t.string :nico_description, size: 700
 
       t.timestamps
     end
+
+    add_index :pasokaras, :md5_hash, unique: true
+    add_index :pasokaras, :nico_vid, unique: true
   end
 end

@@ -4,7 +4,7 @@ class DownloadList < ActiveRecord::Base
       downloader = NicoDownloader.new
       downloader.on_download_complete = ->(movie_info) do
         md5_hash = File.open(movie_info.path, "rb:ASCII-8BIT") {|f| Digest::MD5.hexdigest(f.read(300 * 1024))}
-        Pasokara.create!(
+        Pasokara.create(
           title: movie_info.title,
           fullpath: movie_info.path,
           md5_hash: md5_hash,
