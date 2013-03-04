@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :download_list do
-    url "MyString"
-    download false
+    sequence(:url) {|n| "http://www.test.dummy/list/#{n}"}
+    download true
   end
 end

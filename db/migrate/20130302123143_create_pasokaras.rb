@@ -1,7 +1,7 @@
 class CreatePasokaras < ActiveRecord::Migration
   def change
     create_table :pasokaras do |t|
-      t.string :name, null: false
+      t.string :title, null: false
       t.string :fullpath, null: false
       t.string :md5_hash, null: false
       t.string :nico_vid

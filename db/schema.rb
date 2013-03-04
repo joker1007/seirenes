@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130304154057) do
   end
 
   create_table "pasokaras", force: true do |t|
-    t.string   "name",                          null: false
+    t.string   "title",                         null: false
     t.string   "fullpath",                      null: false
     t.string   "md5_hash",                      null: false
     t.string   "nico_vid"

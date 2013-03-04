@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/joker1007/nico_downloader.git
-  revision: 10fdbf69afa8de5d32a50d2f6df8574d1855736c
+  revision: 44c1787a95dc758fa2ad237a8680535c727fe4ae
   specs:
     nico_downloader (0.0.1)
       lumberjack
@@ -288,6 +288,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    settingslogic (2.0.9)
     shoulda-matchers (1.4.2)
       activesupport (>= 3.0.0)
       bourne (~> 1.1.2)
@@ -388,6 +389,7 @@ DEPENDENCIES
   rspec-rails (~> 2.11)
   ruby_gntp
   sass-rails (~> 4.0.0.beta1)
+  settingslogic
   shoulda-matchers
   simplecov
   simplecov-rcov
