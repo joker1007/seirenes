@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130302123143) do
+ActiveRecord::Schema.define(version: 20130304154057) do
+
+  create_table "download_lists", force: true do |t|
+    t.string   "url",                       null: false
+    t.boolean  "download",   default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pasokaras", force: true do |t|
     t.string   "name",                          null: false
