@@ -4,7 +4,7 @@ class CreatePasokaras < ActiveRecord::Migration
       t.string :name, null: false
       t.string :fullpath, null: false
       t.string :md5_hash, null: false
-      t.string :nico_name
+      t.string :nico_vid
       t.datetime :nico_posted_at
       t.integer :nico_view_count, null: false, default: 0
       t.integer :nico_mylist_count, null: false, default: 0

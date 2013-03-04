@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20130302123143) do
     t.string   "name",                          null: false
     t.string   "fullpath",                      null: false
     t.string   "md5_hash",                      null: false
-    t.string   "nico_name"
+    t.string   "nico_vid"
     t.datetime "nico_posted_at"
     t.integer  "nico_view_count",   default: 0, null: false
     t.integer  "nico_mylist_count", default: 0, null: false
