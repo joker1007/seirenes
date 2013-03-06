@@ -92,7 +92,7 @@ group :test do
   gem "simplecov-rcov", :require => false
   gem "rspec-formatter-git_auto_commit", :github => "joker1007/rspec-formatter-git_auto_commit"
   gem "delorean"
-  # gem "database_cleaner", github: "bmabey/database_cleaner"
+  gem "database_cleaner", github: "bmabey/database_cleaner"
 end
 
 gem "factory_girl_rails"

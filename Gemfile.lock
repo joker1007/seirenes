@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: 83d69e68e3d2b89d5060057e5debac565542c0d6
+  specs:
+    database_cleaner (0.9.1)
+
+GIT
   remote: git://github.com/indirect/rails3-generators.git
   revision: 6cab73292385c42c679b759fd126ceedf87dab87
   specs:
@@ -352,6 +358,7 @@ DEPENDENCIES
   capistrano_colors
   capybara
   coffee-rails (~> 4.0.0.beta1)
+  database_cleaner!
   delorean
   factory_girl_rails
   faraday
