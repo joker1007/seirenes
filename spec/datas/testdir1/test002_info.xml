@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nicovideo_thumb_response status="ok">
+<thumb>
+<video_id>sm99999999</video_id>
+<title>test002.mp4</title>
+<description>test description</description>
+<thumbnail_url>http://test.com/hogehoge</thumbnail_url>
+<first_retrieve>2011-07-21T03:29:01+09:00</first_retrieve>
+<length>3:25</length>
+<movie_type>mp4</movie_type>
+<size_high>24230239</size_high>
+<size_low>8002911</size_low>
+<view_counter>7</view_counter>
+<comment_num>3</comment_num>
+<mylist_counter>2</mylist_counter>
+<last_res_body />
+<watch_url>http://www.nicovideo.jp/watch/sm99999999</watch_url>
+<thumb_type>video</thumb_type>
+<embeddable>1</embeddable>
+<no_live_play>0</no_live_play>
+<tags domain="jp">
+<tag category="1" lock="1">VOCALOID</tag>
+<tag>tag2</tag>
+</tags>
+<user_id>7992584</user_id>
+</thumb>
+</nicovideo_thumb_response>
