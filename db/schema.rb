@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130304154057) do
+ActiveRecord::Schema.define(version: 20130305104212) do
 
   create_table "download_lists", force: true do |t|
     t.string   "url",                       null: false
@@ -36,6 +36,26 @@ ActiveRecord::Schema.define(version: 20130304154057) do
 
   add_index "pasokaras", ["md5_hash"], name: "index_pasokaras_on_md5_hash", unique: true
   add_index "pasokaras", ["nico_vid"], name: "index_pasokaras_on_nico_vid", unique: true
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name"
 
   create_table "user_auths", force: true do |t|
     t.string   "provider",   null: false
