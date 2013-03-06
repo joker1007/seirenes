@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require_relative '../config/boot'
+require_relative '../config/environment'
+require 'thor'
+
+class NicoDownloadCommand < Thor
+  desc "fetch_all", "Download Karaoke Movie from All lists"
+
+  def fetch_all
+    DownloadList.download_all
+  end
+end
+
+NicoDownloadCommand.start

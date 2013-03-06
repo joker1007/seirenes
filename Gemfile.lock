@@ -402,6 +402,7 @@ DEPENDENCIES
   simplecov-rcov
   spring!
   tapp
+  thor
   turbolinks
   turn
   uglifier (>= 1.0.3)
