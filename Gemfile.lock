@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: git://github.com/jonleighton/spring.git
-  revision: c5913debf28a2657cc9d120cb5ccfc4e85c8ae66
+  revision: d9869697bd18c8961f992c00882a6813a84fab27
   specs:
     spring (0.0.7)
 
