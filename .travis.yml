@@ -1,6 +1,7 @@
 language: ruby
 before_script:
   - "cp config/database.sample.yml config/database.yml"
+  - "cp config/settings.sample.yml config/settings.yml"
   - sudo ci/install_phantomjs
   - "export PATH=phantomjs/bin:$PATH"
   - phantomjs --version

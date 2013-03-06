@@ -1,0 +1,11 @@
+defaults: &default
+  download_dir: <%= (Rails.root + "public/videos").to_s %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
