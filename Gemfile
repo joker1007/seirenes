@@ -21,6 +21,7 @@ gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
@@ -109,3 +110,11 @@ gem "nico_downloader", github: "joker1007/nico_downloader"
 gem "settingslogic"
 
 gem "thor"
+
+gem 'sunspot', :git => "git://github.com/sunspot/sunspot.git"
+gem 'sunspot_rails', :git => "git://github.com/sunspot/sunspot.git", :require =>  "sunspot_rails"
+gem 'sunspot_test'
+
+group :development, :test do
+  gem 'sunspot_solr', :git => "git://github.com/sunspot/sunspot.git", :require => "sunspot_solr"
+end
