@@ -113,7 +113,7 @@ describe Pasokara do
 
     its(:title) { should eq movie_info.title }
     its(:duration) { should eq 205 }
-    its(:nico_posted_at) { should eq Time.local(2011, 7, 21, 3, 29, 1) }
+    its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
     its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
   end
 
