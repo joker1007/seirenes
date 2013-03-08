@@ -91,4 +91,28 @@ describe Pasokara do
       end
     end
   end
+
+  describe ".create_by_movie_info" do
+    let(:info_file) { Rails.root + "spec/datas/testdir1/test002_info.xml" }
+    let(:movie_file) { Rails.root + "spec/datas/testdir1/test002.mp4" }
+    let(:movie_info) do
+      info = NicoDownloader::Info.parse(File.read(info_file))
+      info.path = movie_file.to_s
+      info
+    end
+
+    before do
+      movie_info.title.should_not be_blank
+    end
+
+    subject { Pasokara.create_by_movie_info(movie_info) }
+
+    it "creates Pasokara" do
+      expect { subject }.to change(Pasokara, :count).by(1)
+    end
+
+    its(:title) { should eq movie_info.title }
+    its(:duration) { should eq 205 }
+    its(:nico_posted_at) { should eq Time.local(2011, 7, 21, 3, 29, 1) }
+  end
 end
