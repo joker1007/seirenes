@@ -17,6 +17,8 @@ class Pasokara < ActiveRecord::Base
     integer :duration, trie: true
   end
 
+  paginates_per 100
+
   class << self
     def create_by_directory(directory_path, info_path: nil, movie_path: nil, thumbnail_path: nil)
       movie_info = NicoDownloader::Info.from_directory(directory_path, info_path: info_path, movie_path: movie_path, thumbnail_path: thumbnail_path)

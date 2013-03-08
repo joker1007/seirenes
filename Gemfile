@@ -45,6 +45,9 @@ gem "unicorn"
 group :development do
   gem "rails3-generators", :git => "git://github.com/indirect/rails3-generators.git", :group => [:development]
   gem "i18n_generators"
+
+  gem "binding_of_caller"
+  gem "better_errors"
 end
 
 group :development, :test do

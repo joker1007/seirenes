@@ -83,6 +83,11 @@ GEM
     arel (4.0.0.beta1)
     atomic (1.0.1)
     awesome_print (1.1.0)
+    better_errors (0.7.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.1.4)
@@ -112,6 +117,7 @@ GEM
       execjs
     coffee-script-source (1.5.0)
     crack (0.3.2)
+    debug_inspector (0.0.2)
     delorean (2.1.0)
       chronic
     diff-lcs (1.2.1)
@@ -373,6 +379,8 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  better_errors
+  binding_of_caller
   capistrano
   capistrano_colors
   capybara
