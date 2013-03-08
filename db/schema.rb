@@ -21,15 +21,15 @@ ActiveRecord::Schema.define(version: 20130305104212) do
   end
 
   create_table "pasokaras", force: true do |t|
-    t.string   "title",                         null: false
-    t.string   "fullpath",                      null: false
-    t.string   "md5_hash",                      null: false
-    t.string   "nico_vid"
+    t.string   "title",                                     null: false
+    t.string   "fullpath",          limit: 500,             null: false
+    t.string   "md5_hash",          limit: 64,              null: false
+    t.string   "nico_vid",          limit: 20
     t.datetime "nico_posted_at"
-    t.integer  "nico_view_count",   default: 0, null: false
-    t.integer  "nico_mylist_count", default: 0, null: false
+    t.integer  "nico_view_count",               default: 0, null: false
+    t.integer  "nico_mylist_count",             default: 0, null: false
     t.integer  "duration"
-    t.string   "nico_description"
+    t.string   "nico_description",  limit: 700
     t.datetime "created_at"
     t.datetime "updated_at"
   end
