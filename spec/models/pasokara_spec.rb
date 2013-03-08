@@ -128,7 +128,7 @@ describe Pasokara do
 
     its(:fullpath) { should eq (Rails.root + "spec/datas/testdir1/test002.mp4").to_s }
     its(:duration) { should eq 205 }
-    its(:nico_posted_at) { should eq Time.local(2011, 7, 21, 3, 29, 1) }
+    its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
     its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
   end
 end
