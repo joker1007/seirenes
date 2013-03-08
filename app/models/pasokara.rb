@@ -18,9 +18,14 @@ class Pasokara < ActiveRecord::Base
   end
 
   class << self
+    def create_by_directory(directory_path, info_path: nil, movie_path: nil, thumbnail_path: nil)
+      movie_info = NicoDownloader::Info.from_directory(directory_path, info_path: info_path, movie_path: movie_path, thumbnail_path: thumbnail_path)
+      create_by_movie_info(movie_info)
+    end
+
     def create_by_movie_info(movie_info)
       md5_hash = File.open(movie_info.path, "rb:ASCII-8BIT") {|f| Digest::MD5.hexdigest(f.read(300 * 1024))}
-      Pasokara.create(
+      pasokara = Pasokara.create(
         title: movie_info.title,
         fullpath: movie_info.path,
         md5_hash: md5_hash,
@@ -31,6 +36,9 @@ class Pasokara < ActiveRecord::Base
         nico_posted_at: movie_info.posted_at,
         nico_description: movie_info.description
       )
+      pasokara.tag_list = movie_info.tags
+      pasokara.save
+      pasokara
     end
   end
 end

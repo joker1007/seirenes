@@ -114,5 +114,21 @@ describe Pasokara do
     its(:title) { should eq movie_info.title }
     its(:duration) { should eq 205 }
     its(:nico_posted_at) { should eq Time.local(2011, 7, 21, 3, 29, 1) }
+    its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
+  end
+
+  describe ".create_by_directory" do
+    let(:directory_path) { Rails.root + "spec/datas/testdir1" }
+
+    subject { Pasokara.create_by_directory(directory_path) }
+
+    it "creates Pasokara" do
+      expect { subject }.to change(Pasokara, :count).by(1)
+    end
+
+    its(:fullpath) { should eq (Rails.root + "spec/datas/testdir1/test002.mp4").to_s }
+    its(:duration) { should eq 205 }
+    its(:nico_posted_at) { should eq Time.local(2011, 7, 21, 3, 29, 1) }
+    its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
   end
 end

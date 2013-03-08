@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/joker1007/nico_downloader.git
-  revision: 44c1787a95dc758fa2ad237a8680535c727fe4ae
+  revision: 1e1329a4f3ad771733026750bbb8c3fea3f6724b
   specs:
     nico_downloader (0.0.1)
       lumberjack
