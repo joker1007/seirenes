@@ -1,0 +1,38 @@
+!!! 5
+%html
+  %head
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
+    %meta{:content => "noindex,nofollow", :name => "robots"}/
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    :coffee
+      $ ->
+        $('#site_title').FontEffect
+           mirror: true,
+           mirrorColor: "#FFFFFF",
+           mirrorOffset: -15,
+           mirrorHeight: 70,
+           gradient: true,
+           gradientFromTop: true,
+           gradientColor: "#AAA",
+           gradientPosition: 20,
+           gradientLength: 50,
+           gradientSteps: 20
+
+  %body
+    %h1#site_title
+      %span> S
+      eirenes
+
+    - if notice
+      .notification.notice= notice
+    - if alert
+      .notification.alert= alert
+    #main
+      %article
+        = yield
+    %hr
+    %footer
+      &copy; Tomohiro Hashidate
+

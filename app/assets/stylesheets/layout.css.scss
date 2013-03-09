@@ -1,0 +1,17 @@
+@import "bootstrap";
+@import "compass/utilities";
+@import "compass/css3";
+@import "zurui-sass";
+
+body {
+}
+
+#main {
+  background-color: #EEEEEE;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  width: 90%;
+  @include zurui-box-emboss;
+}

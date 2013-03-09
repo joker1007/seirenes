@@ -34,10 +34,26 @@ GIT
       rspec (~> 2.11)
 
 GIT
+  remote: git://github.com/joker1007/zurui-sass-rails.git
+  revision: 947c51d4bd1984b85aa6017d67ac67cab855d9ed
+  branch: fix_for_rails4
+  specs:
+    zurui-sass-rails (0.0.1)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/jonleighton/spring.git
   revision: d9869697bd18c8961f992c00882a6813a84fab27
   specs:
     spring (0.0.7)
+
+GIT
+  remote: git://github.com/milgner/compass-rails.git
+  revision: 1749c06f15dc4b058427e7969810457213647fb8
+  ref: 1749c06f15dc4b058427e7969810457213647fb8
+  specs:
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
 
 GIT
   remote: git://github.com/sunspot/sunspot.git
@@ -88,6 +104,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (2.3.0.1)
+      sass (~> 3.2)
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.1.4)
@@ -108,6 +126,7 @@ GEM
     childprocess (0.3.8)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
+    chunky_png (1.2.7)
     coderay (1.0.9)
     coffee-rails (4.0.0.beta1)
       coffee-script (>= 2.2.0)
@@ -116,6 +135,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.5.0)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     crack (0.3.2)
     debug_inspector (0.0.2)
     delorean (2.1.0)
@@ -139,6 +162,7 @@ GEM
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
     ffi (1.4.0)
+    fssm (0.2.10)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -381,10 +405,12 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap-sass
   capistrano
   capistrano_colors
   capybara
   coffee-rails (~> 4.0.0.beta1)
+  compass-rails!
   database_cleaner!
   delorean
   factory_girl_rails
@@ -441,3 +467,4 @@ DEPENDENCIES
   unicorn
   vcr
   webmock
+  zurui-sass-rails!
