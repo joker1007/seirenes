@@ -8,7 +8,7 @@
     = csrf_meta_tags
     :coffee
       $ ->
-        $('#site_title').FontEffect
+        $('#site-title h1').FontEffect
            mirror: true,
            mirrorColor: "#FFFFFF",
            mirrorOffset: -15,
@@ -21,15 +21,21 @@
            gradientSteps: 20
 
   %body
-    %h1#site_title
-      %span> S
-      eirenes
+    #site-title
+      %h1
+        %span> S
+        eirenes
 
     - if notice
       .notification.notice= notice
     - if alert
       .notification.alert= alert
     #main
+      %ul.nav
+        %li= link_to "ホーム", root_path, :id => "home"
+        %li= link_to "予約確認", root_path
+        %li= link_to "りれき", root_path
+
       %article
         = yield
     %hr

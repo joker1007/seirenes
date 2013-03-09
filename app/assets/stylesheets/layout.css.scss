@@ -1,17 +1,52 @@
 @import "bootstrap";
 @import "compass/utilities";
 @import "compass/css3";
+@import "compass/typography/lists/horizontal-list";
 @import "zurui-sass";
 
 body {
+  background-image: url(sitebg.jpg);
+  color: white;
+}
+
+#site-title {
+  margin-left: 20px;
+  span {
+    font-size: larger;
+    color: #ff6633;
+    letter-spacing: -8px;
+  }
 }
 
 #main {
-  background-color: #EEEEEE;
-  margin: {
-    left: auto;
-    right: auto;
-  }
-  width: 90%;
+  color: #222;
+  background-color: white;
   @include zurui-box-emboss;
+
+  margin: {
+    left: 10px;
+    right: 10px;
+  }
+}
+
+ul.nav {
+  @include zurui-gradient-top-darken;
+  @include zurui-line-bottom;
+  @include horizontal-list;
+  height: 48px;
+
+  li {
+    vertical-align: middle;
+    height: 48px;
+    @include zurui-line-right;
+
+    a {
+      color: white;
+      font-size: 24px;
+      line-height: 48px;
+      font-weight: bold;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
 }
