@@ -117,6 +117,21 @@ describe Pasokara do
     its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
   end
 
+  describe ".create_by_movie_file" do
+    let(:movie_file) { (Rails.root + "spec/datas/testdir1/test002.mp4").to_s }
+
+    subject { Pasokara.create_by_movie_file(movie_file) }
+
+    it "creates Pasokara" do
+      expect { subject }.to change(Pasokara, :count).by(1)
+    end
+
+    its(:fullpath) { should eq (Rails.root + "spec/datas/testdir1/test002.mp4").to_s }
+    its(:duration) { should eq 205 }
+    its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
+    its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
+  end
+
   describe ".create_by_directory" do
     let(:directory_path) { Rails.root + "spec/datas/testdir1" }
 
@@ -130,5 +145,44 @@ describe Pasokara do
     its(:duration) { should eq 205 }
     its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
     its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
+  end
+
+  describe ".create_by_directory_all" do
+    let(:directory_path) { Rails.root + "spec/datas/testdir1" }
+
+    subject { Pasokara.create_by_directory_all(directory_path) }
+
+    it "creates Pasokara" do
+      expect { subject }.to change(Pasokara, :count).by(1)
+    end
+
+    it "If exist info file, load info data" do
+      subject
+      Pasokara.last.duration.should eq 205
+    end
+
+    context "When info file is nothing" do
+      let(:directory_path) { Rails.root + "spec/datas" }
+
+      it "creates Pasokara" do
+        expect { subject }.to change(Pasokara, :count).by(2)
+      end
+
+      it "If exist info file, have only movie_info" do
+        subject
+        pasokara = Pasokara.last
+        pasokara.fullpath.should eq (Rails.root + "spec/datas/test002.flv").to_s
+      end
+    end
+  end
+
+  describe ".create_by_directory_all_recursive" do
+    let(:directory_path) { Rails.root + "spec/datas" }
+
+    subject { Pasokara.create_by_directory_all_recursive(directory_path) }
+
+    it "creates Pasokara" do
+      expect { subject }.to change(Pasokara, :count).by(3)
+    end
   end
 end
