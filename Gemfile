@@ -125,3 +125,8 @@ gem 'sunspot_test'
 group :development, :test do
   gem 'sunspot_solr', :git => "git://github.com/sunspot/sunspot.git", :require => "sunspot_solr"
 end
+
+gem 'active_decorator'
+
+gem 'carrierwave'
+gem 'fog'

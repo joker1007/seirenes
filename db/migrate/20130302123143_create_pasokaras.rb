@@ -10,6 +10,7 @@ class CreatePasokaras < ActiveRecord::Migration
       t.integer :nico_mylist_count, null: false, default: 0
       t.integer :duration
       t.string :nico_description, limit: 700
+      t.string :thumbnail
 
       t.timestamps
     end

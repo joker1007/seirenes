@@ -8,6 +8,9 @@
     = csrf_meta_tags
     :coffee
       $ ->
+        $("img.thumb").lazyload
+          effect : "fadeIn"
+
         $('#site-title h1').FontEffect
            mirror: true,
            mirrorColor: "#FFFFFF",

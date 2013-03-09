@@ -9,7 +9,7 @@ FactoryGirl.define do
     nico_posted_at "2013-03-02 21:31:43"
     nico_view_count 1
     nico_mylist_count 1
-    duration 1
+    duration 125
     nico_description "description"
   end
 end

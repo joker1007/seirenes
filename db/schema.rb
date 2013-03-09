@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20130305104212) do
     t.integer  "nico_mylist_count",             default: 0, null: false
     t.integer  "duration"
     t.string   "nico_description",  limit: 700
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

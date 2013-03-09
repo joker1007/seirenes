@@ -17,6 +17,8 @@ class Pasokara < ActiveRecord::Base
     integer :duration, trie: true
   end
 
+  mount_uploader :thumbnail, ThumbnailUploader
+
   paginates_per 100
 
   class << self
@@ -39,6 +41,7 @@ class Pasokara < ActiveRecord::Base
         nico_description: movie_info.description
       )
       pasokara.tag_list = movie_info.tags
+      pasokara.thumbnail = File.open(movie_info.thumbnail_path) if movie_info.thumbnail_path.present? && File.exists?(movie_info.thumbnail_path)
       pasokara.save
       pasokara
     end

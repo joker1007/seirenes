@@ -6,16 +6,20 @@
 
 body {
   background-image: url(sitebg.jpg);
-  color: white;
 }
 
 #site-title {
+  color: white;
   margin-left: 20px;
   span {
     font-size: larger;
     color: #ff6633;
     letter-spacing: -8px;
   }
+}
+
+footer {
+  color: white;
 }
 
 #main {
@@ -27,6 +31,8 @@ body {
     left: 10px;
     right: 10px;
   }
+
+  padding-bottom: 10px;
 }
 
 ul.nav {
