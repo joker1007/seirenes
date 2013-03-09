@@ -15,7 +15,7 @@ module SimpleTaggable
   end
 
   def tag_list
-    @tag_list ||= TagList.new
+    @tag_list ||= TagList.new(*tags.pluck(:name))
   end
 
   def tag_list=(*tag_words)

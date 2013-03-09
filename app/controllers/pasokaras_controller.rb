@@ -1,5 +1,5 @@
 class PasokarasController < ApplicationController
   def index
-    Pasokara.page(params[:page])
+    @pasokaras = Pasokara.page(params[:page])
   end
 end
