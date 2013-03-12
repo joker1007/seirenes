@@ -130,3 +130,6 @@ gem 'active_decorator'
 
 gem 'carrierwave'
 gem 'fog'
+
+gem 'resque'
+gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"

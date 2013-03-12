@@ -18,14 +18,17 @@ class Pasokara < ActiveRecord::Base
   end
 
   mount_uploader :thumbnail, ThumbnailUploader
+  mount_uploader :movie_mp4, MovieUploader
+  mount_uploader :movie_webm, MovieUploader
 
   paginates_per 100
 
+  # TODO: Move to Module
   class << self
     def create_by_movie_info(movie_info)
       md5_hash = File.open(movie_info.path, "rb:ASCII-8BIT") {|f| Digest::MD5.hexdigest(f.read(300 * 1024))}
       pasokara = Pasokara.create(
-        title: movie_info.title,
+        title: movie_info.title || File.basename(movie_info.path, ".*"),
         fullpath: movie_info.path,
         md5_hash: md5_hash,
         duration: movie_info.duration,
@@ -89,5 +92,9 @@ class Pasokara < ActiveRecord::Base
 
       th1.join
     end
+  end
+
+  def encode_async(format = :mp4)
+    Resque.enqueue(EncodeJob, fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
   end
 end

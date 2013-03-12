@@ -11,6 +11,8 @@ class CreatePasokaras < ActiveRecord::Migration
       t.integer :duration
       t.string :nico_description, limit: 700
       t.string :thumbnail
+      t.string :movie_mp4
+      t.string :movie_webm
 
       t.timestamps
     end

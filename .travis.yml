@@ -3,7 +3,7 @@ before_script:
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
   - ci/install_phantomjs
-    ls phantomjs/bin
+  - ls
   - export PATH=$PWD/phantomjs/bin:$PATH
   - phantomjs --version
   - bundle exec rake db:create
