@@ -118,12 +118,13 @@ gem "settingslogic"
 
 gem "thor"
 
-gem 'sunspot', :git => "git://github.com/sunspot/sunspot.git"
-gem 'sunspot_rails', :git => "git://github.com/sunspot/sunspot.git", :require =>  "sunspot_rails"
-gem 'sunspot_test'
+gem 'sunspot'
+gem 'sunspot_solr'
+gem 'sunspot_rails'
+gem 'sunspot_with_kaminari'
 
 group :development, :test do
-  gem 'sunspot_solr', :git => "git://github.com/sunspot/sunspot.git", :require => "sunspot_solr"
+  gem 'sunspot_test'
 end
 
 gem 'active_decorator'

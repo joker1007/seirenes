@@ -40,3 +40,6 @@ tags
 
 public/videos
 solr41/sunspot/data
+solr41/sunspot/data*
+
+contrib/solr

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+solr_version=4.1.0
+wget "http://ftp.kddilabs.jp/infosystems/apache/lucene/solr/${solr_version}/solr-${solr_version}.tgz"
+tar xvzf solr-${solr_version}.tgz
+mkdir contrib
+mv solr-${solr_version} contrib/solr/
+rm solr-${solr_version}.tgz
+
+# How to Run solr
+# bundle exec rake sunspot:solr:start
+# Or
+# bundle exec rake sunspot:solr:run

@@ -2,6 +2,7 @@ language: ruby
 before_install:
   - phantomjs --version
 before_script:
+  - ci/solr_setup
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
   - cp config/resque.sample.yml config/resque.yml
