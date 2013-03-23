@@ -167,12 +167,6 @@ describe Pasokara do
       it "creates Pasokara" do
         expect { subject }.to change(Pasokara, :count).by(2)
       end
-
-      it "If exist info file, have only movie_info" do
-        subject
-        pasokara = Pasokara.last
-        pasokara.fullpath.should eq (Rails.root + "spec/datas/test002.flv").to_s
-      end
     end
   end
 
