@@ -2,6 +2,7 @@ Seirenes.Pasokara = DS.Model.extend
   title: DS.attr("string")
   nico_vid: DS.attr("string")
   nico_posted_at: DS.attr("date")
+  nico_posted_at_formatted: DS.attr("string")
   nico_description: DS.attr("string")
   nico_view_count: DS.attr("number")
   nico_mylist_count: DS.attr("number")

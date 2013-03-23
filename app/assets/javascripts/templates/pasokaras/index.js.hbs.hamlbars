@@ -20,7 +20,7 @@
               %span.info-value= hb "nico_vid"
             .info-entity
               %span.info-key 投稿日:
-              %span.info-value= hb "nico_posted_at"
+              %span.info-value= hb "nico_posted_at_formatted"
             .info-entity
               %span.info-key 再生数:
               %span.info-value= hb "nico_view_count"
