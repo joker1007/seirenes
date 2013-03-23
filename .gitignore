@@ -39,7 +39,9 @@ runner.html
 tags
 
 public/videos
+solr/data
 solr41/sunspot/data
 solr41/sunspot/data*
+log/*.lck
 
 contrib/solr

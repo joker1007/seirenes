@@ -14,5 +14,7 @@ class EncodeJob
     end
 
     pasokara.save
+
+    File.delete(encoder.output_filename)
   end
 end

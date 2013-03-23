@@ -5,7 +5,7 @@ module Pasokara::CreateMethods
     def create_by_movie_info(movie_info)
       md5_hash = File.open(movie_info.path, "rb:ASCII-8BIT") {|f| Digest::MD5.hexdigest(f.read(300 * 1024))}
       pasokara = create(
-        title: movie_info.title || File.basename(movie_info.path, ".*"),
+        title: movie_info.title.presence || File.basename(movie_info.path, ".*"),
         fullpath: movie_info.path,
         md5_hash: md5_hash,
         duration: movie_info.duration,

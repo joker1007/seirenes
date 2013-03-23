@@ -25,7 +25,13 @@ class Pasokara < ActiveRecord::Base
 
   include CreateMethods
 
+  def movie_url(format = :mp4)
+    send("movie_#{format}").url
+  end
+
   def encode_async(format = :mp4)
-    Resque.enqueue(EncodeJob, fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
+    if movie_url(format).blank?
+      Resque.enqueue(EncodeJob, fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
+    end
   end
 end

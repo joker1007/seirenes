@@ -1,28 +1,28 @@
+#pasokara-list
 - @pasokaras.each do |pasokara|
-  #pasokara-list
-    .pasokara[pasokara]
-      .title= pasokara.title
-      .info-box{id: "info-box-#{pasokara.id}"}
-        .thumb
-          = image_tag(image_path("gray.gif"), size: "160x120", class: "thumb", data: {original: pasokara.thumbnail.url})
-        .inner-info-box
-          .tag-box
-            .info-type タグ
-            .tag-list
-              - pasokara.tag_list.each do |tag_name|
-                %span.tag= tag_name
-          .meta-info-box
-            .info-type 動画情報
-            .info-list
-              .info-entity
-                %span.info-key ニコニコID:
-                %span.info-value= pasokara.link_to_niconico
-              .info-entity
-                %span.info-key 投稿日:
-                %span.info-value= l(pasokara.nico_posted_at)
-              .info-entity
-                %span.info-key 再生数:
-                %span.info-value= number_with_delimiter(pasokara.nico_view_count)
-              .info-entity
-                %span.info-key> マイリスト数:
-                %span.info-value= number_with_delimiter(pasokara.nico_mylist_count)
+  .pasokara[pasokara]
+    .title= pasokara.title
+    .info-box{id: "info-box-#{pasokara.id}"}
+      .thumb
+        = image_tag(image_path("gray.gif"), size: "160x120", class: "thumb", data: {original: pasokara.thumbnail.url})
+      .inner-info-box
+        .tag-box
+          .info-type タグ
+          .tag-list
+            - pasokara.tag_list.each do |tag_name|
+              %span.tag= tag_name
+        .meta-info-box
+          .info-type 動画情報
+          .info-list
+            .info-entity
+              %span.info-key ニコニコID:
+              %span.info-value= pasokara.link_to_niconico
+            .info-entity
+              %span.info-key 投稿日:
+              %span.info-value= l(pasokara.nico_posted_at)
+            .info-entity
+              %span.info-key 再生数:
+              %span.info-value= number_with_delimiter(pasokara.nico_view_count)
+            .info-entity
+              %span.info-key> マイリスト数:
+              %span.info-value= number_with_delimiter(pasokara.nico_mylist_count)

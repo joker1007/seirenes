@@ -12,8 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.spin
 //= require turbolinks
 //= require jquery.turbolinks
 //= require jquery.lazyload
 //= require jquery-fonteffect-1.0.0.min
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require seirenes
 //= require_tree .
+
+Seirenes = Ember.Application.create({
+  rootElement: "#main"
+});
+

@@ -34,14 +34,4 @@
     - if alert
       .notification.alert= alert
     #main
-      %ul.nav
-        %li= link_to "ホーム", root_path, :id => "home"
-        %li= link_to "予約確認", root_path
-        %li= link_to "りれき", root_path
-
-      %article
-        = yield
-    %hr
-    %footer
-      &copy; Tomohiro Hashidate
 
