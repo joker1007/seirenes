@@ -1,7 +1,9 @@
 #pasokara-list
 = hb 'each controller' do
   .pasokara
-    .title= hb 'title'
+    .title
+      = hb 'linkTo pasokaras.pasokara this' do
+        = hb 'title'
     .info-box
       .thumb
         %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}
@@ -17,7 +19,8 @@
           .info-list
             .info-entity
               %span.info-key ニコニコID:
-              %span.info-value= hb "nico_vid"
+              %span.info-value
+                %a{target: "_blank", bind: {href: "nicoUrl"}}= hb "nico_vid"
             .info-entity
               %span.info-key 投稿日:
               %span.info-value= hb "nico_posted_at_formatted"

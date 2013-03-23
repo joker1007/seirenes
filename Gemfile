@@ -137,3 +137,4 @@ gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"
 
 gem 'ember-rails', github: "emberjs/ember-rails"
 gem 'hamlbars', '~> 2.0'
+gem 'spinjs-rails'

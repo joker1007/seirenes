@@ -4,6 +4,7 @@ json.pasokaras do |json|
     json.nico_posted_at_formatted l(pasokara.nico_posted_at)
     json.url pasokara_url(pasokara, format: :json)
     json.thumbnail_url pasokara.thumbnail.url
+    json.movie_url pasokara.movie_mp4.url
     json.tag_ids pasokara.tag_ids
   end
 end

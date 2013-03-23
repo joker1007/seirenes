@@ -17,6 +17,7 @@
   width: 480px;
   display: inline-block;
   margin-top: 20px;
+  margin-right: 10px;
   vertical-align: top;
   position: relative;
 
@@ -26,7 +27,11 @@
     padding: 8px;
     @include border-top-left-radius(8px);
     @include border-top-right-radius(8px);
-    @include zurui-gradient-top-lighten
+    @include zurui-gradient-top-darken;
+
+    a {
+      color: white;
+    }
   }
 
   .thumb {
@@ -57,4 +62,15 @@
   .info-value {
     margin-left: 4px;
   }
+}
+
+
+#pasokara-preview-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#pasokara-preview {
+  text-align: center;
 }
