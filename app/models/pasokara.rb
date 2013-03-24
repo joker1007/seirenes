@@ -10,7 +10,8 @@ class Pasokara < ActiveRecord::Base
   mount_uploader :movie_mp4, MovieUploader
   mount_uploader :movie_webm, MovieUploader
 
-  paginates_per 100
+  DEFAULT_PER_PAGE = 50
+  paginates_per DEFAULT_PER_PAGE
 
   include CreateMethods
 

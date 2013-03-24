@@ -21,7 +21,7 @@ module Pasokara::Searchable
 
   class SearchParameter
     attr_reader :keyword, :tags, :page, :per_page
-    def initialize(keyword: nil, tags: nil, page: 1, per_page: 100)
+    def initialize(keyword: nil, tags: nil, page: 1, per_page: 50)
       @keyword = keyword
       @tags = tags || []
       @page = page || 1
