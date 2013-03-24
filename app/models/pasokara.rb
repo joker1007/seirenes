@@ -3,31 +3,7 @@ class Pasokara < ActiveRecord::Base
   validates_uniqueness_of :md5_hash
 
   include SimpleTaggable
-
-  searchable do
-    text :title, stored: true
-    string :title_sort do
-      title
-    end
-    string :tags, multiple: true, stored: true do
-      tags.map(&:name)
-    end
-    string :nico_vid, stored: true
-    integer :nico_view_count, trie: true
-    integer :nico_mylist_count, trie: true
-    text :nico_description, stored: true
-    time :nico_posted_at, trie: true
-    integer :duration, trie: true
-  end
-
-  class << self
-    def all_with_facet_tags(page: 1, per_page: 100)
-      search(include: [:tags]) do
-        facet :tags
-        paginate page: page, per_page: per_page
-      end
-    end
-  end
+  include Searchable
 
   mount_uploader :thumbnail, ThumbnailUploader
   mount_uploader :movie_mp4, MovieUploader

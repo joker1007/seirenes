@@ -1,0 +1,4 @@
+#facet-tags
+  %h3 タグ一覧
+  = hb 'each controller' do
+    = hb 'view Seirenes.FacetTagView', context: "this"
