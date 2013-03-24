@@ -18,6 +18,9 @@
           .info-type 動画情報
           .info-list
             .info-entity
+              %span.info-key 再生時間:
+              %span.info-value= hb "formatDuration duration"
+            .info-entity
               %span.info-key ニコニコID:
               %span.info-value
                 %a{target: "_blank", bind: {href: "nicoUrl"}}= hb "nico_vid"
