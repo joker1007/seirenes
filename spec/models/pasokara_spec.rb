@@ -62,7 +62,7 @@ describe Pasokara do
     end
 
     describe ".tagged_with(tags)" do
-      let(:pasokara2) { FactoryGirl.create(:pasokara) }
+      let(:pasokara2) { FactoryGirl.create(:pasokara, fullpath: "other path") }
 
       before do
         pasokara.tag_list = %w(tag1 tag2)
