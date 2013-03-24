@@ -2,6 +2,7 @@ Seirenes::Application.routes.draw do
   resources :pasokaras, only: [:index, :show] do
     resource :encoding, only: [:show, :create]
   end
+  resources :facet_tags, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

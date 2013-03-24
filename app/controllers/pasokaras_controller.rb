@@ -1,7 +1,8 @@
 class PasokarasController < ApplicationController
   def index
-    @pasokaras = Pasokara.page(params[:page])
-    @tags = Tag.where(id: @pasokaras.flat_map {|p| p.tag_ids.uniq})
+    search = Pasokara.all_with_facet_tags(page: params[:page])
+    @pasokaras = search.results
+    @tags = @pasokaras.flat_map{|p| p.tags}.uniq
   end
 
   def show

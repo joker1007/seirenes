@@ -20,6 +20,15 @@ class Pasokara < ActiveRecord::Base
     integer :duration, trie: true
   end
 
+  class << self
+    def all_with_facet_tags(page: 1, per_page: 100)
+      search(include: [:tags]) do
+        facet :tags
+        paginate page: page, per_page: per_page
+      end
+    end
+  end
+
   mount_uploader :thumbnail, ThumbnailUploader
   mount_uploader :movie_mp4, MovieUploader
   mount_uploader :movie_webm, MovieUploader
