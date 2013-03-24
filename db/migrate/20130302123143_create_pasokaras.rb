@@ -2,8 +2,7 @@ class CreatePasokaras < ActiveRecord::Migration
   def change
     create_table :pasokaras do |t|
       t.string :title, null: false
-      t.string :fullpath, null: false, limit: 500
-      t.string :md5_hash, null: false, limit: 64
+      t.string :fullpath, null: false
       t.string :nico_vid, limit: 20
       t.datetime :nico_posted_at
       t.integer :nico_view_count, null: false, default: 0
@@ -17,7 +16,7 @@ class CreatePasokaras < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :pasokaras, :md5_hash, unique: true
+    add_index :pasokaras, :fullpath, unique: true
     add_index :pasokaras, :nico_vid, unique: true
   end
 end

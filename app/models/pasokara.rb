@@ -1,6 +1,7 @@
 class Pasokara < ActiveRecord::Base
-  validates_presence_of :title, :fullpath, :md5_hash
-  validates_uniqueness_of :md5_hash
+  validates_presence_of :title, :fullpath
+  validates_uniqueness_of :fullpath
+  validates_uniqueness_of :nico_vid, allow_nil: true
 
   include SimpleTaggable
   include Searchable

@@ -3,6 +3,6 @@ class FacetTagsController < ApplicationController
 
   def index
     search = Pasokara.search_with_facet_tags(SearchParameter.new(tags: params[:filter_tags]))
-    @facet_tags = search.facet(:tags).rows
+    @facet_tags = search.facet(:tags).rows.take(50)
   end
 end

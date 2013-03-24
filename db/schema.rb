@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 20130305104212) do
 
   create_table "pasokaras", force: true do |t|
     t.string   "title",                                     null: false
-    t.string   "fullpath",          limit: 500,             null: false
-    t.string   "md5_hash",          limit: 64,              null: false
+    t.string   "fullpath",                                  null: false
     t.string   "nico_vid",          limit: 20
     t.datetime "nico_posted_at"
     t.integer  "nico_view_count",               default: 0, null: false
@@ -37,7 +36,7 @@ ActiveRecord::Schema.define(version: 20130305104212) do
     t.datetime "updated_at"
   end
 
-  add_index "pasokaras", ["md5_hash"], name: "index_pasokaras_on_md5_hash", unique: true
+  add_index "pasokaras", ["fullpath"], name: "index_pasokaras_on_fullpath", unique: true
   add_index "pasokaras", ["nico_vid"], name: "index_pasokaras_on_nico_vid", unique: true
 
   create_table "taggings", force: true do |t|
