@@ -30,7 +30,7 @@ module Pasokara::CreateMethods
       directory_path = File.dirname(movie_file)
       thumbnail_file = File.join(directory_path, File.basename(movie_file, ".*") + ".jpg")
       info_file = File.join(directory_path, File.basename(movie_file, ".*") + "_info.xml")
-      movie_info = NicoDownloader::Info.new(path: movie_file, thumbnail_path: File.exists?(thumbnail_file) ? thumbnail_file : nil)
+      movie_info = NicoDownloader::Info.new(path: movie_file, posted_at: nil, thumbnail_path: File.exists?(thumbnail_file) ? thumbnail_file : nil)
       if File.exists?(info_file)
         movie_info.parse(File.read(info_file))
       end
@@ -48,13 +48,14 @@ module Pasokara::CreateMethods
       queue = Queue.new
 
       dig_directory = ->(dir) do
-        dir.lazy.reject{|e| e =~ /^\./}.map {|e| File.join(dir.path, e)}.each do |f|
+        dir.reject{|e| e =~ /^\./}.map {|e| File.join(dir.path, e)}.each do |f|
           if File.directory?(f)
             dig_directory.(Dir.open(f))
           elsif f =~ /\.(mp4|mpg|wmv|flv|mkv|avi|ogm|m4v)$/i
             queue << f
           end
         end
+        dir.close
       end
 
       dir = Dir.open(directory_path)

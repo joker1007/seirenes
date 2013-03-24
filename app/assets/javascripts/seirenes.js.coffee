@@ -8,4 +8,3 @@
 #= require ./router
 #= require_self
 
-Seirenes.initialize()

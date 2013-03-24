@@ -1,4 +1,7 @@
 class Pasokara < ActiveRecord::Base
+  validates_presence_of :title, :fullpath, :md5_hash
+  validates_uniqueness_of :md5_hash
+
   include SimpleTaggable
 
   searchable do
