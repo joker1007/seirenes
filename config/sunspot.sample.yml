@@ -1,0 +1,31 @@
+production:
+  solr:
+    hostname: localhost
+    port: 8983
+    log_level: WARNING
+    solr_jar: <%= (Rails.root + "contrib/solr/example/start.jar").to_s %>
+    solr_home: <%= (Rails.root + "solr41").to_s %>
+    data_path: <%= (Rails.root + "solr41/sunspot/data_production").to_s %>
+    pid_dir: <%= (Rails.root + "tmp/pids").to_s %>
+    # read_timeout: 2
+    # open_timeout: 0.5
+
+development:
+  solr:
+    hostname: localhost
+    port: 8982
+    log_level: INFO
+    solr_jar: <%= (Rails.root + "contrib/solr/example/start.jar").to_s %>
+    solr_home: <%= (Rails.root + "solr41").to_s %>
+    data_path: <%= (Rails.root + "solr41/sunspot/data_development").to_s %>
+    pid_dir: <%= (Rails.root + "tmp/pids").to_s %>
+
+test:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: WARNING
+    solr_jar: <%= (Rails.root + "contrib/solr/example/start.jar").to_s %>
+    solr_home: <%= (Rails.root + "solr41").to_s %>
+    data_path: <%= (Rails.root + "solr41/sunspot/data_test#{ENV['TEST_ENV_NUMBER']}").to_s %>
+    pid_dir: <%= (Rails.root + "tmp/pids/solr#{ENV['TEST_ENV_NUMBER']}").to_s %>
