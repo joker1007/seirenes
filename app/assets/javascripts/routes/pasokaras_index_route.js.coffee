@@ -1,8 +1,9 @@
 Seirenes.PasokarasIndexRoute = Ember.Route.extend
   model: ->
-    Seirenes.Pasokara.find()
+    Seirenes.Pasokara.find({page: 2})
 
   setupController: (controller, model) ->
+    console.log model.get("meta")
     facet_tags_controller = @controllerFor('facetTags')
     facet_tags_controller.set('pasokarasIndexController', controller)
     unless facet_tags_controller.get('filterTags')
