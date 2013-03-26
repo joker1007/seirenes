@@ -1,4 +1,6 @@
-Seirenes.PasokarasIndexController = Ember.ArrayController.extend
+#= require emberjs-pageable
+
+Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pageable,
   addTagFilter: (tag) ->
     filterTags = @get("filterTags")
     filterTags.pushObject(tag)

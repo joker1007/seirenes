@@ -33,3 +33,5 @@
             .info-entity
               %span.info-key> マイリスト数:
               %span.info-value= hb "nico_mylist_count"
+
+= hb 'view Seirenes.PaginationView', controllerBinding: "this"
