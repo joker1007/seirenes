@@ -1,11 +1,10 @@
 #= require emberjs-pageable
 
 Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pageable,
-  addTagFilter: (tag) ->
-    filterTags = @get("filterTags")
-    filterTags.pushObject(tag)
-    filterTags.uniq()
-    @reload()
+  currentPage: null
+  facetTags: Seirenes.FacetTagsController.create()
+  filterTagsBinding: "facetTags.filterTags"
 
-  reload: ->
-    @set("content", Seirenes.Pasokara.find(filter_tags: @get("filterTags")))
+  totalPagesBinding: "content.meta.total_pages"
+  perPageBinding: "content.meta.per_page"
+

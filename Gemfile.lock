@@ -167,7 +167,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     ember-data-source (0.0.5)
       ember-source
-    ember-source (0.0.3)
+    ember-source (1.0.0.rc2.0)
       handlebars-source (>= 1.0.0.rc3, < 1.0.0.rc4)
     erubis (2.7.0)
     eventmachine (1.0.1)
@@ -491,6 +491,7 @@ DEPENDENCIES
   database_cleaner!
   delorean
   ember-rails!
+  ember-source (= 1.0.0rc2.0)
   factory_girl_rails
   faraday
   faraday_middleware

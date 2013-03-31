@@ -1,28 +1,38 @@
 Seirenes.PasokarasIndexRoute = Ember.Route.extend
-  model: ->
-    Seirenes.Pasokara.find({page: 2})
+  loadModel: (controller) ->
+    records = Seirenes.Pasokara.find(filter_tags: controller.get("filterTags"), page: controller.get("currentPage"))
+    controller.set("content", records)
 
   setupController: (controller, model) ->
-    controller.set("currentPage", model.get("meta").current_page)
-    controller.set("totalPages", model.get("meta").total_pages)
-    controller.set("perPage", model.get("meta").per_page)
+    facet_tags_controller = controller.get("facetTags")
 
-    facet_tags_controller = @controllerFor('facetTags')
-    facet_tags_controller.set('pasokarasIndexController', controller)
-    unless facet_tags_controller.get('filterTags')
-      facet_tags_controller.set('filterTags', [])
-    else
+    unless controller.get("observedByRoute")
+      controller.set("observedByRoute", true)
+      controller.addObserver 'currentPage', =>
+        @loadModel(controller)
+      controller.addObserver 'filterTags.@each', =>
+        if controller.get("currentPage") == 1
+          @loadModel(controller)
+        else
+          controller.set("currentPage", 1)
+
+    unless facet_tags_controller.get("observedByRoute")
+      facet_tags_controller.set("observedByRoute", true)
+      facet_tags_controller.reload()
+      facet_tags_controller.addObserver 'filterTags.@each', =>
+        facet_tags_controller.reload()
+
+    if controller.get("filterTags").length != 0
       facet_tags_controller.get('filterTags').clear()
-    facet_tags_controller.reload()
-
-    controller.set('filterTags', [])
-    controller.set('content', model)
+    else if controller.get("currentPage") != 1
+      controller.set("currentPage", 1)
+    else
+      @loadModel(controller)
 
   renderTemplate: ->
-    facet_tags_controller = @controllerFor('facetTags')
     @render()
     @render('facetTags', {
       outlet: 'facetTags'
-      controller: facet_tags_controller
+      controller: @get("controller.facetTags")
     })
 
