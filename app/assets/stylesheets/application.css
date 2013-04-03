@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require screen
+ *= require gritter
  *= require_tree .
  */

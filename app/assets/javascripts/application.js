@@ -20,6 +20,7 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require gritter
 //= require_self
 //= require seirenes
 //= require_tree .

@@ -198,6 +198,7 @@ GEM
       ruby-hmac
     formatador (0.2.4)
     fssm (0.2.10)
+    gritter (1.0.3)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -496,6 +497,7 @@ DEPENDENCIES
   faraday
   faraday_middleware
   fog
+  gritter
   guard-jasmine-headless-webkit
   guard-rspec
   haml-rails

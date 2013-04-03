@@ -1,4 +1,6 @@
 class Pasokara < ActiveRecord::Base
+  has_many :song_queues
+
   validates_presence_of :title, :fullpath
   validates_uniqueness_of :fullpath
   validates_uniqueness_of :nico_vid, allow_nil: true

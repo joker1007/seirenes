@@ -4,6 +4,7 @@
     .title
       = hb 'linkTo pasokaras.pasokara this' do
         = hb 'title'
+      %button{ _action: 'enqueue this'} 予約する
     .info-box
       .thumb
         %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}

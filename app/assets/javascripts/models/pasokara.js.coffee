@@ -21,11 +21,28 @@ Seirenes.Pasokara = DS.Model.extend
     $.ajax("/pasokaras/#{@id}/encoding", {
       type: "POST"
       dataType: "json"
+      error: ->
+        alert("エンコードジョブが開始できませんでした。")
     })
     @_get_encode_status()
 
+  enqueue: ->
+    $.ajax "/pasokaras/#{@id}/queues",
+      type: "POST"
+      dataType: "json"
+      success: (data) ->
+        jQuery.gritter.add
+          image: '/assets/success.png'
+          title: 'Success'
+          text: "「#{data.pasokara.title}」を予約に追加しました"
+      error: ->
+        jQuery.gritter.add
+          image: '/assets/error.png'
+          title: 'Error'
+          text: "予約を追加できません"
+
   _get_encode_status: (count = 0) ->
-    if count < 600
+    if count < 200
       setTimeout(=>
         $.ajax("/pasokaras/#{@id}/encoding", {
           type: "GET"

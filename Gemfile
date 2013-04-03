@@ -141,3 +141,5 @@ gem 'hamlbars', '~> 2.0'
 gem 'spinjs-rails'
 
 gem 'celluloid'
+
+gem 'gritter'
