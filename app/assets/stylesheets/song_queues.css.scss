@@ -1,0 +1,30 @@
+@import "bootstrap";
+@import "compass/utilities";
+@import "compass/css3";
+@import "compass/typography/lists/horizontal-list";
+@import "zurui-sass";
+
+#song_queue-list {
+  padding-left: 20px;
+}
+
+
+.song_queue {
+  @include zurui-box-deboss;
+  @include border-radius(8px);
+  background-color: #FAFAFA;
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+
+  .title {
+    @include zurui-ts-000;
+    min-width: 400px;
+    width: 75%;
+    display: inline-block;
+  }
+
+  .destroy {
+    margin-left: 20px;
+  }
+}

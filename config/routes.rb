@@ -4,6 +4,7 @@ Seirenes::Application.routes.draw do
     resource :encoding, only: [:show, :create]
   end
   resources :facet_tags, only: [:index]
+  resources :song_queues, only: [:index, :show, :destroy]
   resource :player, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.

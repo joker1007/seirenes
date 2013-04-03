@@ -2,7 +2,9 @@
   %li
     = hb "linkTo index" do
       ホーム
-  %li= link_to "予約確認", root_path
+  %li
+    = hb "linkTo song_queues.index" do
+      予約確認
   %li= link_to "りれき", root_path
 
 %article.contents

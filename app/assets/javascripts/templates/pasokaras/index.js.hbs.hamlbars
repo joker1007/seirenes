@@ -1,38 +1,38 @@
 #pasokara-list
-= hb 'each controller' do
-  .pasokara
-    .title
-      = hb 'linkTo pasokaras.pasokara this' do
-        = hb 'title'
-      %button{ _action: 'enqueue this'} 予約する
-    .info-box
-      .thumb
-        %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}
-      .inner-info-box
-        .tag-box
-          .info-type タグ
-          .tag-list
-            = hb 'each tags' do
-              = hb 'name'
-              &nbsp;
-        .meta-info-box
-          .info-type 動画情報
-          .info-list
-            .info-entity
-              %span.info-key 再生時間:
-              %span.info-value= hb "formatDuration duration"
-            .info-entity
-              %span.info-key ニコニコID:
-              %span.info-value
-                %a{target: "_blank", bind: {href: "nicoUrl"}}= hb "nico_vid"
-            .info-entity
-              %span.info-key 投稿日:
-              %span.info-value= hb "nico_posted_at_formatted"
-            .info-entity
-              %span.info-key 再生数:
-              %span.info-value= hb "nico_view_count"
-            .info-entity
-              %span.info-key> マイリスト数:
-              %span.info-value= hb "nico_mylist_count"
+  = hb 'each controller' do
+    .pasokara
+      .title
+        = hb 'linkTo pasokaras.pasokara this' do
+          = hb 'title'
+        %button{ _action: 'enqueue this'} 予約する
+      .info-box
+        .thumb
+          %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}
+        .inner-info-box
+          .tag-box
+            .info-type タグ
+            .tag-list
+              = hb 'each tags' do
+                = hb 'name'
+                &nbsp;
+          .meta-info-box
+            .info-type 動画情報
+            .info-list
+              .info-entity
+                %span.info-key 再生時間:
+                %span.info-value= hb "formatDuration duration"
+              .info-entity
+                %span.info-key ニコニコID:
+                %span.info-value
+                  %a{target: "_blank", bind: {href: "nicoUrl"}}= hb "nico_vid"
+              .info-entity
+                %span.info-key 投稿日:
+                %span.info-value= hb "nico_posted_at_formatted"
+              .info-entity
+                %span.info-key 再生数:
+                %span.info-value= hb "nico_view_count"
+              .info-entity
+                %span.info-key> マイリスト数:
+                %span.info-value= hb "nico_mylist_count"
 
-= hb 'view Seirenes.PaginationView', controllerBinding: "this"
+  = hb 'view Seirenes.PaginationView', controllerBinding: "this"
