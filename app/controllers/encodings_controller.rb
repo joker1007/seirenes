@@ -11,7 +11,7 @@ class EncodingsController < ApplicationController
 
   def create
     @pasokara.encode_async
-    head :ok
+    render json: {meta: {encoding: true}}
   end
 
   private
