@@ -1,7 +1,7 @@
 #!/bin/bash
 
 solr_version=4.1.0
-wget "http://archive.apache.org/dist/lucene/solr/${solr_version}/solr-${solr_version}.tgz"
+curl -O --speed-time 20 --speed-limit 10240 --retry 5 "http://archive.apache.org/dist/lucene/solr/${solr_version}/solr-${solr_version}.tgz"
 tar xzf solr-${solr_version}.tgz
 mkdir contrib
 mv solr-${solr_version} contrib/solr/

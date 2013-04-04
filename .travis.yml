@@ -12,6 +12,9 @@ before_script:
 script: bundle exec rake spec
 rvm:
   - 2.0.0
+env:
+  global:
+    - TIMEOUT=5000
 notifications:
   email:
-    on_success: never
+    on_success: change
