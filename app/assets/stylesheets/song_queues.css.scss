@@ -5,9 +5,14 @@
 @import "zurui-sass";
 
 #song_queue-list {
-  padding-left: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
+#playing {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .song_queue {
   @include zurui-box-deboss;
@@ -26,5 +31,9 @@
 
   .destroy {
     margin-left: 20px;
+  }
+
+  #playing & {
+    background-color: #AAFAAA;
   }
 }

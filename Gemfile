@@ -143,3 +143,5 @@ gem 'spinjs-rails'
 gem 'celluloid'
 
 gem 'gritter'
+
+gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'

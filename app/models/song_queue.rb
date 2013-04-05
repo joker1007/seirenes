@@ -4,5 +4,12 @@ class SongQueue < ActiveRecord::Base
 
   paginates_per 100
 
-  delegate :title, :thumbnail, to: :pasokara
+  delegate :title, :thumbnail, :movie_mp4, :movie_webm, to: :pasokara
+
+  after_create :encode_async
+
+  private
+  def encode_async
+    pasokara.encode_async
+  end
 end

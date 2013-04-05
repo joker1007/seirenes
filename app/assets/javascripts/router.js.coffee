@@ -6,5 +6,6 @@ Seirenes.Router.map (match)->
   @resource('song_queues', ->
     @route("list")
   )
+  @route("player")
   # match('/').to('index')
 

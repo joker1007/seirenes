@@ -1,4 +1,4 @@
 Seirenes.SongQueuesIndexRoute = Ember.Route.extend({
-  model: ->
-    Seirenes.SongQueue.find()
+  setupController: (controller, model)->
+    controller.set("content", Seirenes.SongQueue.find())
 })

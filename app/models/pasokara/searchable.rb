@@ -16,16 +16,18 @@ module Pasokara::Searchable
       text :nico_description, stored: true
       time :nico_posted_at, trie: true
       integer :duration, trie: true
+      time :created_at, trie: true
     end
   end
 
   class SearchParameter
-    attr_reader :keyword, :tags, :page, :per_page
-    def initialize(keyword: nil, tags: nil, page: 1, per_page: 50)
+    attr_reader :keyword, :tags, :page, :per_page, :order_by
+    def initialize(keyword: nil, tags: nil, page: 1, per_page: 50, order_by: [[:created_at, :desc]])
       @keyword = keyword
       @tags = tags || []
       @page = page || 1
       @per_page = per_page.to_i
+      @order_by = order_by
       freeze
     end
   end
@@ -39,6 +41,9 @@ module Pasokara::Searchable
         end
         facet :tags
         paginate page: search_parameter.page, per_page: search_parameter.per_page
+        search_parameter.order_by.each do |(attribute, direction)|
+          order_by(attribute, direction)
+        end
       end
     end
   end

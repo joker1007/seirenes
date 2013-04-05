@@ -53,6 +53,13 @@ GIT
       rspec (~> 2.11)
 
 GIT
+  remote: git://github.com/joker1007/which_browser.git
+  revision: 4fa383e60a51e479aedbebb3f64622ce4952d4f0
+  specs:
+    which_browser (0.1.2.1)
+      rack (>= 1.0.1)
+
+GIT
   remote: git://github.com/joker1007/zurui-sass-rails.git
   revision: 947c51d4bd1984b85aa6017d67ac67cab855d9ed
   branch: fix_for_rails4
@@ -554,4 +561,5 @@ DEPENDENCIES
   unicorn
   vcr
   webmock
+  which_browser!
   zurui-sass-rails!
