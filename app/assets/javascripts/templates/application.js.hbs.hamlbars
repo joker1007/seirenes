@@ -13,6 +13,3 @@
 %article.contents
   = hb "outlet"
 
-%hr
-%footer
-  &copy; Tomohiro Hashidate

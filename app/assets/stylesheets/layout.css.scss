@@ -26,6 +26,7 @@ footer {
   color: #222;
   background-color: #EDEAEB;
   @include zurui-box-emboss;
+  @include clearfix;
 
   margin: {
     left: 10px;

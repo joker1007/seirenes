@@ -1,2 +1,3 @@
-{{outlet facetTags}}
-{{outlet}}
+= hb "outlet searchField"
+= hb "outlet facetTags"
+= hb "outlet"

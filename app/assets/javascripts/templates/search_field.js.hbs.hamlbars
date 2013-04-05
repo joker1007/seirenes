@@ -1,0 +1,4 @@
+#search
+  %label 検索:
+  = hb "view Ember.TextField", valueBinding: "controller.searchWord"
+  %button.btn{_action: "search"} 検索
