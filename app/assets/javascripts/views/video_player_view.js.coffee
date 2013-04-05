@@ -10,7 +10,7 @@ Seirenes.VideoPlayerView = Ember.View.extend
 
   didInsertElement: ->
     @get("controller").send("stopLoop")
-    $("video.fullscreen").on "ended", =>
+    $(@get("element")).on "ended", =>
       @playEnd()
 
   playEnd: ->

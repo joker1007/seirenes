@@ -1,7 +1,3 @@
 #song_queue-list
   = hb 'each controller' do
-    .song_queue
-      %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}
-      %span.title
-        = hb 'title'
-      %button.destroy{ _action: 'destroy this'} 削除
+    = hb "view Seirenes.SongQueueEntryView", contentBinding: "this"
