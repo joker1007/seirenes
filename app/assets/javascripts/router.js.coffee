@@ -9,3 +9,5 @@ Seirenes.Router.map (match)->
   @route("player")
   # match('/').to('index')
 
+Seirenes.Router.reopen
+  location: "query"

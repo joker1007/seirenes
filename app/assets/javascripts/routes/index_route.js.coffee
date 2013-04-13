@@ -1,3 +1,3 @@
 Seirenes.IndexRoute = Ember.Route.extend
   redirect: ->
-    @transitionTo('pasokaras.index')
+    @transitionToRouteWithParams('pasokaras.index', {page: 1})

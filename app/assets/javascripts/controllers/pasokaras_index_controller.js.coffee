@@ -8,6 +8,13 @@ Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pagea
   totalPagesBinding: "content.meta.total_pages"
   perPageBinding: "content.meta.per_page"
 
+  observeParams: ["currentPage"]
+
+  changeFilterTags: (->
+    if @get("target.router").currentHandlerInfos
+      @transitionAllParams({page: 1, filter_tags: @get("filterTags"), q: @get("searchWord")})
+  ).observes("filterTags.@each")
+
   enqueue: (pasokara) ->
     if confirm("#{pasokara.get("title")}を予約しますか？")
       pasokara.enqueue()

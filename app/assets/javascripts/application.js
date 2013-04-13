@@ -20,6 +20,8 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require jquery-deparam/jquery-deparam
+//= require ember-query/ember-query
 //= require gritter
 //= require_self
 //= require seirenes
