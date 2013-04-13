@@ -12,7 +12,7 @@ Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pagea
 
   changeFilterTags: (->
     if @get("target.router").currentHandlerInfos
-      @transitionAllParams({page: 1, filter_tags: @get("filterTags"), q: @get("searchWord")})
+      @transitionToRouteWithParams("pasokaras.index", {page: 1, filter_tags: @get("filterTags"), q: @get("searchWord")})
   ).observes("filterTags.@each")
 
   enqueue: (pasokara) ->
