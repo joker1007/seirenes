@@ -14,7 +14,6 @@ Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pagea
 
   changeFilterTags: (->
     if @get("target.router").currentHandlerInfos
-      console.log @get("target").isActive()
       @transitionAllParams({page: 1, filter_tags: @get("filterTags"), q: @get("searchWord"), order_by: @get("sortOrderBy")})
   ).observes("filterTags.@each")
 
