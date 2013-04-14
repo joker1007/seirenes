@@ -1,0 +1,3 @@
+#sort-field
+  = hb "view Ember.Select", contentBinding: "Seirenes.sortOrders", optionValuePath: "content.sortOrderBy", optionLabelPath: "content.orderName", valueBinding: "controller.sortOrderBy"
+  %button.btn{_action: "sort"} 並び換え

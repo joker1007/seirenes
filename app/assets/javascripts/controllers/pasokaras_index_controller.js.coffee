@@ -8,11 +8,14 @@ Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pagea
   totalPagesBinding: "content.meta.total_pages"
   perPageBinding: "content.meta.per_page"
 
+  sortOrderBy: "title_sort asc"
+
   observeParams: ["currentPage"]
 
   changeFilterTags: (->
     if @get("target.router").currentHandlerInfos
-      @transitionToRouteWithParams("pasokaras.index", {page: 1, filter_tags: @get("filterTags"), q: @get("searchWord")})
+      console.log @get("target").isActive()
+      @transitionAllParams({page: 1, filter_tags: @get("filterTags"), q: @get("searchWord"), order_by: @get("sortOrderBy")})
   ).observes("filterTags.@each")
 
   enqueue: (pasokara) ->

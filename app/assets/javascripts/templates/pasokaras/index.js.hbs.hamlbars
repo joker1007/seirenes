@@ -1,3 +1,5 @@
+= hb "view Seirenes.FacetTagFieldView", controllerBinding: "controller.facetTags"
+= hb "view Seirenes.SortFieldView", controllerBinding: "controller"
 #pasokara-list
   = hb 'each controller' do
     .pasokara
