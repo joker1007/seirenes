@@ -5,7 +5,9 @@
   %li
     = hb "linkTo song_queues.index" do
       予約確認
-  %li= link_to "りれき", root_path
+  %li
+    = hb "linkTo histories.index" do
+      りれき
   %li
     = hb "linkTo player" do
       再生

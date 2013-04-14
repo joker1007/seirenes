@@ -1,0 +1,3 @@
+#song_queue-list
+  = hb 'each controller' do
+    = hb "view Seirenes.HistoryEntryView", contentBinding: "this"

@@ -8,6 +8,13 @@ class SongQueue < ActiveRecord::Base
 
   after_create :encode_async
 
+  def finish!
+    self.class.transaction do
+      History.create(pasokara: pasokara, user: user)
+      destroy!
+    end
+  end
+
   private
   def encode_async
     pasokara.encode_async

@@ -5,6 +5,8 @@ Seirenes::Application.routes.draw do
   end
   resources :facet_tags, only: [:index]
   resources :song_queues, only: [:index, :show, :destroy]
+  resources :playlists, only: [:index, :show, :destroy]
+  resources :histories, only: [:index]
   resource :player, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.

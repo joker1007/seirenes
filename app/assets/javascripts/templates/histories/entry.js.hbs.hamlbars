@@ -1,0 +1,4 @@
+.song_queue
+  %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}
+  %span.title
+    = hb 'title'

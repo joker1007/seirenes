@@ -11,7 +11,7 @@ Seirenes.player = Ember.Object.create
     Ember.run.cancel(@timer)
 
   fetchSongQueue: ->
-    song_queues = Seirenes.SongQueue.find({})
+    song_queues = Seirenes.Playlist.find({})
     song_queues.on "didLoad", =>
       @set("playlist", song_queues.slice(1, 100))
       @set("playing", song_queues.get("firstObject"))

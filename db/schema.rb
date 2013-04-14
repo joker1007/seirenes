@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130403142959) do
+ActiveRecord::Schema.define(version: 20130414164806) do
 
   create_table "download_lists", force: true do |t|
     t.string   "url",                       null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20130403142959) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "histories", force: true do |t|
+    t.integer  "pasokara_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "histories", ["pasokara_id"], name: "index_histories_on_pasokara_id"
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id"
 
   create_table "pasokaras", force: true do |t|
     t.string   "title",                                     null: false

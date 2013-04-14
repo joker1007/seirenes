@@ -1,4 +1,4 @@
-json.song_queues do |json|
+json.set! controller.controller_name do |json|
   json.array!(@song_queues) do |song_queue|
     json.extract! song_queue, :id, :title, :pasokara_id, :user_id
     json.url song_queue_url(song_queue, format: :json)
