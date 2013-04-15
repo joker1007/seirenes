@@ -9,6 +9,11 @@ Seirenes::Application.routes.draw do
   resources :histories, only: [:index]
   resource :player, only: [:show]
 
+  # for OmniAuth
+  match "/auth/:provider/callback" => "sessions#callback", via: [:get, :post]
+  match "/auth/failure" => "sessions#failure", via: [:get, :post]
+  match "/logout" => "sessions#destroy", via: [:get, :delete]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

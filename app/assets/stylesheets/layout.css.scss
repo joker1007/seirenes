@@ -35,6 +35,12 @@ footer {
 
   padding-bottom: 10px;
 }
+#login {
+  color: #66FF66;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
 
 ul.nav {
   @include zurui-gradient-top-darken;
