@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 1.0.1'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 gem 'capistrano', group: :development
@@ -44,7 +44,6 @@ gem 'capistrano_colors', :require => false, :group => [:development]
 # gem 'debugger'
 
 gem "haml-rails"
-gem "unicorn"
 
 group :development do
   gem "rails3-generators", :git => "git://github.com/indirect/rails3-generators.git", :group => [:development]
