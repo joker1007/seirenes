@@ -16,7 +16,7 @@ group :assets do
   gem 'zurui-sass-rails', github: "joker1007/zurui-sass-rails", branch: "fix_for_rails4"
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', platforms: :ruby
+  gem 'therubyracer', platforms: :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end

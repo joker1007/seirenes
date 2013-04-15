@@ -271,6 +271,7 @@ GEM
       addressable (~> 2.3)
     libnotify (0.8.0)
       ffi (>= 1.0.11)
+    libv8 (3.11.8.17)
     listen (0.7.3)
     lumberjack (1.0.3)
     mail (2.5.3)
@@ -366,6 +367,7 @@ GEM
     redis (3.0.3)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
+    ref (1.0.4)
     resque (1.24.1)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
@@ -445,6 +447,9 @@ GEM
     tapp (1.4.0)
       thor
     terminal-table (1.4.5)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     thor (0.17.0)
     thread_safe (0.1.0)
       atomic
@@ -554,6 +559,7 @@ DEPENDENCIES
   sunspot_test
   sunspot_with_kaminari
   tapp
+  therubyracer
   thor
   turbolinks
   turn
