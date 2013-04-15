@@ -45,3 +45,4 @@ solr41/sunspot/data*
 log/*.lck
 
 contrib/solr
+config/deploy.rb
