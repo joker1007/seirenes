@@ -5,7 +5,7 @@
 @import "zurui-sass";
 
 body {
-  background-image: url(sitebg.jpg);
+  background-image: url(image_path('sitebg.jpg'));
 }
 
 #site-title {
