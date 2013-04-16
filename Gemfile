@@ -12,8 +12,8 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0.beta1'
   gem 'bootstrap-sass'
   #gem 'compass-rails'
-  gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
-  gem 'zurui-sass-rails', github: "joker1007/zurui-sass-rails", branch: "fix_for_rails4"
+  gem 'compass-rails', github: 'Compass/compass-rails', branch: 'rails4'
+  gem 'zurui-sass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', platforms: :ruby
