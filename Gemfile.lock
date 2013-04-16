@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/Compass/compass-rails.git
-  revision: 3e0040191220992eb6d5ccc17ddcc053733ee538
-  branch: rails4
-  specs:
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
-
-GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 83d69e68e3d2b89d5060057e5debac565542c0d6
   specs:
@@ -84,6 +76,14 @@ GIT
   revision: b0866392d86d51a14fb0819cc363f7ee7273d258
   specs:
     spring (0.0.8)
+
+GIT
+  remote: git://github.com/milgner/compass-rails.git
+  revision: 1749c06f15dc4b058427e7969810457213647fb8
+  ref: 1749c06f15dc4b058427e7969810457213647fb8
+  specs:
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
 
 GEM
   remote: https://rubygems.org/
