@@ -37,7 +37,8 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', group: :development
+#gem 'capistrano', group: :development
+gem 'capistrano', group: :development, :git => "git://github.com/jimryan/capistrano.git", :branch => "support-json-manifest"
 gem 'capistrano_colors', :require => false, :group => [:development]
 
 # To use debugger
