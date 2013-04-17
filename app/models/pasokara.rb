@@ -1,5 +1,6 @@
 class Pasokara < ActiveRecord::Base
   has_many :song_queues
+  has_many :favorites
 
   validates_presence_of :title, :fullpath
   validates_uniqueness_of :fullpath

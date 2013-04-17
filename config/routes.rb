@@ -7,6 +7,7 @@ Seirenes::Application.routes.draw do
   resources :song_queues, only: [:index, :show, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
+  resources :favorites, only: [:index, :create, :destroy]
   resource :player, only: [:show]
 
   # for OmniAuth
