@@ -1,4 +1,6 @@
 defaults: &default
+  twitter_consumer_key: "TWITTER CONSUMER KEY"
+  twitter_consumer_secret: "TWITTER CONSUMER SECRET"
   aws_access_key_id: "AWS KEY"
   aws_secret_access_key: "AWS SECRET KEY"
   aws_region: "ap-northeast-1"

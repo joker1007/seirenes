@@ -31,9 +31,16 @@
         eirenes
 
     - if notice
-      .notification.notice= notice
+      .alert.alert-success= notice
     - if alert
-      .notification.alert= alert
+      .alert.alert-error= alert
+
+    #login
+      - if current_user
+        Logged in as #{current_user.screen_name} :
+        = link_to "ログアウト", logout_path
+      - else
+        %a{href: "/auth/twitter"} ログイン
     #main
 
     %footer
