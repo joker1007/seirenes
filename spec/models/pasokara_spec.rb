@@ -131,4 +131,23 @@ describe Pasokara do
     its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
     its(:tags) { should eq %w(VOCALOID tag2).map {|n| Tag.new(name: n)} }
   end
+
+  describe "#favorited_by?" do
+    let(:pasokara) { FactoryGirl.create(:pasokara) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    subject { pasokara.favorited_by?(user) }
+
+    context "user has pasokara" do
+      before do
+        user.pasokaras << pasokara
+      end
+
+      it { should be_true }
+    end
+
+    context "user has no pasokara" do
+      it { should be_false }
+    end
+  end
 end

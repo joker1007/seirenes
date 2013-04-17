@@ -36,5 +36,10 @@
               .info-entity
                 %span.info-key> マイリスト数:
                 %span.info-value= hb "nico_mylist_count"
+          .add-favorite
+            = hb "if favorited" do
+              %a.unfavorite{_action: 'removeFavorite this'} お気に入りから削除する
+              = hb "else"
+              %a.favorite{_action: 'addFavorite this'} お気に入りに追加する
 
 = hb 'view Seirenes.PaginationView', controllerBinding: "this"

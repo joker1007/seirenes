@@ -1,5 +1,8 @@
 Seirenes::Application.routes.draw do
-  resources :pasokaras, only: [:index, :show] do
+  resources :pasokaras, only: [:index, :show, :update] do
+    member do
+      delete "unfavorite"
+    end
     resources :queues, only: [:create]
     resource :encoding, only: [:show, :create]
   end
@@ -7,7 +10,7 @@ Seirenes::Application.routes.draw do
   resources :song_queues, only: [:index, :show, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
-  resources :favorites, only: [:index, :create, :destroy]
+  resources :favorites, only: [:index, :create]
   resource :player, only: [:show]
 
   # for OmniAuth

@@ -68,6 +68,19 @@
   .info-value {
     margin-left: 4px;
   }
+
+  .favorite {
+    cursor: pointer;
+  }
+
+  .unfavorite {
+    color: #FF6666;
+    cursor: pointer;
+
+    &:hover {
+      color: #FF9999;
+    }
+  }
 }
 
 
