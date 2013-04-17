@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :user do
-    screen_name "MyString"
+    screen_name "joker1007"
   end
 end
