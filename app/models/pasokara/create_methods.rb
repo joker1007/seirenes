@@ -17,6 +17,10 @@ module Pasokara::CreateMethods
       pasokara.thumbnail = File.open(movie_info.thumbnail_path) if movie_info.thumbnail_path.present? && File.exists?(movie_info.thumbnail_path)
       pasokara.save
       pasokara
+    rescue ArgumentError => e
+      Rails.logger.tagged("create_by_movie_info") do |logger|
+        logger.warn("Create Error #{movie_info.title} #{movie_info.path} #{e.message}")
+      end
     end
 
     def create_by_movie_file(movie_file)
