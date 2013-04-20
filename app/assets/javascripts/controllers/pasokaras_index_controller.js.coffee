@@ -1,7 +1,8 @@
 #= require emberjs-pageable
+#= require ./facet_tags_controller
 
 Seirenes.PasokarasIndexController = Ember.ArrayController.extend VG.Mixins.Pageable,
-  facetTags: Seirenes.FacetTagsController.create()
+  facetTags: Seirenes.facetTagsController
   filterTagsBinding: "facetTags.filterTags"
   searchWordBinding: "facetTags.searchWord"
 

@@ -13,3 +13,5 @@ Seirenes.FacetTagsController = Ember.ArrayController.extend
   isEmptyFilterTags: (->
     @get("filterTags").lengtn == 0
   ).property("filterTags.@each")
+
+Seirenes.facetTagsController = Seirenes.FacetTagsController.create()
