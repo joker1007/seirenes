@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def callback
     auth = request.env["omniauth.auth"]
-    @user = current_user || User.find_or_create_by_omniauth(auth.tapp)
+    @user = current_user || User.find_or_create_by_omniauth(auth)
     if @user.persisted?
       session[:user_id] = @user.id
       redirect_to :root, notice: "#{@user.screen_name}としてログインしました"
