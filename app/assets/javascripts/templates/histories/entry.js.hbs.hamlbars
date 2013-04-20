@@ -1,4 +1,5 @@
 .song_queue
   %img.thumb{width: 160, height: 120, bind: {src: "thumbnailUrl"}}
   %span.title
-    = hb 'title'
+    = hb 'linkTo pasokaras.pasokara pasokara' do
+      = hb "title"

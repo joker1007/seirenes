@@ -2,9 +2,10 @@
   %li
     = hb "linkTo index" do
       ホーム
-  %li
-    = hb "linkTo favorites.index", query: "page=1" do
-      お気に入り
+  = hb "if Seirenes.current_user" do
+    %li
+      = hb "linkTo favorites.index", query: "page=1" do
+        お気に入り
   %li
     = hb "linkTo song_queues.index" do
       予約確認
