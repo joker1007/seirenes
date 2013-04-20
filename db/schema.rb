@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130414164806) do
+ActiveRecord::Schema.define(version: 20130419182823) do
 
   create_table "download_lists", force: true do |t|
     t.string   "url",                       null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20130414164806) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorites", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "pasokara_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["pasokara_id"], name: "index_favorites_on_pasokara_id"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "histories", force: true do |t|
     t.integer  "pasokara_id"
@@ -48,6 +58,7 @@ ActiveRecord::Schema.define(version: 20130414164806) do
 
   add_index "pasokaras", ["fullpath"], name: "index_pasokaras_on_fullpath", unique: true
   add_index "pasokaras", ["nico_vid"], name: "index_pasokaras_on_nico_vid", unique: true
+  add_index "pasokaras", ["title"], name: "index_pasokaras_on_title"
 
   create_table "song_queues", force: true do |t|
     t.integer  "pasokara_id"

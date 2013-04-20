@@ -3,6 +3,9 @@
     = hb "linkTo index" do
       ホーム
   %li
+    = hb "linkTo favorites.index", query: "page=1" do
+      お気に入り
+  %li
     = hb "linkTo song_queues.index" do
       予約確認
   %li

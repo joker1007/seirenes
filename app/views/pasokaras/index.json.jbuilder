@@ -1,11 +1,6 @@
-json.pasokaras do |json|
+json.set! controller.controller_name do |json|
   json.array!(@pasokaras) do |pasokara|
-    json.extract! pasokara, :id, :title, :nico_vid, :nico_posted_at, :nico_view_count, :nico_mylist_count, :duration
-    json.nico_posted_at_formatted pasokara.nico_posted_at ? l(pasokara.nico_posted_at) : nil
-    json.url pasokara_url(pasokara, format: :json)
-    json.thumbnail_url pasokara.thumbnail.url
-    json.movie_url pasokara.movie_mp4.url
-    json.tag_ids pasokara.tag_ids
+    json.partial! "pasokaras/entry", pasokara: pasokara
   end
 end
 json.tags do |json|
@@ -15,7 +10,7 @@ json.tags do |json|
 end
 json.meta do |json|
   json.total_pages @pasokaras.total_pages
-  json.per_page @pasokaras.per_page
+  json.per_page Pasokara::DEFAULT_PER_PAGE
   json.current_page @pasokaras.current_page
-  json.total_entries @pasokaras.total_entries
+  json.total_entries @pasokaras.total_count
 end

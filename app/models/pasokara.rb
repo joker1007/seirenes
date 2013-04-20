@@ -1,5 +1,7 @@
 class Pasokara < ActiveRecord::Base
   has_many :song_queues
+  has_many :favorites
+  has_many :users, through: :favorites
 
   validates_presence_of :title, :fullpath
   validates_uniqueness_of :fullpath
@@ -25,5 +27,9 @@ class Pasokara < ActiveRecord::Base
     if movie_url(format).blank?
       Resque.enqueue(EncodeJob, fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
     end
+  end
+
+  def favorited_by?(user)
+    users.include?(user)
   end
 end

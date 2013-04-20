@@ -11,6 +11,7 @@ Seirenes.Pasokara = DS.Model.extend
   thumbnailUrl: DS.attr("string")
   movieUrl: DS.attr("string")
   tags: DS.hasMany('Seirenes.Tag')
+  favorited: DS.attr("boolean")
 
   nicoUrl: (->
     if @get("nico_vid")
@@ -25,6 +26,46 @@ Seirenes.Pasokara = DS.Model.extend
         alert("エンコードジョブが開始できませんでした。")
     })
     @_get_encode_status()
+
+  # TODO: インターフェース揃えた方がよい
+  # そもそもpasokaraに対するupdateで処理した方が楽かも
+  addFavorite: ->
+    $.ajax("/favorites", {
+      type: "POST"
+      dataType: "json"
+      data: {pasokara_id: @id}
+      success: (data) =>
+        @set("favorited", true)
+        @store.commit()
+        jQuery.gritter.add
+          image: '/assets/success.png'
+          title: 'Success'
+          text: "「#{data.pasokara.title}」をお気に入りに追加しました"
+      error: ->
+        jQuery.gritter.add
+          image: '/assets/error.png'
+          title: 'Error'
+          text: "お気に入りを追加できません"
+    })
+
+  removeFavorite: ->
+    $.ajax("/pasokaras/#{@id}/unfavorite", {
+      type: "DELETE"
+      dataType: "json"
+      success: (data) =>
+        @set("favorited", false)
+        @store.commit()
+        jQuery.gritter.add
+          image: '/assets/success.png'
+          title: 'Success'
+          text: "「#{data.pasokara.title}」をお気に入りから削除しました"
+        @trigger("unfavorited")
+      error: ->
+        jQuery.gritter.add
+          image: '/assets/error.png'
+          title: 'Error'
+          text: "お気に入りを削除できません"
+    })
 
   enqueue: ->
     $.ajax "/pasokaras/#{@id}/queues",

@@ -9,6 +9,9 @@ Seirenes.Router.map (match)->
   @resource('histories', ->
     @route("list")
   )
+  @resource('favorites', ->
+    @route("list")
+  )
   @route("player")
   # match('/').to('index')
 
