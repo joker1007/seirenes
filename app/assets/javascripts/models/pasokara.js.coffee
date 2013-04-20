@@ -1,3 +1,4 @@
+#= require gritter_image
 Seirenes.Pasokara = DS.Model.extend
   title: DS.attr("string")
   nico_vid: DS.attr("string")
@@ -38,12 +39,12 @@ Seirenes.Pasokara = DS.Model.extend
         @set("favorited", true)
         @store.commit()
         jQuery.gritter.add
-          image: '/assets/success.png'
+          image: "#{gritter_success_image_path}"
           title: 'Success'
           text: "「#{data.pasokara.title}」をお気に入りに追加しました"
       error: ->
         jQuery.gritter.add
-          image: '/assets/error.png'
+          image: "#{gritter_error_image_path}"
           title: 'Error'
           text: "お気に入りを追加できません"
     })
@@ -56,13 +57,13 @@ Seirenes.Pasokara = DS.Model.extend
         @set("favorited", false)
         @store.commit()
         jQuery.gritter.add
-          image: '/assets/success.png'
+          image: "#{gritter_success_image_path}"
           title: 'Success'
           text: "「#{data.pasokara.title}」をお気に入りから削除しました"
         @trigger("unfavorited")
       error: ->
         jQuery.gritter.add
-          image: '/assets/error.png'
+          image: "#{gritter_error_image_path}"
           title: 'Error'
           text: "お気に入りを削除できません"
     })
@@ -73,12 +74,12 @@ Seirenes.Pasokara = DS.Model.extend
       dataType: "json"
       success: (data) ->
         jQuery.gritter.add
-          image: '/assets/success.png'
+          image: "#{gritter_success_image_path}"
           title: 'Success'
           text: "「#{data.pasokara.title}」を予約に追加しました"
       error: ->
         jQuery.gritter.add
-          image: '/assets/error.png'
+          image: "#{gritter_error_image_path}"
           title: 'Error'
           text: "予約を追加できません"
 
