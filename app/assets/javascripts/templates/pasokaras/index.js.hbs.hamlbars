@@ -15,8 +15,7 @@
             .info-type タグ
             .tag-list
               = hb 'each tags' do
-                = hb 'name'
-                &nbsp;
+                = hb 'view Seirenes.InfoTagView', contentBinding: "this", controllerBinding: "controller.facetTags"
           .meta-info-box
             .info-type 動画情報
             .info-list

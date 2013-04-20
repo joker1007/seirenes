@@ -5,8 +5,15 @@
 #facet-tags {
   margin-top: 20px;
   padding: 10px;
+  padding-top: 2px;
   background-color: #FAFAFA;
   @include zurui-box-emboss;
+}
+
+#current-filter-tags {
+  @include zurui-box-deboss;
+  padding-left: 10px;
+  margin-bottom: 6px;
 }
 
 .facet-tag {
@@ -18,4 +25,10 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.info-tag {
+  @extend .facet-tag;
+  margin-left: 0;
+  margin-right: 10px;
 }
