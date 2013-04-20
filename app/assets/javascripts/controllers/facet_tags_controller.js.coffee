@@ -7,9 +7,8 @@ Seirenes.FacetTagsController = Ember.ArrayController.extend
     unless filterTags.contains(tag)
       filterTags.pushObject(tag)
 
-  currentFilterTags: (->
-    @get("filterTags").join(" > ")
-  ).property("filterTags.@each")
+  removeTagFilter: (tag) ->
+    @get("filterTags").removeObject(tag.toString())
 
   isEmptyFilterTags: (->
     @get("filterTags").lengtn == 0

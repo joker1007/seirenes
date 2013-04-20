@@ -14,6 +14,10 @@
   @include zurui-box-deboss;
   padding-left: 10px;
   margin-bottom: 6px;
+
+  span {
+    line-height: 20px;
+  }
 }
 
 .facet-tag {

@@ -3,6 +3,10 @@
   = hb "unless isEmptyFilterTags" do
     #current-filter-tags
       %h4 選択中のタグ
-      = hb "currentFilterTags"
+      = hb "each filterTags" do
+        %span.current-tag
+          &gt;
+          = hb "this"
+          %a.btn.btn-mini.btn-danger{_action: "removeTagFilter this"} ×
   = hb 'each controller' do
     = hb 'view Seirenes.FacetTagView', context: "this"
