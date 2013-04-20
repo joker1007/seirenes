@@ -73,9 +73,6 @@ group :development, :test do
   gem "guard-rspec"
   gem "parallel_tests"
 
-  gem "pry-rails"
-  gem "pry-remote"
-
   gem "libnotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "libnotify" : false
   gem "rb-inotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "rb-inotify" : false
   gem "ruby_gntp", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "ruby_gntp" : false
@@ -102,6 +99,9 @@ group :test do
   gem "delorean"
   gem "database_cleaner", github: "bmabey/database_cleaner"
 end
+
+gem "pry-rails"
+gem "pry-remote"
 
 gem "factory_girl_rails"
 gem "kaminari"
