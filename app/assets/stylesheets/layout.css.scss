@@ -1,10 +1,6 @@
 @import "bootstrap_load";
 @import "compass_load";
 
-$small: "only screen and (max-width:480px)";
-$middle: "only screen and (min-width:481px) and (max-width:640px)";
-$large:  "only screen and (min-width:641px)";
-
 body {
   background-image: url(image_path('sitebg.jpg'));
   -webkit-text-size-adjust: 100%;
@@ -56,24 +52,65 @@ footer {
   right: 10px;
 }
 
+$small-menu-height: 24px;
+$middle-menu-height: 36px;
+$large-menu-height: 48px;
+
 ul.nav {
   @include zurui-gradient-top-darken;
   @include zurui-line-bottom;
   @include horizontal-list;
-  height: 48px;
+
+  @media #{$small} {
+    height: $small-menu-height;
+  }
+  @media #{$middle} {
+    height: $middle-menu-height;
+  }
+  @media #{$large} {
+    height: $large-menu-height;
+  }
 
   li {
-    vertical-align: middle;
-    height: 48px;
     @include zurui-line-right;
+
+    vertical-align: middle;
+
+    @media #{$small} {
+      height: $small-menu-height;
+    }
+    @media #{$middle} {
+      height: $middle-menu-height;
+    }
+    @media #{$large} {
+      height: $large-menu-height;
+    }
 
     a {
       color: white;
-      font-size: 24px;
-      line-height: 48px;
       font-weight: bold;
-      padding-left: 16px;
-      padding-right: 16px;
+
+      @media #{$small} {
+        font-size: 12px;
+        padding-left: 4px;
+        padding-right: 4px;
+        height: $small-menu-height;
+        line-height: $small-menu-height;
+      }
+      @media #{$middle} {
+        font-size: 18px;
+        padding-left: 8px;
+        padding-right: 8px;
+        height: $middle-menu-height;
+        line-height: $middle-menu-height;
+      }
+      @media #{$large} {
+        font-size: 24px;
+        padding-left: 16px;
+        padding-right: 16px;
+        height: $large-menu-height;
+        line-height: $large-menu-height;
+      }
     }
   }
 }

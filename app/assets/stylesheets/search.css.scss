@@ -1,8 +1,18 @@
+@import "compass_load";
+
 #search {
   margin-top: 20px;
 
   .ember-text-field {
-    width: 360px;
+    @media #{$small} {
+      width: 200px;
+    }
+    @media #{$middle} {
+      width: 360px;
+    }
+    @media #{$large} {
+      width: 360px;
+    }
     margin-bottom: 0;
   }
 }
