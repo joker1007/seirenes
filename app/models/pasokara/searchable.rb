@@ -39,7 +39,13 @@ module Pasokara::Searchable
   module ClassMethods
     def search_with_facet_tags(search_parameter)
       search(include: [:tags, :users]) do
-        fulltext "\"#{search_parameter.keyword}\"" if search_parameter.keyword.present?
+        if search_parameter.keyword.present?
+          fulltext "#{search_parameter.keyword}" do
+            fields(:title)
+            minimum_match "100%"
+          end
+        end
+
         search_parameter.tags.each do |tag_name|
           with(:tags, tag_name)
         end
