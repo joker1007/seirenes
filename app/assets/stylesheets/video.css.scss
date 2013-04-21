@@ -1,3 +1,22 @@
+@import "compass_load";
+
+video.preview {
+  @media #{$small} {
+    width: 240px;
+    height: 180px;
+  }
+
+  @media #{$middle} {
+    width: 480px;
+    height: 320px;
+  }
+
+  @media #{$large} {
+    width: 640px;
+    height: 480px;
+  }
+}
+
 #video-layer {
   z-index: 1000;
   width: 100%;

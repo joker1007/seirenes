@@ -1,6 +1,6 @@
 %h3#pasokara-preview-title= hb 'title'
 = hb "if movieUrl" do
   #pasokara-preview
-    %video{id: "preview-player", width: 640, height: 480, controls: "controls", autoplay: "autoplay", bind: {src: "movieUrl"}}
+    %video.preview{id: "preview-player", controls: "controls", autoplay: "autoplay", bind: {src: "movieUrl"}}
   = hb "else"
   = hb "view Seirenes.EncodingIndicatorView"

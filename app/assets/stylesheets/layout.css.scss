@@ -4,18 +4,6 @@
 body {
   background-image: url(image_path('sitebg.jpg'));
   -webkit-text-size-adjust: 100%;
-
-  @media #{$small} {
-    color: red;
-  }
-
-  @media #{$middle} {
-    color: blue;
-  }
-
-  @media #{$large} {
-    color: green;
-  }
 }
 
 #site-title {
