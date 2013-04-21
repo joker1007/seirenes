@@ -1,8 +1,4 @@
-@import "bootstrap";
-@import "compass/utilities";
-@import "compass/css3";
-@import "compass/typography/lists/horizontal-list";
-@import "zurui-sass";
+@import "compass_load";
 
 #song_queue-list {
   padding-left: 10px;

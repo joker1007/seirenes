@@ -1,11 +1,25 @@
-@import "bootstrap";
-@import "compass/utilities";
-@import "compass/css3";
-@import "compass/typography/lists/horizontal-list";
-@import "zurui-sass";
+@import "bootstrap_load";
+@import "compass_load";
+
+$small: "only screen and (max-width:480px)";
+$middle: "only screen and (min-width:481px) and (max-width:640px)";
+$large:  "only screen and (min-width:641px)";
 
 body {
   background-image: url(image_path('sitebg.jpg'));
+  -webkit-text-size-adjust: 100%;
+
+  @media #{$small} {
+    color: red;
+  }
+
+  @media #{$middle} {
+    color: blue;
+  }
+
+  @media #{$large} {
+    color: green;
+  }
 }
 
 #site-title {
