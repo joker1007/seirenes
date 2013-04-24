@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require screen
+ *= require bootstrap_load
  *= require gritter
  *= require_tree .
  */

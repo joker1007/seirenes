@@ -24,8 +24,7 @@ Seirenes.PasokarasIndexRoute = Ember.Route.extend
     controller.set("content", records)
 
   loadFacetTags: (facet_tags_controller) ->
-    records = Seirenes.FacetTag.find(q: facet_tags_controller.get("searchWord"), filter_tags: facet_tags_controller.get("filterTags"))
-    facet_tags_controller.set("content", records)
+    facet_tags_controller.loadModel()
 
   setupController: (controller, model, params) ->
     facet_tags_controller = controller.get("facetTags")

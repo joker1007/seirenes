@@ -7,6 +7,8 @@ class Tag < ActiveRecord::Base
 
   scope :named, ->(*words) { where(name: words).uniq }
 
+  include Searchable
+
   def ==(object)
     super || (object.is_a?(Tag) && name == object.name)
   end

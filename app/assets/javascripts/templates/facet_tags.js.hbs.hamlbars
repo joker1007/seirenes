@@ -8,5 +8,10 @@
           &gt;
           = hb "this"
           %a.btn.btn-mini.btn-danger{_action: "removeTagFilter this"} ×
+  #tag-search
+    %label タグ検索(インクリメンタル):
+    = hb "view Em.TextField", valueBinding: "controller.tagSearchWord", class: "search"
+    %button.btn{_action: "clearTagSearchWord"} クリア
+  %br/
   = hb 'each controller' do
     = hb 'view Seirenes.FacetTagView', context: "this"

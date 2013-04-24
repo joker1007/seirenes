@@ -49,7 +49,7 @@ module Pasokara::Searchable
         search_parameter.tags.each do |tag_name|
           with(:tags, tag_name)
         end
-        facet :tags
+        facet :tags, limit: -1, sort: :count
 
         with(:user_ids, search_parameter.user_id) if search_parameter.user_id
 
