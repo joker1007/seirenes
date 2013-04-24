@@ -6,6 +6,25 @@ defaults: &default
   aws_region: "ap-northeast-1"
   fog_directory: "dir"
   download_dir: <%= (Rails.root + "public/videos").to_s %>
+  stop_tag_words:
+    - ニコニコカラオケDB
+    - ニコニコカラオケＤＢ
+    - VOCALOID
+    - Vocaloid
+    - ボカロカラオケDB
+    - ボカロカラオケＤＢ
+    - ニコカラ
+    - vocaloid
+    - 音楽
+    - ﾆｺﾆｺカラオケDB
+    - カラオケ
+    - JOYSOUND配信中
+    - 歌ってみた
+    - 演奏してみた
+    - OffVocal
+    - offvocal
+    - OFFvocal
+    - ジェバンニ
 
 development:
   carrierwave_storage: "fog"
