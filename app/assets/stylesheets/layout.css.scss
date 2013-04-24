@@ -5,6 +5,13 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+@media #{$small} {
+  h3 {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
 #site-title {
   color: white;
   margin-left: 20px;

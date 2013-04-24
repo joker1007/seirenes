@@ -35,10 +35,22 @@
   position: relative;
 
   .title {
-    font-size: 24px;
+    @media #{$small} {
+      font-size: 16px;
+      line-height: 20px;
+      padding: 4px;
+    }
+    @media #{$middle} {
+      font-size: 20px;
+      line-height: 28px;
+      padding: 8px;
+    }
+    @media #{$large} {
+      font-size: 24px;
+      line-height: 32px;
+      padding: 8px;
+    }
     font-weight: bold;
-    line-height: 32px;
-    padding: 8px;
     @include border-top-left-radius(8px);
     @include border-top-right-radius(8px);
     @include zurui-gradient-top-darken;
@@ -115,4 +127,19 @@
 
 #pasokara-preview {
   text-align: center;
+}
+
+#sort-field {
+  margin-top: 4px;
+  select.sort {
+    @media #{$small} {
+      width: 140px;
+    }
+    @media #{$middle} {
+      width: 240px;
+    }
+    @media #{$large} {
+      width: 360px;
+    }
+  }
 }

@@ -34,3 +34,17 @@
   margin-left: 0;
   margin-right: 10px;
 }
+
+#tag-search {
+  input {
+    @media #{$small} {
+      width: 140px;
+    }
+    @media #{$middle} {
+      width: 240px;
+    }
+    @media #{$large} {
+      width: 360px;
+    }
+  }
+}
