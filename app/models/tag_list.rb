@@ -14,8 +14,13 @@ class TagList < Array
 
   private
   def clean!
-    reject!(&:blank?)
-    map!(&:strip)
-    uniq!
+    replace(lazy.reject(&:blank?)
+      .map(&:strip)
+      .map {|tag| tag.tr('ａ-ｚＡ-Ｚ', 'a-zA-Z')}
+      .map {|tag| tag.tr('０-９', '0-9')}
+      .map {|tag| NKF.nkf("-wWX", tag)}
+      .map(&:downcase)
+      .map {|tag| tag.gsub(/db$/i, "DB")}
+      .force.uniq)
   end
 end
