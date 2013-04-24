@@ -1,32 +1,86 @@
 @import "compass_load";
 
-#song_queue-list {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-#playing {
-  padding-left: 10px;
-  padding-right: 10px;
+#song_queue-list, #playing {
+  @media #{$small} {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  @media #{$middle} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media #{$large} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .song_queue {
   @include zurui-box-deboss;
   @include border-radius(8px);
   background-color: #FAFAFA;
-  margin-top: 20px;
-  font-size: 28px;
   font-weight: bold;
 
+  @media #{$small} {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  @media #{$middle} {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  @media #{$large} {
+    margin-top: 20px;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
   .title {
+    vertical-align: middle;
     @include zurui-ts-000;
-    min-width: 400px;
-    width: 75%;
     display: inline-block;
+    min-width: 200px;
+
+    @media #{$small} {
+      width: 75%;
+    }
+    @media #{$middle} {
+      min-width: 200px;
+      width: 60%;
+    }
+    @media #{$large} {
+      width: 75%;
+    }
+  }
+
+  .thumb {
+    vertical-align: middle;
+    display: inline-block;
+    @media #{$small} {
+      width: 20%;
+    }
+    @media #{$middle} {
+      width: 120px;
+      height: 90px;
+    }
+    @media #{$large} {
+      width: 160px;
+      height: 120px;
+    }
   }
 
   .destroy {
-    margin-left: 20px;
+    @media #{$small} {
+      margin-left: 4px;
+    }
+    @media #{$middle} {
+      margin-left: 10px;
+    }
+    @media #{$large} {
+      margin-left: 20px;
+    }
   }
 
   #playing & {
