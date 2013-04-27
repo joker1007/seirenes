@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def callback
     auth = request.env["omniauth.auth"]
-    @user = current_user.taap || User.find_or_create_by_omniauth(auth)
+    @user = current_user || User.find_or_create_by_omniauth(auth)
     if @user.persisted?
       @user.update_auth(auth)
 
