@@ -107,6 +107,7 @@ gem "factory_girl_rails"
 gem "kaminari"
 gem "omniauth"
 gem "omniauth-twitter"
+gem "omniauth-facebook"
 gem 'oj'
 
 gem "faraday"

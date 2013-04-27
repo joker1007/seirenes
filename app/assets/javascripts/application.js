@@ -17,6 +17,8 @@
 //= require jquery.turbolinks
 //= require jquery.lazyload
 //= require jquery-fonteffect-1.0.0.min
+//= require bootstrap-dropdown
+//= require bootstrap-alert
 //= require handlebars
 //= require ember
 //= require ember-data

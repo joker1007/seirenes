@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   class << self
     def find_or_create_by_omniauth(auth)
       case auth.provider
-      when "twitter"
+      when "twitter", "facebook"
         user = User.joins(:user_auths).merge( UserAuth.where(provider: auth.provider, uid: auth.uid) ).first
         return user if user
 
@@ -19,5 +19,15 @@ class User < ActiveRecord::Base
 
       user
     end
+  end
+
+  def update_auth(auth)
+    return nil if user_auths.where(provider: auth.provider).exists?
+
+    user_auths.create!(provider: auth.provider, uid: auth.uid)
+  end
+
+  def bind_with?(provider)
+    user_auths.where(provider: provider).exists?
   end
 end
