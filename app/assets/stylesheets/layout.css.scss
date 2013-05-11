@@ -14,11 +14,41 @@ body {
 
 #site-title {
   color: white;
-  margin-left: 20px;
+
+  @media #{$small} {
+    margin-left: 10px;
+  }
+  @media #{$middle} {
+    margin-left: 15px;
+  }
+  @media #{$large} {
+    margin-left: 20px;
+  }
+
   span {
     font-size: larger;
     color: #ff6633;
-    letter-spacing: -8px;
+
+    @media #{$small} {
+      letter-spacing: -4px;
+    }
+    @media #{$middle} {
+      letter-spacing: -6px;
+    }
+    @media #{$large} {
+      letter-spacing: -8px;
+    }
+  }
+
+  h1 {
+    @media #{$small} {
+      font-size: 20px;
+    }
+    @media #{$middle} {
+      font-size: 28px;
+    }
+    @media #{$large} {
+    }
   }
 }
 
