@@ -9,6 +9,7 @@ class Pasokara < ActiveRecord::Base
 
   include SimpleTaggable
   include Searchable
+  include Thumbnailable
 
   mount_uploader :thumbnail, ThumbnailUploader
   mount_uploader :movie_mp4, MovieUploader
