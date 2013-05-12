@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.beta1'
+gem 'rails', '4.0.0.rc1'
 
 gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
+  gem 'sass-rails',   '~> 4.0.0.rc'
+  gem 'coffee-rails', '~> 4.0.0'
   gem 'bootstrap-sass'
   #gem 'compass-rails'
   gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
@@ -18,7 +18,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', platforms: :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.3.0'
 end
 
 gem 'jquery-rails'
@@ -28,7 +28,12 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.1'
+gem 'jbuilder', '>= 1.0.1'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -41,9 +46,6 @@ gem 'unicorn'
 gem 'capistrano', group: :development
 gem 'capistrano_colors', :require => false, :group => [:development]
 
-# To use debugger
-# gem 'debugger'
-
 gem "haml-rails"
 
 group :development do
@@ -52,9 +54,15 @@ group :development do
 
   gem "binding_of_caller"
   gem "better_errors"
+
+  gem "annotate", github: "ctran/annotate_models"
 end
 
 group :development, :test do
+  gem "debugger"
+  gem "debugger-pry"
+  gem "pry-stack_explorer"
+
   gem "rspec", "~> 2.11"
   gem "rspec-rails", "~> 2.11"
   # gem "spork", ">= 0.9.2"
@@ -148,3 +156,4 @@ gem 'gritter'
 gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
 
 gem "chronic_duration"
+
