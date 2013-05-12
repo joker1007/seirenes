@@ -1,3 +1,5 @@
+require "shellwords"
+
 class Pasokara < ActiveRecord::Base
   has_many :song_queues
   has_many :favorites
@@ -17,6 +19,7 @@ class Pasokara < ActiveRecord::Base
 
   DEFAULT_PER_PAGE = 50
   paginates_per DEFAULT_PER_PAGE
+  FFMPEG = `which ffmpeg`.chomp.freeze
 
   include CreateMethods
 
@@ -32,5 +35,14 @@ class Pasokara < ActiveRecord::Base
 
   def favorited_by?(user)
     users.include?(user)
+  end
+
+  def fetch_duration
+    ffmpeg = IO.popen("ffmpeg -i #{fullpath.shellescape} 2>&1")
+    ffmpeg.read =~ /Duration:(.*?),/
+    if duration.blank?
+      update(duration: ChronicDuration.parse($1.strip).to_i)
+    end
+    duration
   end
 end

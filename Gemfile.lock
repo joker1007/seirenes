@@ -24,18 +24,6 @@ GIT
       railties (>= 3.0.0)
 
 GIT
-  remote: git://github.com/jimryan/capistrano.git
-  revision: 37e0ef3349a73e004d5c09c76e4b210cc2f08800
-  branch: support-json-manifest
-  specs:
-    capistrano (2.14.2)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-
-GIT
   remote: git://github.com/johnbintz/jasmine-spec-extras.git
   revision: bcada0882815b74b1227f6423c0518d4c7f379d5
   specs:
@@ -134,6 +122,12 @@ GEM
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.1.4)
+    capistrano (2.15.4)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     capistrano_colors (0.5.5)
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -150,6 +144,8 @@ GEM
     childprocess (0.3.8)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
+    chronic_duration (0.10.2)
+      numerizer (~> 0.1.1)
     chunky_png (1.2.8)
     coderay (1.0.9)
     coffee-rails (4.0.0.beta1)
@@ -230,7 +226,7 @@ GEM
       tilt
     handlebars-source (1.0.0.rc3)
     hashie (1.2.0)
-    highline (1.6.15)
+    highline (1.6.18)
     hike (1.2.1)
     hirb (0.7.1)
     hirb-unicode (0.0.5)
@@ -301,13 +297,14 @@ GEM
     net-http-persistent (2.8)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
-    net-sftp (2.1.1)
+    net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.5)
+    net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     nokogiri (1.5.9)
     ntlm-http (0.1.1)
+    numerizer (0.1.1)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -508,11 +505,12 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  capistrano!
+  capistrano
   capistrano_colors
   capybara
   carrierwave
   celluloid
+  chronic_duration
   coffee-rails (~> 4.0.0.beta1)
   compass-rails!
   database_cleaner!
