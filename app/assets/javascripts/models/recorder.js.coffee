@@ -32,7 +32,7 @@ if window.webkitAudioContext
       captureFail = (s) ->
         alert("マイクが利用できません")
 
-      navigator.getUserMedia({audio: true}, captureSuccess, @captureFail)
+      navigator.getUserMedia({audio: true}, captureSuccess, captureFail)
 
     stopRecord: (callback) ->
       @get("video").pause()
