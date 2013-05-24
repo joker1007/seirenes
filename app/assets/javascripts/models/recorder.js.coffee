@@ -1,7 +1,7 @@
 if window.webkitAudioContext
   Seirenes.Recorder = Ember.Object.extend
     context: new webkitAudioContext()
-    musicGainValue: 0.75
+    musicGainValue: 0
 
     init: ->
       @_super()
@@ -20,7 +20,8 @@ if window.webkitAudioContext
       captureSuccess = (s) ->
         that.set("micStream", s)
         that.set("mediaStreamSource", that.get("context").createMediaStreamSource(s))
-        that.get("mediaStreamSource").connect(that.get("mixer"))
+        delayEffector = Seirenes.DelayEffector.create(source: that.get("mediaStreamSource"))
+        delayEffector.get("output").connect(that.get("mixer"))
         that.set("recorder", new Recorder(that.get("mixer"), {workerPath: "/assets/recorderWorker.js"}))
         dummy = that.get("context").createGain()
         dummy.gain.value = 0
