@@ -129,6 +129,20 @@
   text-align: center;
 }
 
+#record-control {
+  @include zurui-box-deboss;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#recorded {
+  margin-top: 10px;
+}
+
 #sort-field {
   margin-top: 4px;
   select.sort {

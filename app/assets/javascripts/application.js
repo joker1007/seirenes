@@ -25,6 +25,10 @@
 //= require jquery-deparam/jquery-deparam
 //= require ember-query/ember-query
 //= require gritter
+//= require get_user_media_wrap
+//= require recorder
+//= require jquery.ui.widget
+//= require jquery.fileupload
 //= require_self
 //= require seirenes
 //= require_tree .
