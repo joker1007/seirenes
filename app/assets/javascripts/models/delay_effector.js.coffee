@@ -1,5 +1,5 @@
 Seirenes.DelayEffector = Ember.Object.extend
-  delayTime: 0.15
+  delayTime: 0.12
   feedbackLevel: 0.2
   wetGainLevel: 0.2
   dryGainLevel: 1
