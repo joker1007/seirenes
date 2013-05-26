@@ -8,5 +8,6 @@
     #recorded
       = hb "if recordAudioUrl" do
         %audio.recordAudio{controls: "controls", bind: {src: "recordAudioUrl"}}
+        %button{_action: "upload"} Upload
   = hb "else"
   = hb "view Seirenes.EncodingIndicatorView"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130419182823) do
+ActiveRecord::Schema.define(version: 20130526150126) do
 
   create_table "download_lists", force: true do |t|
     t.string   "url",                       null: false
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "updated_at"
   end
 
-  add_index "favorites", ["pasokara_id"], name: "index_favorites_on_pasokara_id"
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+  add_index "favorites", ["pasokara_id"], name: "index_favorites_on_pasokara_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "histories", force: true do |t|
     t.integer  "pasokara_id"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "updated_at"
   end
 
-  add_index "histories", ["pasokara_id"], name: "index_histories_on_pasokara_id"
-  add_index "histories", ["user_id"], name: "index_histories_on_user_id"
+  add_index "histories", ["pasokara_id"], name: "index_histories_on_pasokara_id", using: :btree
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
   create_table "pasokaras", force: true do |t|
     t.string   "title",                                     null: false
@@ -56,9 +56,21 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "updated_at"
   end
 
-  add_index "pasokaras", ["fullpath"], name: "index_pasokaras_on_fullpath", unique: true
-  add_index "pasokaras", ["nico_vid"], name: "index_pasokaras_on_nico_vid", unique: true
-  add_index "pasokaras", ["title"], name: "index_pasokaras_on_title"
+  add_index "pasokaras", ["fullpath"], name: "index_pasokaras_on_fullpath", unique: true, using: :btree
+  add_index "pasokaras", ["nico_vid"], name: "index_pasokaras_on_nico_vid", unique: true, using: :btree
+  add_index "pasokaras", ["title"], name: "index_pasokaras_on_title", using: :btree
+
+  create_table "recorded_songs", force: true do |t|
+    t.string   "data"
+    t.boolean  "public_flag"
+    t.integer  "user_id"
+    t.integer  "pasokara_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recorded_songs", ["pasokara_id"], name: "index_recorded_songs_on_pasokara_id", using: :btree
+  add_index "recorded_songs", ["user_id"], name: "index_recorded_songs_on_user_id", using: :btree
 
   create_table "song_queues", force: true do |t|
     t.integer  "pasokara_id"
@@ -67,8 +79,8 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "updated_at"
   end
 
-  add_index "song_queues", ["pasokara_id"], name: "index_song_queues_on_pasokara_id"
-  add_index "song_queues", ["user_id"], name: "index_song_queues_on_user_id"
+  add_index "song_queues", ["pasokara_id"], name: "index_song_queues_on_pasokara_id", using: :btree
+  add_index "song_queues", ["user_id"], name: "index_song_queues_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -79,8 +91,8 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
@@ -88,7 +100,7 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "updated_at"
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name"
+  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
 
   create_table "user_auths", force: true do |t|
     t.string   "provider",   null: false
@@ -98,7 +110,7 @@ ActiveRecord::Schema.define(version: 20130419182823) do
     t.datetime "updated_at"
   end
 
-  add_index "user_auths", ["user_id"], name: "index_user_auths_on_user_id"
+  add_index "user_auths", ["user_id"], name: "index_user_auths_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "screen_name", null: false

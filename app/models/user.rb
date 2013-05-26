@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :user_auths
   has_many :favorites
   has_many :pasokaras, through: :favorites
+  has_many :recorded_songs
 
   class << self
     def find_or_create_by_omniauth(auth)

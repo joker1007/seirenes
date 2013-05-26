@@ -5,13 +5,16 @@ Seirenes::Application.routes.draw do
     end
     resources :queues, only: [:create]
     resource :encoding, only: [:show, :create]
+    resources :recordings, only: [:create]
   end
+
   resources :facet_tags, only: [:index]
   resources :song_queues, only: [:index, :show, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
   resources :favorites, only: [:index, :create]
   resource :player, only: [:show]
+  resources :recordings, only: [:index, :show]
 
   # for OmniAuth
   match "/auth/:provider/callback" => "sessions#callback", via: [:get, :post]
