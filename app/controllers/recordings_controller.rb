@@ -33,8 +33,8 @@ class RecordingsController < ApplicationController
 
   def parse_content_length
     if content_length = request.env["HTTP_CONTENT_RANGE"]
-      content_length.taap =~ /bytes (\d+)-(\d+)\/(\d+)/
-      {from: $1.to_i, to: $2.to_i, total: $3.to_i}.taap
+      content_length =~ /bytes (\d+)-(\d+)\/(\d+)/
+      {from: $1.to_i, to: $2.to_i, total: $3.to_i}
     else
       nil
     end
