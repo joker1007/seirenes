@@ -69,6 +69,8 @@ namespace :config do
     run "mkdir -p #{shared_path}/contrib"
     run "mkdir -p #{shared_path}/solr/data_production"
     run "mkdir -p #{shared_path}/ffmpeg"
+    run "mkdir -p #{shared_path}/videos"
+    run "mkdir -p #{shared_path}/audios"
     upload("config/database.yml", "#{shared_path}/config/database.yml")
     upload("config/resque.yml", "#{shared_path}/config/resque.yml")
     upload("config/settings.yml", "#{shared_path}/config/settings.yml")
@@ -83,6 +85,8 @@ namespace :config do
     run "ln -fs #{shared_path}/public/assets #{release_path}/public/assets"
     run "ln -fs #{shared_path}/contrib #{release_path}/contrib"
     run "ln -fs #{shared_path}/ffmpeg #{release_path}/ffmpeg"
+    run "ln -fs #{shared_path}/videos #{release_path}/public/videos"
+    run "ln -fs #{shared_path}/audios #{release_path}/public/audios"
     run "ln -fs #{shared_path}/solr/data_production #{release_path}/solr41/sunspot/data_production"
   end
 end
