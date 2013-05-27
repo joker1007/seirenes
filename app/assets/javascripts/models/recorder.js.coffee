@@ -1,7 +1,7 @@
 if window.webkitAudioContext
   Seirenes.Recorder = Ember.Object.extend
     context: new webkitAudioContext()
-    musicGainValue: 0.8
+    musicGainValue: 0.7
 
     init: ->
       @_super()
