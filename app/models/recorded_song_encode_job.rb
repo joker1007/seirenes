@@ -4,7 +4,7 @@ class RecordedSongEncodeJob
   def self.perform(input_filename, user_id, pasokara_id)
     ffmpeg = `which ffmpeg`.chomp
     temp_filename = (Rails.root + "tmp" + "#{SecureRandom.hex}.m4a").to_s
-    cmd = "#{ffmpeg} -i #{Shellwords.shellescape(input_filename)} -acodec libfaac -f mp4 -af volume=volume=12dB:precision=fixed #{Shellwords.shellescape(temp_filename)}"
+    cmd = "#{ffmpeg} -i #{Shellwords.shellescape(input_filename)} -acodec libfaac -f mp4 -af volume=volume=3dB:precision=fixed #{Shellwords.shellescape(temp_filename)}"
     Rails.logger.tagged("RecordedSongEncodeJob") {|logger| logger.info("cmd: #{cmd}")}
     unless system(cmd)
       Rails.logger.tagged("RecordedSongEncodeJob") {|logger| logger.error("Encode failed")}
