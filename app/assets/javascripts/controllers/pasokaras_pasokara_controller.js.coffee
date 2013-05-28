@@ -1,6 +1,6 @@
 Seirenes.PasokarasPasokaraController = Ember.ObjectController.extend
   createRecorder: (video) ->
-    @set("recorder", Seirenes.Recorder.create(video: video))
+    @set("recorder", Seirenes.Recorder.create(video: video, monitor: @get("isMonitoring")))
 
   startRecord: ->
     @createRecorder(document.querySelector("video")) unless @get("recorder")

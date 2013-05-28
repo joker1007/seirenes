@@ -5,6 +5,8 @@
   #record-control
     %button{_action: "startRecord"} Start Rec
     %button{_action: "stopRecord"} Stop Rec
+    Monitor:
+    = hb "view Ember.Checkbox", checkedBinding: "isMonitoring"
     #recorded
       = hb "if recordAudioUrl" do
         %audio.recordAudio{controls: "controls", bind: {src: "recordAudioUrl"}}
