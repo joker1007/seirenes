@@ -87,9 +87,8 @@ group :development, :test do
   gem "rb-fsevent", :require => RUBY_PLATFORM.downcase =~ /darwin/ ? "rb-fsevent" : false
 
   gem "jasmine"
-  gem "jasmine-headless-webkit"
-  gem "jasmine-spec-extras", :git => "git://github.com/johnbintz/jasmine-spec-extras.git"
-  gem "guard-jasmine-headless-webkit"
+  gem "guard-jasmine"
+  gem "jasminerice", github: "bradphelan/jasminerice"
 
   gem "webmock", :require => false
   gem "vcr", :require => false
@@ -105,7 +104,7 @@ group :test do
   gem "simplecov-rcov", :require => false
   gem "rspec-formatter-git_auto_commit", :github => "joker1007/rspec-formatter-git_auto_commit"
   gem "delorean"
-  gem "database_cleaner", github: "bmabey/database_cleaner"
+  gem "database_cleaner"
 end
 
 gem "pry-rails"
@@ -139,12 +138,12 @@ end
 gem 'active_decorator'
 
 gem 'carrierwave'
-gem 'fog'
+gem 'fog', '>= 1.12'
 
 gem 'resque'
 gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"
 
-gem 'ember-source', '1.0.0rc2.0'
+gem 'ember-source', '1.0.0rc5'
 gem 'ember-rails', github: "emberjs/ember-rails"
 gem 'hamlbars', '~> 2.0'
 gem 'spinjs-rails'
