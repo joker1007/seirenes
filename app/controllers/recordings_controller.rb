@@ -1,9 +1,11 @@
 class RecordingsController < ApplicationController
-  before_action :authenticate, only: [:create]
+  before_action :authenticate, only: [:index, :create]
   before_action :set_recorded_song, only: [:show]
 
   def index
-    @recorded_songs = current_user.recorded_songs
+    if request.xhr?
+      @recorded_songs = current_user.recorded_songs.order("created_at DESC")
+    end
   end
 
   def show

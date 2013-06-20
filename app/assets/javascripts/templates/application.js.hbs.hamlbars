@@ -15,6 +15,9 @@
   %li
     = hb "linkTo player" do
       再生
+  %li
+    = hb "linkTo recordings.index" do
+      録音
 
 %article.contents
   = hb "outlet"

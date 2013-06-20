@@ -1,0 +1,31 @@
+@import "compass_load";
+
+#recording-list {
+  @media #{$small} {
+    padding-left: 4px;
+  }
+  @media #{$middle} {
+    padding-left: 8px;
+  }
+  @media #{$large} {
+    padding-left: 20px;
+  }
+}
+
+.recording {
+  @include box-shadow(black 2px 2px 10px);
+  background-color: #FAFAFA;
+  margin-top: 20px;
+  padding: 10px;
+  height: 35px;
+
+  font-size: 18px;
+
+  span {
+    vertical-align: middle;
+  }
+
+  .player {
+    vertical-align: middle;
+  }
+}
