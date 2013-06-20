@@ -3,7 +3,7 @@ DS.RESTAdapter.configure "plurals", {
 }
 
 Seirenes.Store = DS.Store.extend
-  revision: 11
+  revision: 13
   adapter: DS.RESTAdapter.create({
     didFindQuery: (store, type, payload, recordArray) ->
       loader = DS.loaderFor(store)
