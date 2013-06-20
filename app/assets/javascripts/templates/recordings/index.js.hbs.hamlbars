@@ -1,11 +1,3 @@
 #recording-list
   = hb 'each controller' do
-    .recording
-      %span.title
-        = hb 'linkTo pasokaras.pasokara pasokara' do
-          = hb "title"
-      %span.user
-        = hb "userName"
-      %span.created-at
-        = hb "formattedCreatedAt"
-      %audio.player{bind: {src: "dataUrl"}, controls: "controls"}
+    = hb 'view Seirenes.RecordingEntryView', contentBinding: "this"

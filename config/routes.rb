@@ -14,7 +14,7 @@ Seirenes::Application.routes.draw do
   resources :histories, only: [:index]
   resources :favorites, only: [:index, :create]
   resource :player, only: [:show]
-  resources :recordings, only: [:index, :show]
+  resources :recordings, only: [:index, :show, :destroy]
 
   # for OmniAuth
   match "/auth/:provider/callback" => "sessions#callback", via: [:get, :post]

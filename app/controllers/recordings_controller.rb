@@ -1,10 +1,10 @@
 class RecordingsController < ApplicationController
-  before_action :authenticate, only: [:index, :create]
-  before_action :set_recorded_song, only: [:show]
+  before_action :authenticate, only: [:create, :destroy]
+  before_action :set_recorded_song, only: [:show, :destroy]
 
   def index
     if request.xhr?
-      @recorded_songs = current_user.recorded_songs.order("created_at DESC")
+      @recorded_songs = RecordedSong.order("created_at DESC")
     end
   end
 
@@ -17,6 +17,11 @@ class RecordingsController < ApplicationController
     else
       render json: {errors: {base: "File size is too small"}}, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @recorded_song.destroy
+    render nothing: true, status: :ok
   end
 
   private
