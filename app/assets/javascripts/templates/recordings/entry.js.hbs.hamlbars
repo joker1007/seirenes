@@ -5,6 +5,6 @@
   %span.user
     = hb "userName"
   %span.created-at
-    = hb "formattedCreatedAt"
+    = hb "formatTime createdAt"
   %audio.player{bind: {src: "dataUrl"}, controls: "controls"}
   %button.destroy{ _action: 'removeEntry this target=view'} 削除

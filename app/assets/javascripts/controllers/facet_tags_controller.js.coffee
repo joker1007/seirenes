@@ -19,15 +19,17 @@ Seirenes.FacetTagsController = Ember.ArrayController.extend
     @set("tagSearchWord", "")
 
   tagSearchWordChanged: (->
+    Ember.run.backburner.debounce this, @updateCurrentRecord, 500
+  ).observes("tagSearchWord")
+
+  updateCurrentRecord: ->
     if @get("currentRecord")
       if @get("currentRecord").isLoaded
         @set("currentRecord", @loadModel())
       else
-        @get("currentRecord").on "didLoad", =>
-          @set("currentRecord", @loadModel())
+        @tagSearchWordChanged()
     else
       @set("currentRecord", @loadModel())
-  ).observes("tagSearchWord")
 
   loadModel: ->
     records = Seirenes.FacetTag.find(q: @get("searchWord"), filter_tags: @get("filterTags"), tagq: @get("tagSearchWord"))

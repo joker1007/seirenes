@@ -21,7 +21,7 @@ class RecordingsController < ApplicationController
 
   def destroy
     @recorded_song.destroy
-    render nothing: true, status: :ok
+    render json: {}, status: :ok
   end
 
   private
