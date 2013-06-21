@@ -12,7 +12,7 @@ Seirenes::Application.routes.draw do
   resources :song_queues, only: [:index, :show, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
-  resources :favorites, only: [:index, :create]
+  resources :favorites, only: [:index, :create, :show]
   resource :player, only: [:show]
   resources :recordings, only: [:index, :show, :destroy]
 

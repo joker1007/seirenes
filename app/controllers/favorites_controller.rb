@@ -9,6 +9,13 @@ class FavoritesController < ApplicationController
     render "pasokaras/index"
   end
 
+  def show
+    @pasokara = Pasokara.find(params[:id])
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def create
     @pasokara = Pasokara.find(params[:pasokara_id])
     current_user.favorites.create(pasokara: @pasokara)
