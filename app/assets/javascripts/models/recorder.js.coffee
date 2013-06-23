@@ -2,6 +2,7 @@ if window.webkitAudioContext
   Seirenes.Recorder = Ember.Object.extend
     context: new webkitAudioContext()
     musicGainValue: 1.0
+    musicDelayTime: 0.005
 
     init: ->
       @_super()
@@ -13,13 +14,18 @@ if window.webkitAudioContext
       @set("elementMediaSource", @get("context").createMediaElementSource(@get("video")))
       @get("elementMediaSource").connect(@get("musicGain"))
       @get("elementMediaSource").connect(@get("context").destination)
-      @get("musicGain").connect(@get("mixer"))
+      musicDelay = @get("context").createDelay()
+      musicDelay.delayTime.value = @get("musicDelayTime")
+      @get("musicGain").connect(musicDelay)
+      musicDelay.connect(@get("mixer"))
 
     record: ->
       that = this
       captureSuccess = (s) ->
         that.set("micStream", s)
         that.set("mediaStreamSource", that.get("context").createMediaStreamSource(s))
+
+        splitter = that.get("context").createChannelSplitter()
 
         # ノイズ除去のため低音域をカット
         highpassFilter = that.get("context").createBiquadFilter()
@@ -31,7 +37,7 @@ if window.webkitAudioContext
         peaking = that.get("context").createBiquadFilter()
         peaking.type = "peaking"
         peaking.Q.value = 0 # All frequency
-        peaking.gain.value = 5 # 5db
+        peaking.gain.value = 2 # db
 
         # サシスセソ領域の音を減衰させる
         deesser = that.get("context").createBiquadFilter()
@@ -46,7 +52,11 @@ if window.webkitAudioContext
         trebleBoost.frequency.value = 14000 # hz
         trebleBoost.gain.value = 3
 
-        that.get("mediaStreamSource").connect(highpassFilter)
+        # Mix後のコンプレッサー
+        dynamicsCompressor = that.get("context").createDynamicsCompressor()
+
+        that.get("mediaStreamSource").connect(splitter)
+        splitter.connect(highpassFilter, 0)
         highpassFilter.connect(peaking)
         peaking.connect(deesser)
 
@@ -56,8 +66,9 @@ if window.webkitAudioContext
         delayEffector.get("output").connect(that.get("context").destination) if that.get("monitor")
 
         that.get("mixer").connect(trebleBoost)
+        trebleBoost.connect(dynamicsCompressor)
 
-        that.set("recorder", new Recorder(trebleBoost, {workerPath: RECORDER_WORKER_PATH}))
+        that.set("recorder", new Recorder(dynamicsCompressor, {workerPath: RECORDER_WORKER_PATH}))
         dummy = that.get("context").createGain()
         dummy.gain.value = 0
         that.get("recorder").node.connect(dummy)
