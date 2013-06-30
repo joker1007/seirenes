@@ -70,6 +70,14 @@ GIT
     spring (0.0.9)
 
 GIT
+  remote: git://github.com/ko1/debugger2.git
+  revision: 868f94f8b67e13f3cd3921be15168dcebf2e7019
+  specs:
+    debugger2 (1.0.0.beta2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+
+GIT
   remote: git://github.com/milgner/compass-rails.git
   revision: 1749c06f15dc4b058427e7969810457213647fb8
   ref: 1749c06f15dc4b058427e7969810457213647fb8
@@ -165,15 +173,7 @@ GEM
       safe_yaml (~> 0.9.0)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
-    debugger (1.6.0)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
-    debugger-pry (0.1.1)
-      debugger (~> 1)
-      pry (>= 0.9.9)
-    debugger-ruby_core_source (1.2.2)
     delorean (2.1.0)
       chronic
     diff-lcs (1.2.4)
@@ -533,8 +533,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails!
   database_cleaner
-  debugger
-  debugger-pry
+  debugger2!
   delorean
   ember-rails!
   ember-source (= 1.0.0rc5)

@@ -59,10 +59,6 @@ group :development do
 end
 
 group :development, :test do
-  gem "debugger"
-  gem "debugger-pry"
-  gem "pry-stack_explorer"
-
   gem "rspec", "~> 2.11"
   gem "rspec-rails", "~> 2.11"
   # gem "spork", ">= 0.9.2"
@@ -109,6 +105,8 @@ end
 
 gem "pry-rails"
 gem "pry-remote"
+gem "pry-stack_explorer"
+gem "debugger2", github: "ko1/debugger2"
 
 gem "factory_girl_rails"
 gem "kaminari"
