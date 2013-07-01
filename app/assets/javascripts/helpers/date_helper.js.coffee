@@ -1,4 +1,6 @@
 Ember.Handlebars.helper('formatTime', (d, options) ->
+  return "" unless d
+
   year = d.getFullYear()
   month = d.getMonth() + 1
   day = d.getDate()

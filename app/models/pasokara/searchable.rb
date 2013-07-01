@@ -38,7 +38,7 @@ module Pasokara::Searchable
 
   module ClassMethods
     def search_with_facet_tags(search_parameter)
-      search(include: [:tags, :users]) do
+      search(include: [:tags, :users, :recorded_songs]) do
         if search_parameter.keyword.present?
           fulltext "#{search_parameter.keyword}" do
             fields(:title)

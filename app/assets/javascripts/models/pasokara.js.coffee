@@ -13,6 +13,7 @@ Seirenes.Pasokara = DS.Model.extend
   movieUrl: DS.attr("string")
   tags: DS.hasMany('Seirenes.Tag')
   favorited: DS.attr("boolean")
+  recordings: DS.hasMany('Seirenes.Recording')
 
   nicoUrl: (->
     if @get("nico_vid")

@@ -118,6 +118,40 @@
   }
 }
 
+#pasokara-movie-area {
+  @media #{$small} {
+    width: 240px;
+  }
+
+  @media #{$middle} {
+    width: 480px;
+  }
+
+  @media #{$large} {
+    width: 640px;
+  }
+  display: inline-block;
+}
+
+#pasokara-recordings {
+  @media #{$small} {
+    width: 240px;
+  }
+  @media #{$middle} {
+    width: 320px;
+  }
+  @media #{$large} {
+    width: 480px;
+  }
+
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 4px;
+  margin-left: 4px;
+  font-size: 16px;
+
+  @include zurui-box-deboss;
+}
 
 #pasokara-preview-title {
   margin-top: 20px;
@@ -126,7 +160,7 @@
 }
 
 #pasokara-preview {
-  text-align: center;
+  text-align: left;
 }
 
 #record-control {
@@ -134,9 +168,18 @@
   padding-top: 8px;
   padding-bottom: 8px;
   text-align: center;
-  width: 640px;
-  margin-left: auto;
-  margin-right: auto;
+
+  @media #{$small} {
+    width: 240px;
+  }
+
+  @media #{$middle} {
+    width: 480px;
+  }
+
+  @media #{$large} {
+    width: 640px;
+  }
 }
 
 #recorded {

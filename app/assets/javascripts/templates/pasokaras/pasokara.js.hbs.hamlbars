@@ -1,15 +1,27 @@
 %h3#pasokara-preview-title= hb 'title'
 = hb "if movieUrl" do
-  #pasokara-preview
-    %video.preview{id: "preview-player", controls: "controls", bind: {src: "movieUrl"}}
-  #record-control
-    %button{_action: "startRecord"} Start Rec
-    %button{_action: "stopRecord"} Stop Rec
-    Monitor:
-    = hb "view Ember.Checkbox", checkedBinding: "isMonitoring"
-    #recorded
-      = hb "if recordAudioUrl" do
-        %audio.recordAudio{controls: "controls", bind: {src: "recordAudioUrl"}}
-        %button{_action: "upload"} Upload
+  #pasokara-movie-area
+    #pasokara-preview
+      %video.preview{id: "preview-player", controls: "controls", bind: {src: "movieUrl"}}
+    #record-control
+      %button{_action: "startRecord"} Start Rec
+      %button{_action: "stopRecord"} Stop Rec
+      Monitor:
+      = hb "view Ember.Checkbox", checkedBinding: "isMonitoring"
+      #recorded
+        = hb "if recordAudioUrl" do
+          %audio.recordAudio{controls: "controls", bind: {src: "recordAudioUrl"}}
+          %button{_action: "upload"} Upload
+
+  %ul#pasokara-recordings
+    = hb "each recordings" do
+      %li.pasokara-recording
+        %span.user
+          = hb "userName"
+        %span.created-at
+          = hb "formatTime createdAt"
+        %audio.player{bind: {src: "dataUrl"}, controls: "controls"}
+
   = hb "else"
   = hb "view Seirenes.EncodingIndicatorView"
+

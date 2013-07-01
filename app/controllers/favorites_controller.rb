@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
   before_action :authenticate
 
   def index
-    @pasokaras = current_user.pasokaras.page(params[:page]).order("title asc")
+    @pasokaras = current_user.pasokaras.includes(:tags, :recorded_songs).page(params[:page]).order("title asc")
       .includes([:tags, :users])
     @tags = @pasokaras.flat_map{|p| p.tags}.uniq
 
