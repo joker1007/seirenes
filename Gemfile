@@ -75,7 +75,6 @@ group :development, :test do
 
   # gem "guard-spork"
   gem "guard-rspec"
-  gem "parallel_tests"
 
   gem "libnotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "libnotify" : false
   gem "rb-inotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "rb-inotify" : false
