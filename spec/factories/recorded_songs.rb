@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :recorded_song do
-    data "MyString"
+    data "data"
     public_flag true
-    user nil
-    pasokara nil
+    user
+    pasokara
   end
 end

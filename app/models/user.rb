@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :pasokaras, through: :favorites
   has_many :recorded_songs
 
+  validates_presence_of :screen_name
+
   class << self
     def find_or_create_by_omniauth(auth)
       case auth.provider

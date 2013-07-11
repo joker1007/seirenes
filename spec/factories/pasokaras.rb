@@ -11,4 +11,8 @@ FactoryGirl.define do
     duration 125
     nico_description "description"
   end
+
+  trait :with_other_file do
+    fullpath { (Rails.root + "spec/datas/test002.flv").to_s }
+  end
 end
