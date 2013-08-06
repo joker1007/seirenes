@@ -62,7 +62,6 @@ group :development, :test do
   gem "rspec", "~> 2.11"
   gem "rspec-rails", "~> 2.11"
   # gem "spork", ">= 0.9.2"
-  gem "spring", github: "jonleighton/spring"
 
   gem "capybara"
   gem "poltergeist"
