@@ -11,8 +11,8 @@ group :assets do
   gem 'sass-rails',   '~> 4.0.0'
   gem 'coffee-rails', '~> 4.0.0'
   gem 'bootstrap-sass'
-  #gem 'compass-rails'
-  gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
+  gem 'compass-rails', github: 'Compass/compass-rails'
+  #gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
   gem 'zurui-sass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
