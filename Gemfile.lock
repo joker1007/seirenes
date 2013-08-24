@@ -1,13 +1,13 @@
 GIT
   remote: git://github.com/bradphelan/jasminerice.git
-  revision: d93a3b2ed8f9b74249e2f19d179b5b1f1963dfc3
+  revision: 091349c27343bfa728b8e5745675f9ddbb7d9699
   specs:
     jasminerice (0.1.0)
       coffee-rails
 
 GIT
   remote: git://github.com/ctran/annotate_models.git
-  revision: 18a4e2eb77c8f3ef695b563e4a7ca45dfede819b
+  revision: aaab884fe430bf6ef418cfbedde603d660c78f9b
   specs:
     annotate (2.6.0.beta2)
       activerecord (>= 2.3.0)
@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/emberjs/ember-rails.git
-  revision: 82c637b1357efd47f50309781025900e9656b47e
+  revision: 5417aadf77fc22729a3e6875336d48aa74146d0f
   specs:
     ember-rails (0.13.0)
       active_model_serializers
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: git://github.com/joker1007/nico_downloader.git
-  revision: 9955f716d8477d759e34905d9723cf7c0df99e3e
+  revision: 4e57b299ff331b9a4c6e31e9163a21ae6155ac1c
   specs:
     nico_downloader (0.0.1)
       lumberjack
@@ -62,14 +62,6 @@ GIT
   specs:
     which_browser (0.1.2.1)
       rack (>= 1.0.1)
-
-GIT
-  remote: git://github.com/ko1/debugger2.git
-  revision: 868f94f8b67e13f3cd3921be15168dcebf2e7019
-  specs:
-    debugger2 (1.0.0.beta2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
 
 GIT
   remote: git://github.com/milgner/compass-rails.git
@@ -112,7 +104,7 @@ GEM
     addressable (2.3.5)
     ansi (1.4.3)
     arel (4.0.0)
-    atomic (1.1.12)
+    atomic (1.1.13)
     awesome_print (1.1.0)
     barber (0.4.2)
       ember-source
@@ -126,6 +118,9 @@ GEM
     bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     builder (3.1.4)
+    byebug (1.8.2)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -172,7 +167,7 @@ GEM
     delorean (2.1.0)
       chronic
     diff-lcs (1.2.4)
-    domain_name (0.5.12)
+    domain_name (0.5.13)
       unf (>= 0.0.5, < 1.0.0)
     ember-data-source (0.13)
       ember-source
@@ -181,8 +176,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.25.3)
-    execjs (1.4.0)
-      multi_json (~> 1.0)
+    execjs (2.0.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.2.1)
@@ -195,7 +189,7 @@ GEM
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
     ffi (1.9.0)
-    fog (1.14.0)
+    fog (1.15.0)
       builder
       excon (~> 0.25.0)
       formatador (~> 0.2.0)
@@ -214,7 +208,7 @@ GEM
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
       thor (>= 0.14.6)
-    guard-jasmine (1.17.0)
+    guard-jasmine (1.18.1)
       childprocess
       guard (>= 1.1.0)
       multi_json
@@ -247,7 +241,7 @@ GEM
       domain_name (~> 0.5)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
-    i18n (0.6.4)
+    i18n (0.6.5)
     i18n_generators (1.2.1)
       mechanize
       rails (>= 3.0.0)
@@ -263,7 +257,7 @@ GEM
     jquery-rails (2.3.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-turbolinks (1.0.0)
+    jquery-turbolinks (2.0.0)
       railties (>= 3.1.0)
       turbolinks
     json (1.8.0)
@@ -277,8 +271,8 @@ GEM
       addressable (~> 2.3)
     libnotify (0.8.1)
       ffi (>= 1.0.11)
-    libv8 (3.11.8.17)
-    listen (1.2.2)
+    libv8 (3.16.14.3)
+    listen (1.3.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
@@ -286,7 +280,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mechanize (2.7.1)
+    mechanize (2.7.2)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0.0)
       mime-types (~> 1.17, >= 1.17.2)
@@ -296,11 +290,11 @@ GEM
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
-    mime-types (1.23)
+    mime-types (1.24)
     mini_portile (0.5.1)
     minitest (4.7.5)
     mono_logger (1.1.0)
-    multi_json (1.7.8)
+    multi_json (1.7.9)
     multipart-post (1.2.0)
     mysql2 (0.3.13)
     net-http-digest_auth (1.4)
@@ -378,7 +372,7 @@ GEM
     raindrops (0.11.0)
     rake (10.1.0)
     rb-fsevent (0.9.3)
-    rb-inotify (0.9.0)
+    rb-inotify (0.9.1)
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
@@ -400,10 +394,10 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.4)
-    rspec-expectations (2.14.0)
+    rspec-core (2.14.5)
+    rspec-expectations (2.14.2)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.2)
+    rspec-mocks (2.14.3)
     rspec-rails (2.14.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -414,7 +408,7 @@ GEM
     ruby-hmac (0.4.0)
     ruby_gntp (0.3.4)
     rubyzip (0.9.9)
-    safe_yaml (0.9.4)
+    safe_yaml (0.9.5)
     sass (3.2.10)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -423,13 +417,13 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    selenium-webdriver (2.33.0)
+    selenium-webdriver (2.35.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
     settingslogic (2.0.9)
-    shoulda-matchers (2.2.0)
+    shoulda-matchers (2.3.0)
       activesupport (>= 3.0.0)
     simplecov (0.7.1)
       multi_json (~> 1.0)
@@ -468,15 +462,15 @@ GEM
       sunspot_rails
     tapp (1.4.0)
       thor
-    therubyracer (0.11.4)
-      libv8 (~> 3.11.8.12)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
       ref
     thor (0.18.1)
     thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
     timers (1.1.0)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (1.3.0)
@@ -487,7 +481,7 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unf (0.1.1)
+    unf (0.1.2)
       unf_ext
     unf_ext (0.0.6)
     unicode-display_width (0.1.1)
@@ -518,6 +512,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  byebug
   capistrano
   capistrano_colors
   capybara
@@ -527,7 +522,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails!
   database_cleaner
-  debugger2!
   delorean
   ember-rails!
   ember-source (= 1.0.0rc5)

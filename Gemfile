@@ -104,7 +104,7 @@ end
 gem "pry-rails"
 gem "pry-remote"
 gem "pry-stack_explorer"
-gem "debugger2", github: "ko1/debugger2"
+gem "byebug"
 
 gem "factory_girl_rails"
 gem "kaminari"
