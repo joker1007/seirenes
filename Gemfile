@@ -133,8 +133,6 @@ gem 'fog', '>= 1.12'
 gem 'resque'
 gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"
 
-gem 'ember-source', '1.0.0rc5'
-gem 'ember-rails', github: "emberjs/ember-rails"
 gem 'hamlbars', '~> 2.0'
 gem 'spinjs-rails'
 
