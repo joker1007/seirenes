@@ -2,25 +2,50 @@ module Pasokara::Searchable
   extend ActiveSupport::Concern
 
   included do
-    searchable do
-      text :title, stored: true
-      string :title_sort do
-        title
-      end
-      string :tags, multiple: true, stored: true do
-        tags.map(&:name)
-      end
-      string :user_ids, multiple: true, stored: true do
-        users.pluck(:id)
-      end
-      string :nico_vid, stored: true
-      integer :nico_view_count, trie: true
-      integer :nico_mylist_count, trie: true
-      text :nico_description, stored: true
-      time :nico_posted_at, trie: true
-      integer :duration, trie: true
-      time :created_at, trie: true
+    include Elasticsearch::Model
+
+    settings index: {
+      analysis: {
+        analyzer: {
+          myNgramAnalyzer: {
+            tokenizer: "myNgramTokenizer",
+            filter: %w(lowercase),
+          },
+          myKeywordAnalyzer: {
+            tokenizer: "keyword",
+            filter: %w(lowercase),
+          },
+        },
+        tokenizer: {
+          myNgramTokenizer: {
+            type: "nGram",
+            token_chars: %w(letter digit symbol)
+          },
+        },
+      },
+    }
+
+    mappings do
+      indexes :title, store: true, analyzer: "myNgramAnalyzer"
+      indexes :tags, analyzer: "myKeywordAnalyzer"
+      indexes :user_ids, analyzer: "myKeywordAnalyzer"
+      indexes :nico_vid, analyzer: "myKeywordAnalyzer"
+      indexes :nico_view_count, type: "integer"
+      indexes :nico_mylist_count, type: "integer"
+      indexes :nico_description, store: true, analyzer: "myNgramAnalyzer"
+      indexes :nico_posted_at, type: "date"
+      indexes :duration, type: "integer"
+      indexes :created_at, type: "date"
     end
+
+    __elasticsearch__.create_index!
+  end
+
+  def as_indexed_json(options = {})
+    as_json(
+      only: [:title, :nico_vid, :nico_view_count, :nico_mylist_count, :nico_description, :nico_posted_at, :duration, :created_at],
+      methods: [:user_ids]
+    ).merge("tags" => tags.pluck(:name))
   end
 
   class SearchParameter

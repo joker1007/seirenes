@@ -10,9 +10,9 @@ class Pasokara < ActiveRecord::Base
   validates_uniqueness_of :fullpath
   validates_uniqueness_of :nico_vid, allow_nil: true
 
-  include SimpleTaggable
+  include ::SimpleTaggable
+  include ::Thumbnailable
   include Searchable
-  include Thumbnailable
 
   mount_uploader :thumbnail, ThumbnailUploader
   mount_uploader :movie_mp4, MovieUploader

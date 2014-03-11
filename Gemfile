@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc1'
@@ -16,7 +17,8 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails', '< 3.0.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -76,7 +78,6 @@ group :development, :test do
   gem "ruby_gntp", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "ruby_gntp" : false
   gem "rb-fsevent", :require => RUBY_PLATFORM.downcase =~ /darwin/ ? "rb-fsevent" : false
 
-  gem "jasmine"
   gem "teaspoon"
 
   gem "webmock", :require => false
@@ -94,6 +95,7 @@ group :test do
   gem "rspec-formatter-git_auto_commit", :github => "joker1007/rspec-formatter-git_auto_commit"
   gem "delorean"
   gem "database_cleaner"
+  gem "coveralls"
 end
 
 gem "pry-rails"
@@ -116,14 +118,9 @@ gem "settingslogic"
 
 gem "thor"
 
-gem 'sunspot'
-gem 'sunspot_solr'
-gem 'sunspot_rails'
-gem 'sunspot_with_kaminari'
-
-group :development, :test do
-  gem 'sunspot_test'
-end
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-extensions'
 
 gem 'active_decorator'
 
@@ -133,7 +130,7 @@ gem 'fog', '>= 1.12'
 gem 'resque'
 gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"
 
-gem 'hamlbars', '~> 2.0'
+gem 'handlebars_assets'
 gem 'spinjs-rails'
 
 gem 'celluloid'
@@ -144,3 +141,11 @@ gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
 
 gem "chronic_duration"
 
+# rails-assets
+gem 'rails-assets-jquery', require: false
+gem 'rails-assets-jqueryui', require: false
+gem 'rails-assets-spin.js'
+gem 'rails-assets-lodash'
+gem 'rails-assets-backbone'
+gem 'rails-assets-backbone.marionette', '>= 1.6'
+gem 'rails-assets-backbone.stickit'

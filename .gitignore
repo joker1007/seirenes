@@ -46,4 +46,6 @@ solr41/sunspot/data*
 log/*.lck
 
 contrib/solr
+contrib/elasticsearch
 config/deploy.rb
+elasticsearch_setup

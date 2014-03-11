@@ -17,13 +17,8 @@
 //= require jquery.turbolinks
 //= require jquery.lazyload
 //= require jquery-fonteffect-1.0.0.min
-//= require bootstrap-dropdown
-//= require bootstrap-alert
-//= require handlebars
-//= require ember
-//= require ember-data
+//= require bootstrap
 //= require jquery-deparam/jquery-deparam
-//= require ember-query/ember-query
 //= require gritter
 //= require get_user_media_wrap
 //= require recorder
@@ -32,8 +27,4 @@
 //= require_self
 //= require seirenes
 //= require_tree .
-
-Seirenes = Ember.Application.create({
-  rootElement: "#main"
-});
 

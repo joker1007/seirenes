@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Pasokara do
-  let(:pasokara) { FactoryGirl.create(:pasokara) }
+  let(:pasokara) { create(:pasokara) }
 
   describe "SimpleTaggable" do
     describe "#tag_list=" do
@@ -148,6 +148,42 @@ describe Pasokara do
 
     context "user has no pasokara" do
       it { should be_false }
+    end
+  end
+
+  describe "ElasticSearch", elasticsearch: true do
+    let(:pasokara) { create(:pasokara, title: "日本語混じりのTitle") }
+    let(:pasokara2) { create(:pasokara, :with_other_file, title: "Other Title") }
+
+    before do
+      pasokara.tag_list = %w(tag1 tag2)
+      pasokara.save
+    end
+
+    it "indexing" do
+      pasokara.__elasticsearch__.index_document
+      Elasticsearch::Model.client.indices.flush
+      response = Pasokara.search(query: {match: {tags: "tag1"}})
+      expect(response.results).to have(1).items
+      expect(response.records.first).to eq pasokara
+    end
+
+    it "searchable in Japanese" do
+      pasokara.__elasticsearch__.index_document
+      pasokara2.__elasticsearch__.index_document
+      Elasticsearch::Model.client.indices.flush
+      response = Pasokara.search(query: {match: {title: "混じり"}})
+      expect(response.records).to have(1).items
+      expect(response.records.first).to eq pasokara
+    end
+
+    it "searchable in English" do
+      pasokara.__elasticsearch__.index_document
+      pasokara2.__elasticsearch__.index_document
+      Elasticsearch::Model.client.indices.flush
+      response = Pasokara.search(query: {match: {title: "Title"}})
+      expect(response.records).to have(2).items
+      expect(response.records.sort_by(&:id).first).to eq pasokara
     end
   end
 end
