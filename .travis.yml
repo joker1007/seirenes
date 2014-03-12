@@ -1,8 +1,6 @@
 language: ruby
-before_install:
-  - phantomjs --version
+cache: bundler
 before_script:
-  - ci/solr_setup
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
   - cp config/resque.sample.yml config/resque.yml
@@ -11,10 +9,7 @@ before_script:
   - "echo '--color' > .rspec"
 script: bundle exec rake spec
 rvm:
-  - 2.0.0
-env:
-  global:
-    - TIMEOUT=5000
+  - 2.1.0
 notifications:
   email:
     on_success: change
