@@ -6,8 +6,8 @@ before_script:
   - cp config/resque.sample.yml config/resque.yml
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - "echo '--color' > .rspec"
-script: bundle exec rake spec
+  - "echo '--color --format d' > .rspec"
+script: bundle exec rspec spec
 rvm:
   - 2.1.0
 notifications:
