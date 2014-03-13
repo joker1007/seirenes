@@ -1,5 +1,7 @@
 language: ruby
 cache: bundler
+services:
+  - elasticsearch
 before_script:
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
@@ -10,6 +12,9 @@ before_script:
 script: bundle exec rspec spec
 rvm:
   - 2.1.0
+env:
+  global:
+    - CI=true
 notifications:
   email:
     on_success: change

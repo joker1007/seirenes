@@ -11,7 +11,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'elasticsearch/extensions/test/cluster'
 
-Elasticsearch::Model.client = Elasticsearch::Client.new(host: "localhost:9250")
+Elasticsearch::Model.client = Elasticsearch::Client.new(host: "localhost:9250") unless ENV["CI"]
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -86,8 +86,10 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :poltergeist
 
   config.before(:each, elasticsearch: true) do
-    unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
-      Elasticsearch::Extensions::Test::Cluster.start port: 9250, nodes: 1
+    unless ENV["CI"]
+      unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
+        Elasticsearch::Extensions::Test::Cluster.start port: 9250, nodes: 1
+      end
     end
 
     Pasokara.__elasticsearch__.create_index! force: true
