@@ -96,5 +96,9 @@ RSpec.configure do |config|
     Pasokara.__elasticsearch__.refresh_index!
   end
 
-  at_exit { Elasticsearch::Extensions::Test::Cluster.stop port: 9250 }
+  at_exit do
+    if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
+      Elasticsearch::Extensions::Test::Cluster.stop port: 9250
+    end
+  end
 end
