@@ -72,10 +72,10 @@ group :development, :test do
   gem "tapp"
 
   gem "guard-rspec"
+  gem "growl"
 
   gem "libnotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "libnotify" : false
   gem "rb-inotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "rb-inotify" : false
-  gem "ruby_gntp", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "ruby_gntp" : false
   gem "rb-fsevent", :require => RUBY_PLATFORM.downcase =~ /darwin/ ? "rb-fsevent" : false
 
   gem "teaspoon"
@@ -96,6 +96,7 @@ group :test do
   gem "delorean"
   gem "database_cleaner"
   gem "coveralls"
+  gem "fuubar"
 end
 
 gem "pry-rails"

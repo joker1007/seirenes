@@ -12,6 +12,10 @@ FactoryGirl.define do
     nico_description "description"
   end
 
+  trait :seq do
+    sequence(:fullpath) { |n| (Rails.root + "spec/datas/test#{"%04d" % n}.mp4").to_s }
+  end
+
   trait :with_other_file do
     fullpath { (Rails.root + "spec/datas/test002.flv").to_s }
   end

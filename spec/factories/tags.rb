@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :tag do
-    name "MyString"
+    sequence(:name) { |n| "SeqTag#{"%04d" % n}" }
   end
 end
