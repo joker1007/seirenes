@@ -8,12 +8,8 @@ GIT
 
 GIT
   remote: git://github.com/elasticsearch/elasticsearch-rails.git
-  revision: 527e2075ae812db9b7043e4fcc9bc493451f3bec
+  revision: cdc175f21185692ad9df095f02a323a28f481b7d
   specs:
-    elasticsearch-model (0.1.0)
-      activesupport (> 3)
-      elasticsearch (> 0.4)
-      hashie
     elasticsearch-rails (0.1.0)
 
 GIT
@@ -22,6 +18,16 @@ GIT
   specs:
     rails3-generators (1.0.0)
       railties (>= 3.0.0)
+
+GIT
+  remote: git://github.com/joker1007/elasticsearch-rails.git
+  revision: 26c6ac76f6b72d05b1f3ed6355fcc28c969cf01e
+  branch: more_intuitive_pagination
+  specs:
+    elasticsearch-model (0.1.0)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
 
 GIT
   remote: git://github.com/joker1007/nico_downloader.git
