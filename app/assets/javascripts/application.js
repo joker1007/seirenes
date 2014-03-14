@@ -25,6 +25,5 @@
 //= require jquery.ui.widget
 //= require jquery.fileupload
 //= require_self
-//= require seirenes
 //= require_tree .
 
