@@ -1,4 +1,5 @@
 language: ruby
+bundler_args: -j4 --without development --deployment --path=${BUNDLE_PATH:-vendor/bundle}
 cache: bundler
 services:
   - elasticsearch
