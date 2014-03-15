@@ -3,17 +3,9 @@ class SongQueuesController < ApplicationController
 
   def index
     @song_queues = SongQueue.includes(:pasokara).page(params[:page])
-    respond_to do |format|
-      format.html {render "pasokaras/index"}
-      format.json
-    end
   end
 
   def show
-    respond_to do |format|
-      format.html {render "pasokaras/index"}
-      format.json
-    end
   end
 
   def create
@@ -24,7 +16,10 @@ class SongQueuesController < ApplicationController
 
   def destroy
     @song_queue.destroy!
-    render json: {meta: {deleted: true}}
+    respond_to do |format|
+      format.html { redirect_to song_queues_url }
+      format.json { render :show }
+    end
   end
 
   private

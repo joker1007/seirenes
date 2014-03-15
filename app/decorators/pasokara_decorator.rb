@@ -8,7 +8,7 @@ module PasokaraDecorator
         type: :json,
         confirm: "「#{title}」を予約に追加しますか？"
       },
-      class: ["btn", "btn-primary", "js-add_queue"]
+      class: %w(btn btn-primary js-add_queue)
   end
 
   def favorite_link(user)
@@ -22,7 +22,7 @@ module PasokaraDecorator
             type: :json,
             confirm: "「#{title}」をお気に入りから削除しますか？",
           },
-          class: ["btn", "btn-default", "js-remove_favorite"]
+          class: %w(btn btn-primary js-remove_favorite)
       else
         link_to "お気に入りに追加する",
           pasokara_favorites_path(self),
@@ -32,7 +32,7 @@ module PasokaraDecorator
             type: :json,
             confirm: "「#{title}」をお気に入りに追加しますか？"
           },
-          class: ["btn", "btn-default", "js-add_favorite"]
+          class: %w(btn btn-primary js-add_favorite)
       end
     end
   end

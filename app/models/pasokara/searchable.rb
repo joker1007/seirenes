@@ -59,6 +59,17 @@ module Pasokara::Searchable
       @user_id = user_id
       freeze
     end
+
+    def ==(other)
+      return false unless other.is_a?(SearchParameter)
+
+      keyword == other.keyword &&
+        tags.sort == other.tags.sort &&
+        page == other.page &&
+        per_page == other.per_page &&
+        order_by == other.order_by &&
+        user_id == other.user_id
+    end
   end
 
   module ClassMethods
