@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: download_lists
+#
+#  id         :integer          not null, primary key
+#  url        :string(255)      not null
+#  download   :boolean          default(TRUE), not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class DownloadList < ActiveRecord::Base
   class << self
     def download_all

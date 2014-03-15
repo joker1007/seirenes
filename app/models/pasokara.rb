@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: pasokaras
+#
+#  id                :integer          not null, primary key
+#  title             :string(255)      not null
+#  fullpath          :string(255)      not null
+#  nico_vid          :string(20)
+#  nico_posted_at    :datetime
+#  nico_view_count   :integer          default(0), not null
+#  nico_mylist_count :integer          default(0), not null
+#  duration          :integer
+#  nico_description  :string(700)
+#  thumbnail         :string(255)
+#  movie_mp4         :string(255)
+#  movie_webm        :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 require "shellwords"
 
 class Pasokara < ActiveRecord::Base
