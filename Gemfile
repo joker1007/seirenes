@@ -58,6 +58,7 @@ group :development do
   gem 'spring-commands-rspec'
 
   gem 'quiet_assets'
+  gem 'thin'
 end
 
 group :development, :test do
