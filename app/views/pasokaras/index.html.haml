@@ -6,6 +6,7 @@
 
 #pasokara-list
   - @pasokaras.each do |pasokara|
-    = render "pasokaras/index_pasokara", pasokara: pasokara
+    - cache pasokara do
+      = render "pasokaras/index_pasokara", pasokara: pasokara
 
 = paginate @search

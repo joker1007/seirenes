@@ -59,6 +59,8 @@ group :development do
 
   gem 'quiet_assets'
   gem 'thin'
+
+  gem 'bullet'
 end
 
 group :development, :test do
