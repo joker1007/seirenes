@@ -1,0 +1,20 @@
+#facet-tags
+  %h3 タグ一覧
+
+  #current-filter-tags
+    - if params[:filter_tags].present?
+      %h4 選択中のタグ
+      - params[:filter_tags].each do |t|
+        %span.current-tag
+          &gt;
+          = t
+          %a.btn.btn-mini.btn-danger ×
+  #tag-search
+    %label タグ検索(インクリメンタル):
+    = text_field_tag "tag_search_q", "", class: "search"
+    %button.btn{_action: "clearTagSearchWord"} クリア
+  %br/
+  #facet-tags-list
+    - @facets.each do |f|
+      %span.facet-tag
+        = link_to "#{f["term"]}(#{f["count"]})", root_path

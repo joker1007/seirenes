@@ -4,13 +4,12 @@ class PasokarasController < ApplicationController
   SearchParameter = Pasokara::Searchable::SearchParameter # class alias
 
   def index
-    if request.xhr?
-      order_by = params[:order_by] ? params[:order_by].split(" ").map(&:to_sym) : [:created_at, :desc]
-      keyword = params[:q].present? ? params[:q].split("\s").map{|word| "\"#{word}\""}.join(" ") : nil
-      search = Pasokara.search_with_facet_tags(SearchParameter.new(keyword: keyword, tags: params[:filter_tags], page: params[:page], order_by: [order_by], user_id: params[:user_id]))
-      @pasokaras = search.results
-      @tags = @pasokaras.flat_map{|p| p.tags}.uniq
-    end
+    order_by = params[:order_by].try(:split, " ").try(:map, &:to_sym) || [:created_at, :desc]
+    keyword = params[:q]
+    @search = Pasokara.search_with_facet_tags(SearchParameter.new(keyword: keyword, tags: params[:filter_tags], page: params[:page], order_by: [order_by], user_id: params[:user_id]))
+    @pasokaras = @search.records.includes(:tags)
+    @facets = @search.response["facets"]["tags"]["terms"]
+    @tags = @pasokaras.flat_map{|p| p.tags}.uniq
   end
 
   def show

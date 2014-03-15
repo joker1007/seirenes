@@ -56,6 +56,8 @@ group :development do
 
   gem 'spring'
   gem 'spring-commands-rspec'
+
+  gem 'quiet_assets'
 end
 
 group :development, :test do
@@ -109,6 +111,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem 'oj'
+gem 'oj_mimic_json'
 
 gem "faraday"
 gem "faraday_middleware"

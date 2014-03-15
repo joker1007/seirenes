@@ -1,4 +1,3 @@
-# coding: utf-8
 module PasokaraDecorator
   def duration_str
     "#{(duration / 60)}:#{"%02d" % (duration % 60)}"
