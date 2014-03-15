@@ -1,3 +1,4 @@
+= render "shared/search_field"
 = render "shared/facet_tags"
 = render "shared/sort_field"
 
@@ -5,6 +6,6 @@
 
 #pasokara-list
   - @pasokaras.each do |pasokara|
-    = render "index_pasokara", pasokara: pasokara
+    = render "pasokaras/index_pasokara", pasokara: pasokara
 
 = paginate @search

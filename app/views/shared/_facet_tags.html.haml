@@ -8,13 +8,8 @@
         %span.current-tag
           &gt;
           = t
-          %a.btn.btn-mini.btn-danger ×
-  #tag-search
-    %label タグ検索(インクリメンタル):
-    = text_field_tag "tag_search_q", "", class: "search"
-    %button.btn{_action: "clearTagSearchWord"} クリア
-  %br/
+          = link_to "×", url_for(q: params[:q], filter_tags: params[:filter_tags] - [t]), class: ["btn", "btn-mini", "btn-danger"]
   #facet-tags-list
     - @facets.each do |f|
       %span.facet-tag
-        = link_to "#{f["term"]}(#{f["count"]})", root_path
+        = link_to "#{f["term"]}(#{f["count"]})", url_for(q: params[:q], filter_tags: params[:filter_tags].to_a + [f["term"]])

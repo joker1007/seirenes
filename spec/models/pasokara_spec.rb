@@ -239,8 +239,17 @@ describe Pasokara do
         expect(response.response["facets"]["tags"]["terms"]).to have(4).items
       end
 
+      it "日本語のタグで検索する" do
+        parameter = Pasokara::SearchParameter.new(tags: %w(タグ))
+        response = Pasokara.search_with_facet_tags(parameter)
+        expect(response.results).to have(1).items
+        expect(response.records[0]).to eq pasokara3
+        expect(response.response["facets"]).to be_a(Hash)
+        expect(response.response["facets"]["tags"]["terms"]).to have(1).items
+      end
+
       it "複数のタグにマッチする結果を返す" do
-        parameter = Pasokara::SearchParameter.new(tags: %w(tag2 tag3))
+        parameter = Pasokara::SearchParameter.new(tags: %w(tag2 Tag3))
         response = Pasokara.search_with_facet_tags(parameter)
         expect(response.results).to have(1).items
         expect(response.records[0]).to eq pasokara2

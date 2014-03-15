@@ -1,7 +1,7 @@
 .pasokara
   .title
     = link_to pasokara.title, pasokara
-    %button.btn.btn-primary 予約する
+    = pasokara.add_queue_link
   .info-box
     .thumb
       = image_tag pasokara.thumbnail.url, width: 160, height: 120
@@ -9,9 +9,7 @@
       .tag-box
         .info-type タグ
         .tag-list
-          - pasokara.tags.each do |t|
-            %span.info-tag
-              = link_to t.name, url_for(filter_tags: params[:filter_tags].to_a + [t.name])
+          = render "pasokaras/tags", tags: pasokara.tags
       .meta-info-box
         .info-type 動画情報
         .info-list
@@ -25,7 +23,7 @@
                 = pasokara.link_to_niconico
           .info-entity
             %span.info-key 投稿日:
-            %span.info-value= pasokara.nico_posted_at.try(:strftime, "%Y/%m/%d %H:%M:%S")
+            %span.info-value= pasokara.nico_posted_at_for_info_box
           .info-entity
             %span.info-key 再生数:
             %span.info-value= pasokara.nico_view_count
@@ -33,4 +31,4 @@
             %span.info-key> マイリスト数:
             %span.info-value= pasokara.nico_mylist_count
       .add-favorite
-        %button.btn.btn-default.favorite お気に入りに追加する
+        = pasokara.favorite_link(current_user)

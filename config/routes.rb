@@ -1,9 +1,7 @@
 Seirenes::Application.routes.draw do
   resources :pasokaras, only: [:index, :show, :update] do
-    member do
-      delete "unfavorite"
-    end
-    resources :queues, only: [:create]
+    resources :song_queues, only: [:create]
+    resources :favorites, only: [:create]
     resource :encoding, only: [:show, :create]
     resources :recordings, only: [:create]
   end
@@ -12,7 +10,7 @@ Seirenes::Application.routes.draw do
   resources :song_queues, only: [:index, :show, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
-  resources :favorites, only: [:index, :create, :show]
+  resources :favorites, only: [:index, :destroy]
   resource :player, only: [:show]
   resources :recordings, only: [:index, :show, :destroy]
 

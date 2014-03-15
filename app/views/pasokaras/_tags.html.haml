@@ -1,0 +1,3 @@
+- tags.each do |t|
+  %span.info-tag
+    = link_to t.name, url_for(q: params[:q], filter_tags: params[:filter_tags].to_a + [t.name])

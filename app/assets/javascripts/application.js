@@ -19,8 +19,13 @@
 //= require jquery-fonteffect-1.0.0.min
 //= require bootstrap
 //= require jquery-deparam/jquery-deparam
+//= require lodash
+//= require backbone
+//= require backbone.marionette
 //= require gritter
+//= require gritter_image
 //= require get_user_media_wrap
+//= require add_song_queue_notification
 //= require recorder
 //= require jquery.ui.widget
 //= require jquery.fileupload

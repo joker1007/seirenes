@@ -1,0 +1,5 @@
+#search
+  = form_tag pasokaras_path, method: "get", class: ["form-inline"] do
+    %label{for: "q"} 検索:&nbsp;
+    = text_field_tag "q", params[:q], class: ["search", "form-control"], placeholder: "検索ワード"
+    = submit_tag "検索", class: ["btn", "btn-default"]

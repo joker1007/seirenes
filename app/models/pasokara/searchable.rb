@@ -65,12 +65,10 @@ module Pasokara::Searchable
     def search_with_facet_tags(search_parameter, facet_size: 50)
       query = Jbuilder.encode do |json|
         json.query do
-          keyword_query(search_parameter.keyword, json)
+          build_query(search_parameter.keyword, search_parameter.tags, search_parameter.user_id, json)
         end
 
-        query_filter(search_parameter.tags, search_parameter.user_id, json)
-
-        facets(search_parameter.tags, search_parameter.user_id, facet_size, json)
+        build_facets(facet_size, json)
 
         json.sort do
           search_parameter.order_by.each do |key, type|
@@ -79,78 +77,64 @@ module Pasokara::Searchable
         end
       end
 
-      search(query).page(search_parameter.page).limit(search_parameter.per_page)
+      search(query.tapp).page(search_parameter.page).limit(search_parameter.per_page)
     end
 
     private
 
-    def keyword_query(keyword, json)
-      if keyword.present?
-        json.match do
-          json.title do
-            json.query keyword
-            json.operator "and"
-          end
-        end
-      else
-        json.match_all []
+    def build_query(keyword, tags, user_id, json)
+      queries = []
+      queries << keyword_proc(keyword)
+      tags.each do |t|
+        queries << tag_proc(t)
       end
-    end
+      queries.concat Array(user_id_proc(user_id))
 
-    def query_filter(tags, user_id, json)
-      filters = []
-      filters.concat Array(tags_proc(tags))
-      filters.concat Array(user_id_proc(user_id))
-
-      if filters.present?
-        json.filter do
-          json.bool do
-            json.must do
-              json.array! filters do |procedure|
-                procedure.call(json)
-              end
-            end
+      json.bool do
+        json.must do
+          json.array! queries do |q|
+            q.call(json)
           end
         end
       end
     end
 
-    def facets(tags, user_id, facet_size, json)
-      filters = []
-      filters.concat Array(tags_proc(tags))
-      filters.concat Array(user_id_proc(user_id))
-
+    def build_facets(facet_size, json)
       json.facets do
         json.tags do
           json.terms do
             json.field "tags"
             json.size facet_size
           end
-
-          if filters.present?
-            json.facet_filter do
-              json.bool do
-                json.must do
-                  json.array! filters do |procedure|
-                    procedure.call(json)
-                  end
-                end
-              end
-            end
-          end
         end
       end
     end
 
-    def tags_proc(tags)
-      if tags.present?
+    def keyword_proc(keyword)
+      if keyword.present?
         ->(json) {
-          json.terms do
-            json.tags tags
-            json.execution "and"
+          json.match do
+            json.title do
+              json.query keyword
+              json.operator "and"
+            end
           end
         }
+      else
+        ->(json) {
+          json.match_all []
+        }
       end
+    end
+
+    def tag_proc(tag)
+      ->(json) {
+        json.match do
+          json.tags do
+            json.query tag
+          end
+        end
+      }
     end
 
     def user_id_proc(user_id)

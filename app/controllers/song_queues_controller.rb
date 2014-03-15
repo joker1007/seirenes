@@ -16,6 +16,12 @@ class SongQueuesController < ApplicationController
     end
   end
 
+  def create
+    @pasokara = Pasokara.find(params[:pasokara_id])
+    @song_queue = @pasokara.song_queues.create!
+    render :show
+  end
+
   def destroy
     @song_queue.destroy!
     render json: {meta: {deleted: true}}
