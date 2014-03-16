@@ -4,7 +4,7 @@
 @Seirenes = do (Backbone, Marionette) ->
   App = new Marionette.Application()
 
-  clearControllers = ->
+  stopControllers = ->
     App.PlayerController.stop()
     App.PasokaraShowController.stop()
 
@@ -16,28 +16,28 @@
       "favorites.*" : "nop"
       "histories.*" : "nop"
       "song_queues.*" : "nop"
+      "recordings.*" : "nop"
       ".*" : "nop"
 
     player: ->
-      console.log("player")
-      clearControllers()
+      stopControllers()
       App.PlayerController.start()
 
     pasokaraShow: (id) ->
-      console.log("pasokaraShow")
-      clearControllers()
+      stopControllers()
       App.PasokaraShowController.start()
       App.PasokaraShowController.API.show(_.parseInt(id))
 
     nop: ->
       console.log("nop")
-      clearControllers()
+      stopControllers()
 
   App.addInitializer ->
     new Router()
     Backbone.history.start(pushState: true)
+
+    # hack for Turbolinks
     $(document).on "page:load", ->
-      console.log "page:load"
       Backbone.history.stop()
       Backbone.history.start(pushState: true)
 
