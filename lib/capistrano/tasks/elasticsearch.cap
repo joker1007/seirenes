@@ -1,0 +1,32 @@
+namespace :elasticsearch do
+  task :environment do
+    set :elasticsearch_pid, "#{current_path}/tmp/pids/elasticsearch.pid"
+  end
+
+  desc "launch elasticsearch"
+  task :start => :environment do
+    on roles(:app) do |host|
+      within current_path do
+        with path: "#{current_path}/contrib/elasticsearch/bin:$PATH" do
+          execute :elasticsearch, "-d", "-p", fetch(:elasticsearch_pid)
+        end
+      end
+    end
+  end
+
+  desc "stop elasticsearch"
+  task :stop => :environment do
+    on roles(:app) do |host|
+      within current_path do
+        execute :kill, "$(< #{fetch(:elasticsearch_pid)})"
+      end
+    end
+  end
+
+  task :restart do
+    invoke "elasticsearch:stop"
+    invoke "elasticsearch:start"
+  end
+end
+
+# vim:ft=ruby

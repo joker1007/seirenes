@@ -1,0 +1,26 @@
+namespace :resque do
+  task :start do
+    on roles(:app) do |host|
+      within current_path do
+        with path: "#{current_path}/ffmpeg/bin:$PATH", queue: "seirenes", pidfile: "tmp/pids/resque-worker.pid", background: "yes", rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :rake, "resque:work"
+        end
+      end
+    end
+  end
+
+  task :stop do
+    on roles(:app) do |host|
+      within current_path do
+        execute :kill, "$(< tmp/pids/resque-worker.pid)"
+      end
+    end
+  end
+
+  task :restart do
+    invoke "resque:stop"
+    invoke "resque:start"
+  end
+end
+
+# vim:ft=ruby
