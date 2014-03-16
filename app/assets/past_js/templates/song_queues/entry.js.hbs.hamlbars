@@ -1,6 +1,0 @@
-.song_queue
-  %img.thumb{bind: {src: "thumbnailUrl"}}
-  %span.title
-    = hb 'linkTo pasokaras.pasokara pasokara' do
-      = hb "title"
-  %button.destroy{ _action: 'removeEntry this target=view'} 削除

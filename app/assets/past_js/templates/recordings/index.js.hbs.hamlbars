@@ -1,3 +1,0 @@
-#recording-list
-  = hb 'each controller' do
-    = hb 'view Seirenes.RecordingEntryView', contentBinding: "this"
