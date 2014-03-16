@@ -13,12 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.spin
-//= require turbolinks
-//= require jquery.turbolinks
-//= require jquery.lazyload
-//= require jquery-fonteffect-1.0.0.min
 //= require bootstrap
-//= require jquery-deparam/jquery-deparam
 //= require lodash
 //= require backbone
 //= require backbone.marionette

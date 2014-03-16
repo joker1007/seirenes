@@ -11,18 +11,6 @@
     :coffee
       $ ->
         Seirenes.start(current_user: #{current_user.to_json})
-    :coffee
-      $ ->
-        $("img.thumb").lazyload
-          effect : "fadeIn"
-
-        $('#site-title h1').FontEffect
-           gradient: true,
-           gradientFromTop: true,
-           gradientColor: "#AAA",
-           gradientPosition: 20,
-           gradientLength: 50,
-           gradientSteps: 20
 
   %body
     #site-title

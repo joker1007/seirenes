@@ -151,6 +151,25 @@ describe Pasokara do
     end
   end
 
+  describe "#encode_async" do
+    before do
+      Rails.cache.clear
+    end
+
+    subject { pasokara.encode_async }
+
+    it "call Resque.enqueue" do
+      expect(Resque).to receive(:enqueue).with(EncodeJob, pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4)
+      subject
+    end
+
+    it "prevent double enqueue" do
+      expect(Resque).to receive(:enqueue).with(EncodeJob, pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4).once
+      subject
+      pasokara.encode_async
+    end
+  end
+
   describe "ElasticSearch", elasticsearch: true do
     let(:pasokara) { create(:pasokara, title: "日本語混じりのTitle") }
     let(:pasokara2) { create(:pasokara, :with_other_file, title: "Other Title") }
