@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.spin
+//= require jquery.lazyload
 //= require turbolinks
 //= require jquery.turbolinks
 //= require bootstrap

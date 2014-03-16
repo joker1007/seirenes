@@ -40,14 +40,13 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Deploy with Capistrano
-#gem 'capistrano', group: :development
-gem 'capistrano', group: :development
-gem 'capistrano_colors', :require => false, :group => [:development]
-
 gem "haml-rails"
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano_colors', :require => false
+
   gem "rails3-generators", :git => "git://github.com/indirect/rails3-generators.git", :group => [:development]
   gem "i18n_generators"
 
@@ -154,6 +153,7 @@ gem "chronic_duration"
 gem 'rails-assets-jquery', require: false
 gem 'rails-assets-jqueryui', require: false
 gem 'rails-assets-spin.js'
+gem 'rails-assets-jquery.lazyload'
 gem 'rails-assets-lodash'
 gem 'rails-assets-backbone'
 gem 'rails-assets-backbone.marionette', '>= 1.6'

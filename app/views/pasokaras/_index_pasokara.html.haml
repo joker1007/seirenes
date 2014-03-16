@@ -4,7 +4,7 @@
     = pasokara.add_queue_link
   .info-box
     .thumb
-      = image_tag pasokara.thumbnail.url, width: 160, height: 120
+      = image_tag "gray.gif", data: {original: pasokara.thumbnail.url}, width: 160, height: 120, class: %w(lazy)
     .inner-info-box
       .tag-box
         .info-type タグ
