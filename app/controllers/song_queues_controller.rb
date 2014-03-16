@@ -1,5 +1,5 @@
 class SongQueuesController < ApplicationController
-  before_action :set_song_queue, only: [:show, :destroy]
+  before_action :set_song_queue, only: [:show, :update, :destroy]
 
   def index
     @song_queues = SongQueue.includes(:pasokara).page(params[:page])
@@ -11,6 +11,13 @@ class SongQueuesController < ApplicationController
   def create
     @pasokara = Pasokara.find(params[:pasokara_id])
     @song_queue = @pasokara.song_queues.create!
+    render :show
+  end
+
+  def update
+    if params.tapp[:finish]
+      @song_queue.finish!
+    end
     render :show
   end
 

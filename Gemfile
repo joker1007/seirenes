@@ -8,8 +8,10 @@ gem 'mysql2'
 
 gem 'sass-rails',   '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
 gem 'bootstrap-sass'
 gem 'compass-rails'
+gem 'coffee-rails-source-maps'
 gem 'zurui-sass-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

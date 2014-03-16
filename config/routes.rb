@@ -7,11 +7,11 @@ Seirenes::Application.routes.draw do
   end
 
   resources :facet_tags, only: [:index]
-  resources :song_queues, only: [:index, :show, :destroy]
+  resources :song_queues, only: [:index, :show, :update, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
   resources :favorites, only: [:index, :destroy]
-  resource :player, only: [:show]
+  resource :player, only: [:show], controller: "player"
   resources :recordings, only: [:index, :show, :destroy]
 
   # for OmniAuth
