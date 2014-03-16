@@ -19,10 +19,6 @@ class PasokarasController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html { render "index" }
-      format.json
-    end
   end
 
   private

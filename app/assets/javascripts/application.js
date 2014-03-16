@@ -13,9 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.spin
+//= require turbolinks
+//= require jquery.turbolinks
 //= require bootstrap
 //= require lodash
 //= require backbone
+//= require backbone.stickit/backbone.stickit
 //= require backbone.marionette
 //= require gritter
 //= require gritter_image
