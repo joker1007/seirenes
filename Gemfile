@@ -76,9 +76,6 @@ group :development, :test do
   gem "minitest"
   gem "launchy"
 
-  gem "awesome_print"
-  gem "tapp"
-
   gem "guard-rspec"
   gem "growl"
 
@@ -110,6 +107,8 @@ end
 gem "pry-rails"
 gem "pry-stack_explorer"
 gem "byebug"
+gem "awesome_print"
+gem "tapp"
 
 gem "factory_girl_rails"
 gem "kaminari"
