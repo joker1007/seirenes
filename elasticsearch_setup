@@ -1,0 +1,8 @@
+#!/bin/bash
+
+version=1.0.1
+curl -O "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${version}.tar.gz"
+tar xzf elasticsearch-${version}.tar.gz
+mkdir contrib
+mv elasticsearch-${version} contrib/elasticsearch/
+rm elasticsearch-${version}.tar.gz
