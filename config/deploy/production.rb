@@ -6,7 +6,7 @@
 # Don't declare `role :all`, it's a meta role
 
 set :rails_env, "production"
-set :deploy_to, "/home/joker/rails_apps2/#{fetch(:application)}"
+set :deploy_to, "/home/joker/rails_apps/#{fetch(:application)}"
 
 # role :app, %w{anubis}
 # role :web, %w{anubis}
