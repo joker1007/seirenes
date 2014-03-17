@@ -26,7 +26,8 @@ module Pasokara::Searchable
     }
 
     mappings do
-      indexes :title, store: true, analyzer: "myNgramAnalyzer"
+      indexes :title, store: true, analyzer: "myNgramAnalyzer", copy_to: "raw_title"
+      indexes :raw_title, store: true, index: "not_analyzed"
       indexes :tags, analyzer: "myKeywordAnalyzer"
       indexes :user_ids, analyzer: "myKeywordAnalyzer"
       indexes :nico_vid, analyzer: "myKeywordAnalyzer"
