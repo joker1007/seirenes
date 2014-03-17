@@ -32,7 +32,7 @@ module PasokaraDecorator
             type: :json,
             confirm: "「#{title}」をお気に入りに追加しますか？"
           },
-          class: %w(btn btn-primary js-add_favorite)
+          class: %w(btn btn-danger js-add_favorite)
       end
     end
   end
