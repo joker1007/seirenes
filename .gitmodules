@@ -1,6 +1,0 @@
-[submodule "vendor/assets/javascripts/jquery-deparam"]
-	path = vendor/assets/javascripts/jquery-deparam
-	url = git://github.com/chrissrogers/jquery-deparam.git
-[submodule "vendor/assets/javascripts/ember-query"]
-	path = vendor/assets/javascripts/ember-query
-	url = git://github.com/alexspeller/ember-query.git

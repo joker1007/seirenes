@@ -13,27 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.spin
+//= require jquery.lazyload
 //= require turbolinks
 //= require jquery.turbolinks
-//= require jquery.lazyload
-//= require jquery-fonteffect-1.0.0.min
-//= require bootstrap-dropdown
-//= require bootstrap-alert
-//= require handlebars
-//= require ember
-//= require ember-data
-//= require jquery-deparam/jquery-deparam
-//= require ember-query/ember-query
+//= require bootstrap
+//= require lodash
+//= require backbone
+//= require backbone.stickit/backbone.stickit
+//= require backbone.marionette
 //= require gritter
+//= require gritter_image
 //= require get_user_media_wrap
+//= require add_song_queue_notification
 //= require recorder
 //= require jquery.ui.widget
 //= require jquery.fileupload
 //= require_self
-//= require seirenes
 //= require_tree .
-
-Seirenes = Ember.Application.create({
-  rootElement: "#main"
-});
 

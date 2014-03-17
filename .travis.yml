@@ -1,20 +1,22 @@
 language: ruby
-before_install:
-  - phantomjs --version
+bundler_args: -j4 --without development --deployment --path=${BUNDLE_PATH:-vendor/bundle}
+cache: bundler
+services:
+  - elasticsearch
+  - redis
 before_script:
-  - ci/solr_setup
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
   - cp config/resque.sample.yml config/resque.yml
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - "echo '--color' > .rspec"
-script: bundle exec rake spec
+  - "echo '--color --format d' > .rspec"
+script: bundle exec rspec spec
 rvm:
-  - 2.0.0
+  - 2.1.0
 env:
   global:
-    - TIMEOUT=5000
+    - CI=true
 notifications:
   email:
     on_success: change

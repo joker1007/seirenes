@@ -1,6 +1,6 @@
 #!/bin/bash
 
-solr_version=4.1.0
+solr_version=4.7.0
 curl -O "http://archive.apache.org/dist/lucene/solr/${solr_version}/solr-${solr_version}.tgz"
 tar xzf solr-${solr_version}.tgz
 mkdir contrib

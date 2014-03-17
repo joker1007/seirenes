@@ -1,0 +1,34 @@
+.pasokara
+  .title
+    = link_to pasokara.title, pasokara
+    = pasokara.add_queue_link
+  .info-box
+    .thumb
+      = image_tag "gray.gif", data: {original: pasokara.thumbnail.url}, width: 160, height: 120, class: %w(lazy)
+    .inner-info-box
+      .tag-box
+        .info-type タグ
+        .tag-list
+          = render "pasokaras/tags", tags: pasokara.tags
+      .meta-info-box
+        .info-type 動画情報
+        .info-list
+          .info-entity
+            %span.info-key 再生時間:
+            %span.info-value= pasokara.duration_str
+          .info-entity
+            %span.info-key ニコニコID:
+            %span.info-value
+              - if pasokara.nico_vid
+                = pasokara.link_to_niconico
+          .info-entity
+            %span.info-key 投稿日:
+            %span.info-value= pasokara.nico_posted_at_for_info_box
+          .info-entity
+            %span.info-key 再生数:
+            %span.info-value= pasokara.nico_view_count
+          .info-entity
+            %span.info-key> マイリスト数:
+            %span.info-value= pasokara.nico_mylist_count
+      .add-favorite
+        = pasokara.favorite_link(current_user)

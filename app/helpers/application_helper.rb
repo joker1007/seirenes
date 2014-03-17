@@ -14,4 +14,15 @@ module ApplicationHelper
       link_to "facebookと連携する", "/auth/facebook"
     end
   end
+
+  def order_by_select_tag
+    select_tag "order_by", options_for_select([
+      ["投稿日(新しい順)", "nico_posted_at desc"],
+      ["投稿日(古い順)", "nico_posted_at asc"],
+      ["タイトル(昇順)", "title asc"],
+      ["タイトル(降順)", "title desc"],
+      ["マイリスト(多い順)", "nico_mylist_count desc"],
+      ["マイリスト(少ない順)", "nico_mylist_count asc"]
+    ], params[:order_by])
+  end
 end

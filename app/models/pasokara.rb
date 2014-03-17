@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: pasokaras
+#
+#  id                :integer          not null, primary key
+#  title             :string(255)      not null
+#  fullpath          :string(255)      not null
+#  nico_vid          :string(20)
+#  nico_posted_at    :datetime
+#  nico_view_count   :integer          default(0), not null
+#  nico_mylist_count :integer          default(0), not null
+#  duration          :integer
+#  nico_description  :string(700)
+#  thumbnail         :string(255)
+#  movie_mp4         :string(255)
+#  movie_webm        :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 require "shellwords"
 
 class Pasokara < ActiveRecord::Base
@@ -10,9 +30,9 @@ class Pasokara < ActiveRecord::Base
   validates_uniqueness_of :fullpath
   validates_uniqueness_of :nico_vid, allow_nil: true
 
-  include SimpleTaggable
+  include ::SimpleTaggable
+  include ::Thumbnailable
   include Searchable
-  include Thumbnailable
 
   mount_uploader :thumbnail, ThumbnailUploader
   mount_uploader :movie_mp4, MovieUploader
@@ -30,7 +50,11 @@ class Pasokara < ActiveRecord::Base
 
   def encode_async(format = :mp4)
     if movie_url(format).blank?
-      Resque.enqueue(EncodeJob, fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
+      # 超簡単な重複実行防止
+      unless Rails.cache.read("pasokara_#{id}_encoding")
+        Rails.cache.write("pasokara_#{id}_encoding", true)
+        Resque.enqueue(EncodeJob, fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
+      end
     end
   end
 

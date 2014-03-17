@@ -1,5 +1,3 @@
-rails_env = ENV['RAILS_ENV'] || "development"
-
 worker_processes 4
 
 preload_app true
@@ -8,6 +6,8 @@ timeout 30
 
 listen "/tmp/.seirenes.sock"
 listen 8000, :tcp_nodelay => true
+
+pid File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,

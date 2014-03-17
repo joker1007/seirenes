@@ -1,3 +1,4 @@
-json.favorite do |json|
-  json.partial! "pasokaras/entry", pasokara: @pasokara
+json.extract! @favorite, :id, :pasokara_id, :user_id, :created_at
+json.pasokara do
+  json.extract! @favorite.pasokara, :id, :title, :thumbnail
 end

@@ -1,0 +1,8 @@
+#song_queue-list
+  - @song_queues.each do |sq|
+    %div[sq]
+      = image_tag sq.pasokara.thumbnail.url, class: %w(thumb)
+      %span.title= link_to sq.pasokara.title, sq.pasokara
+      = link_to "削除", sq, data: {method: :delete, confirm: "「#{sq.pasokara.title}」を予約から削除しますか？"}, class: %w(destroy btn btn-danger)
+
+

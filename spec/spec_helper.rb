@@ -1,11 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] = 'test'
 
+require 'coveralls'
+Coveralls.wear!
+
 require File.expand_path("../../config/environment", __FILE__)
+
 require 'rspec/rails'
-# require 'rspec/autorun'
+require 'rspec/autorun'
 require 'capybara/rspec'
-require 'sunspot_test/rspec'
+require 'elasticsearch/extensions/test/cluster'
+
+Elasticsearch::Model.client = Elasticsearch::Client.new(host: "localhost:9250") unless ENV["CI"]
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -73,7 +79,26 @@ RSpec.configure do |config|
   # for Delorean
   config.include Delorean
 
+  config.include FactoryGirl::Syntax::Methods
+
   # for poltergeist
   require "capybara/poltergeist"
   Capybara.javascript_driver = :poltergeist
+
+  config.before(:each, elasticsearch: true) do
+    unless ENV["CI"]
+      unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
+        Elasticsearch::Extensions::Test::Cluster.start port: 9250, nodes: 1
+      end
+    end
+
+    Pasokara.__elasticsearch__.create_index! force: true
+    Pasokara.__elasticsearch__.refresh_index!
+  end
+
+  at_exit do
+    if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
+      Elasticsearch::Extensions::Test::Cluster.stop port: 9250
+    end
+  end
 end

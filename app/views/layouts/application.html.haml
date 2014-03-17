@@ -4,24 +4,16 @@
     %title Seirenes 持ち込みカラオケ支援システム
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
     %meta{:content => "noindex,nofollow", :name => "robots"}/
-    - if current_user
-      %meta{current_user: "#{current_user.to_json}"}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
     :coffee
       $ ->
-        $("img.thumb").lazyload
-          effect : "fadeIn"
-
-        $('#site-title h1').FontEffect
-           gradient: true,
-           gradientFromTop: true,
-           gradientColor: "#AAA",
-           gradientPosition: 20,
-           gradientLength: 50,
-           gradientSteps: 20
+        Seirenes.start(current_user: #{current_user.to_json})
+    :coffee
+      $ ->
+        $("img.lazy").lazyload()
 
   %body
     #site-title
@@ -59,7 +51,22 @@
             %li
               %a{href: "/auth/facebook"} Facebook
     #main
-      = yield
+      %ul.nav
+        %li
+          = link_to "ホーム", root_path
+        %li
+          = link_to "お気に入り", favorites_path
+        %li
+          = link_to "予約確認", song_queues_path
+        %li
+          = link_to "りれき", histories_path
+        %li
+          = link_to "再生", player_path, target: "_blank"
+        %li
+          = link_to "録音", recordings_path
+
+      %article.contents
+        = yield
 
     %footer
       &copy; Tomohiro Hashidate

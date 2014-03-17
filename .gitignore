@@ -40,10 +40,12 @@ tags
 
 public/videos
 public/audios
+public/assets
 solr/data
 solr41/sunspot/data
 solr41/sunspot/data*
 log/*.lck
 
 contrib/solr
+contrib/elasticsearch
 config/deploy.rb

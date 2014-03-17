@@ -1,0 +1,9 @@
+#sort-field
+  = form_tag nil, method: "get", class: ["form-inline"] do
+    - if params[:q]
+      = hidden_field_tag "q", params[:q]
+    - if params[:filter_tags]
+      - params[:filter_tags].each do |t|
+        = hidden_field_tag "filter_tags[]", t
+    = order_by_select_tag
+    = submit_tag "並び換え", class: ["btn", "btn-default"]

@@ -1,27 +1,26 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.0.rc1'
 
 gem 'mysql2'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 4.0.0'
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'bootstrap-sass'
-  gem 'compass-rails', github: 'Compass/compass-rails'
-  #gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
-  gem 'zurui-sass-rails'
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
+gem 'bootstrap-sass'
+gem 'compass-rails'
+gem 'coffee-rails-source-maps'
+gem 'zurui-sass-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', platforms: :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
 
-  gem 'uglifier', '>= 1.3.0'
-end
+gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails', '< 3.0.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -41,14 +40,14 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Deploy with Capistrano
-#gem 'capistrano', group: :development
-gem 'capistrano', group: :development
-gem 'capistrano_colors', :require => false, :group => [:development]
-
 gem "haml-rails"
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+
   gem "rails3-generators", :git => "git://github.com/indirect/rails3-generators.git", :group => [:development]
   gem "i18n_generators"
 
@@ -56,12 +55,19 @@ group :development do
   gem "better_errors"
 
   gem "annotate", github: "ctran/annotate_models"
+
+  gem 'spring'
+  gem 'spring-commands-rspec'
+
+  gem 'quiet_assets'
+  gem 'thin'
+
+  gem 'bullet'
 end
 
 group :development, :test do
   gem "rspec", "~> 2.11"
   gem "rspec-rails", "~> 2.11"
-  # gem "spork", ">= 0.9.2"
 
   gem "capybara"
   gem "poltergeist"
@@ -69,20 +75,14 @@ group :development, :test do
   gem "minitest"
   gem "launchy"
 
-  gem "awesome_print"
-  gem "tapp"
-
-  # gem "guard-spork"
   gem "guard-rspec"
+  gem "growl"
 
   gem "libnotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "libnotify" : false
   gem "rb-inotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "rb-inotify" : false
-  gem "ruby_gntp", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "ruby_gntp" : false
   gem "rb-fsevent", :require => RUBY_PLATFORM.downcase =~ /darwin/ ? "rb-fsevent" : false
 
-  gem "jasmine"
-  gem "guard-jasmine"
-  gem "jasminerice", github: "bradphelan/jasminerice"
+  gem "teaspoon"
 
   gem "webmock", :require => false
   gem "vcr", :require => false
@@ -99,12 +99,15 @@ group :test do
   gem "rspec-formatter-git_auto_commit", :github => "joker1007/rspec-formatter-git_auto_commit"
   gem "delorean"
   gem "database_cleaner"
+  gem "coveralls"
+  gem "fuubar"
 end
 
 gem "pry-rails"
-gem "pry-remote"
 gem "pry-stack_explorer"
 gem "byebug"
+gem "awesome_print"
+gem "tapp"
 
 gem "factory_girl_rails"
 gem "kaminari"
@@ -112,6 +115,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem 'oj'
+gem 'oj_mimic_json'
 
 gem "faraday"
 gem "faraday_middleware"
@@ -122,14 +126,9 @@ gem "settingslogic"
 
 gem "thor"
 
-gem 'sunspot'
-gem 'sunspot_solr'
-gem 'sunspot_rails'
-gem 'sunspot_with_kaminari'
-
-group :development, :test do
-  gem 'sunspot_test'
-end
+gem 'elasticsearch-model', git: 'git://github.com/joker1007/elasticsearch-rails.git', branch: "more_intuitive_pagination"
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-extensions'
 
 gem 'active_decorator'
 
@@ -139,9 +138,7 @@ gem 'fog', '>= 1.12'
 gem 'resque'
 gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"
 
-gem 'ember-source', '1.0.0rc5'
-gem 'ember-rails', github: "emberjs/ember-rails"
-gem 'hamlbars', '~> 2.0'
+gem 'handlebars_assets'
 gem 'spinjs-rails'
 
 gem 'celluloid'
@@ -152,3 +149,12 @@ gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
 
 gem "chronic_duration"
 
+# rails-assets
+gem 'rails-assets-jquery', require: false
+gem 'rails-assets-jqueryui', require: false
+gem 'rails-assets-spin.js'
+gem 'rails-assets-jquery.lazyload'
+gem 'rails-assets-lodash'
+gem 'rails-assets-backbone'
+gem 'rails-assets-backbone.marionette', '>= 1.6'
+gem 'rails-assets-backbone.stickit'

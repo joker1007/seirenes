@@ -1,0 +1,5 @@
+#pasokara-preview
+#record-control
+  %button Start Rec
+  %button Stop Rec
+  #recorded

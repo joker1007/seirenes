@@ -1,0 +1,7 @@
+#song_queue-list
+  - @histories.each do |hi|
+    %div.song_queue[hi]
+      = image_tag hi.pasokara.thumbnail.url, class: %w(thumb)
+      %span.title= link_to hi.pasokara.title, hi.pasokara
+
+
