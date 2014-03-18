@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Seirenes::Application.routes.draw do
   resources :pasokaras, only: [:index, :show, :update] do
     resources :song_queues, only: [:create]
@@ -18,6 +20,8 @@ Seirenes::Application.routes.draw do
   match "/auth/:provider/callback" => "sessions#callback", via: [:get, :post]
   match "/auth/failure" => "sessions#failure", via: [:get, :post]
   match "/logout" => "sessions#destroy", via: [:get, :delete]
+
+  mount Sidekiq::Web => '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

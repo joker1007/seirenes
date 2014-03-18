@@ -136,6 +136,7 @@ gem 'carrierwave'
 gem 'fog', '>= 1.12'
 
 gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq-ffmpeg', github: "joker1007/sidekiq-ffmpeg"
 
 gem 'handlebars_assets'
