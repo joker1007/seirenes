@@ -1,0 +1,29 @@
+namespace :sidekiq do
+  desc "start sidekiq server"
+  task :start do
+    on roles(:app) do |host|
+      within current_path do
+        with path: "#{current_path}/ffmpeg/bin:$PATH" do
+          execute :bundle, :exec, :sidekiq, "-d", "-c", "2", "-e", fetch(:rails_env), "-P", "tmp/pids/sidekiq.pid", "-L", "log/sidekiq.log"
+        end
+      end
+    end
+  end
+
+  desc "stop sidekiq server"
+  task :stop do
+    on roles(:app) do |host|
+      within current_path do
+        execute :kill, "$(< tmp/pids/sidekiq.pid)"
+      end
+    end
+  end
+
+  desc "restart sidekiq server"
+  task :restart do
+    invoke "resque:stop"
+    invoke "resque:start"
+  end
+end
+
+# vim:ft=ruby
