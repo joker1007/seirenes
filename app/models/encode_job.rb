@@ -1,4 +1,6 @@
 class EncodeJob < Sidekiq::Ffmpeg::BaseJob
+  sidekiq_options queue: :seirenes
+
   def on_complete(encoder, extra_data = {})
     pasokara = Pasokara.find(extra_data["id"])
 

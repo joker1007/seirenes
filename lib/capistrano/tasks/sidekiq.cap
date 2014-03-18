@@ -4,7 +4,7 @@ namespace :sidekiq do
     on roles(:app) do |host|
       within current_path do
         with path: "#{current_path}/ffmpeg/bin:$PATH" do
-          execute :bundle, :exec, :sidekiq, "-d", "-c", "2", "-e", fetch(:rails_env), "-P", "tmp/pids/sidekiq.pid", "-L", "log/sidekiq.log"
+          execute :bundle, :exec, :sidekiq, "-d", "-c", "2", "-q", "seirenes", "-e", fetch(:rails_env), "-P", "tmp/pids/sidekiq.pid", "-L", "log/sidekiq.log"
         end
       end
     end

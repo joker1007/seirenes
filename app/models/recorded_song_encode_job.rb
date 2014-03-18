@@ -1,4 +1,7 @@
 class RecordedSongEncodeJob
+  include Sidekiq::Worker
+  sidekiq_options queue: :seirenes
+
   def perform(input_filename, user_id, pasokara_id)
     ffmpeg = `which ffmpeg`.chomp
     temp_filename = (Rails.root + "tmp" + "#{SecureRandom.hex}.m4a").to_s
