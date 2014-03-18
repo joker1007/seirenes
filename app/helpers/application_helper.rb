@@ -17,6 +17,8 @@ module ApplicationHelper
 
   def order_by_select_tag
     select_tag "order_by", options_for_select([
+      ["追加日(新しい順)", "created_at desc"],
+      ["追加日(古い順)", "created_at asc"],
       ["投稿日(新しい順)", "nico_posted_at desc"],
       ["投稿日(古い順)", "nico_posted_at asc"],
       ["タイトル(昇順)", "raw_title asc"],
