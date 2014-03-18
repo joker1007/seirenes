@@ -30,7 +30,7 @@ class RecordingsController < ApplicationController
   end
 
   def create_recorded_song
-    Resque.enqueue(RecordedSongEncodeJob, temp_chunked_filename.to_s, current_user.id, params[:pasokara_id])
+    RecordedSongEncodeJob.perform_async(temp_chunked_filename.to_s, current_user.id, params[:pasokara_id])
     render json: {upload: "ok"}
   end
 

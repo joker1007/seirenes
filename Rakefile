@@ -5,9 +5,3 @@ require File.expand_path('../config/application', __FILE__)
 
 Seirenes::Application.load_tasks
 
-require 'resque/tasks'
-
-namespace :resque do
-  task :setup => [:environment]
-end
-

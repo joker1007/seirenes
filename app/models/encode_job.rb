@@ -1,16 +1,12 @@
-class EncodeJob
-  extend Resque::Ffmpeg::BaseJob
-
-  @queue = :seirenes
-
-  def self.on_complete(encoder, extra_data = {})
+class EncodeJob < Sidekiq::Ffmpeg::BaseJob
+  def on_complete(encoder, extra_data = {})
     pasokara = Pasokara.find(extra_data["id"])
 
     begin
       case encoder
-      when Resque::Ffmpeg::Encoder::MP4
+      when Sidekiq::Ffmpeg::Encoder::MP4
         pasokara.movie_mp4 = File.open(encoder.output_filename)
-      when Resque::Ffmpeg::Encoder::WebM
+      when Sidekiq::Ffmpeg::Encoder::WebM
         pasokara.movie_webm = File.open(encoder.output_filename)
       end
 

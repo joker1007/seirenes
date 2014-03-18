@@ -135,8 +135,8 @@ gem 'active_decorator'
 gem 'carrierwave'
 gem 'fog', '>= 1.12'
 
-gem 'resque'
-gem 'resque-ffmpeg', github: "joker1007/resque-ffmpeg"
+gem 'sidekiq'
+gem 'sidekiq-ffmpeg', github: "joker1007/sidekiq-ffmpeg"
 
 gem 'handlebars_assets'
 gem 'spinjs-rails'
