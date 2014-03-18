@@ -7,7 +7,6 @@ services:
 before_script:
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
-  - cp config/resque.sample.yml config/resque.yml
   - bundle exec rake db:create
   - bundle exec rake db:migrate
   - "echo '--color --format d' > .rspec"

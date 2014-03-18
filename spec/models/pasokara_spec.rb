@@ -158,13 +158,13 @@ describe Pasokara do
 
     subject { pasokara.encode_async }
 
-    it "call Resque.enqueue" do
-      expect(Resque).to receive(:enqueue).with(EncodeJob, pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4)
+    it "call EncodeJob.perform_async" do
+      expect(EncodeJob).to receive(:perform_async).with(pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4)
       subject
     end
 
     it "prevent double enqueue" do
-      expect(Resque).to receive(:enqueue).with(EncodeJob, pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4).once
+      expect(EncodeJob).to receive(:perform_async).with(pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4).once
       subject
       pasokara.encode_async
     end
