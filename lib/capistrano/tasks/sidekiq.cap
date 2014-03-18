@@ -21,8 +21,8 @@ namespace :sidekiq do
 
   desc "restart sidekiq server"
   task :restart do
-    invoke "resque:stop"
-    invoke "resque:start"
+    invoke "sidekiq:stop"
+    invoke "sidekiq:start"
   end
 end
 
