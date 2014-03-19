@@ -8,7 +8,6 @@ Seirenes::Application.routes.draw do
     resources :recordings, only: [:create]
   end
 
-  resources :facet_tags, only: [:index]
   resources :song_queues, only: [:index, :show, :update, :destroy]
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
