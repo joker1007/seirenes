@@ -22,7 +22,7 @@ module PasokaraDecorator
             type: :json,
             confirm: "「#{title}」をお気に入りから削除しますか？",
           },
-          class: %w(btn btn-primary js-remove_favorite)
+          class: %w(btn btn-danger js-remove_favorite)
       else
         link_to "お気に入りに追加する",
           pasokara_favorites_path(self),
@@ -32,7 +32,7 @@ module PasokaraDecorator
             type: :json,
             confirm: "「#{title}」をお気に入りに追加しますか？"
           },
-          class: %w(btn btn-danger js-add_favorite)
+          class: %w(btn btn-primary js-add_favorite)
       end
     end
   end
