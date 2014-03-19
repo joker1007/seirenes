@@ -606,6 +606,8 @@ DEPENDENCIES
   rails3-generators!
   rb-fsevent
   rb-inotify
+  redis
+  redis-namespace
   rspec (~> 2.11)
   rspec-formatter-git_auto_commit!
   rspec-rails (~> 2.11)

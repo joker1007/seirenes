@@ -6,7 +6,6 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
       "#pasokara-preview":
         observe: "movie_url"
         update: ($el, val, model, options) ->
-          console.log val
           if val? && val != ""
             $video = $(document.createElement("video"))
             $video.addClass("preview")
@@ -15,7 +14,8 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
               .attr("src", val)
             $el.html($video)
           else
-            $el.html("") # TODO: インジケーター
+            encodingStatusView = new Views.EncodingStatusView(model: model.encodingStatus)
+            $el.html(encodingStatusView.render().el) # TODO: インジケーター
 
     onRender: ->
       @stickit()

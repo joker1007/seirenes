@@ -5,7 +5,9 @@ class EncodingsController < ApplicationController
     if @pasokara.movie_url.present?
       render json: {movie_url: @pasokara.movie_url}
     else
-      head :ok
+      redis = Redis::Namespace.new(:seirenes_pasokara_encoding, redis: Redis.new)
+      progress = redis[@pasokara.id.to_s].tapp
+      render json: {movie_url: nil, progress: progress}
     end
   end
 

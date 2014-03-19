@@ -19,8 +19,11 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       if count < 200
         setTimeout =>
           @fetch().done(=>
-            console.log @get("movie_url")
-            @trigger("encoded", @get("movie_url"))
+            if @get("movie_url")?
+              @trigger("encoded", @get("movie_url"))
+            else
+              @trigger("progress", @get("progress"))
+              @periodicallyCheck(count + 1)
           ).fail(=>
             console.log "retry"
             @periodicallyCheck(count + 1)

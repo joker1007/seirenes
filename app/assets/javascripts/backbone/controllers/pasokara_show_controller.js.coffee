@@ -10,6 +10,7 @@ Seirenes.module "PasokaraShowController", (PasokaraShowController, App, Backbone
       $(".contents").append(@layout.el)
       @pasokara.fetch()
       encodingStatus = new App.Models.EncodingStatus(id: @pasokara.id)
+      @pasokara.encodingStatus = encodingStatus
       @listenTo encodingStatus, "encoded", (url) ->
         @pasokara.set(movie_url: url)
       encodingStatus.encode()
