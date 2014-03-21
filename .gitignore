@@ -48,4 +48,3 @@ log/*.lck
 
 contrib/solr
 contrib/elasticsearch
-config/deploy.rb
