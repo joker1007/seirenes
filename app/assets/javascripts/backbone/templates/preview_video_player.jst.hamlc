@@ -1,5 +1,5 @@
 #pasokara-preview
 #record-control
-  %button Start Rec
-  %button Stop Rec
+  %button.js-start_rec Start Rec
+  %button.js-stop_rec Stop Rec
   #recorded
