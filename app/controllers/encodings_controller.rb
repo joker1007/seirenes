@@ -6,7 +6,7 @@ class EncodingsController < ApplicationController
       render json: {movie_url: @pasokara.movie_url}
     else
       redis = Redis::Namespace.new(:seirenes_pasokara_encoding, redis: Redis.new)
-      progress = redis[@pasokara.id.to_s].tapp
+      progress = redis[@pasokara.id.to_s]
       render json: {movie_url: nil, progress: progress}
     end
   end

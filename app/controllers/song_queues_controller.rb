@@ -15,7 +15,7 @@ class SongQueuesController < ApplicationController
   end
 
   def update
-    if params.tapp[:finish]
+    if params[:finish]
       @song_queue.finish!
     end
     render :show

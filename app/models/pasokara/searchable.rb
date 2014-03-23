@@ -89,7 +89,7 @@ module Pasokara::Searchable
         end
       end
 
-      search(query.tapp).page(search_parameter.page).limit(search_parameter.per_page)
+      search(query).page(search_parameter.page).limit(search_parameter.per_page)
     end
 
     private
