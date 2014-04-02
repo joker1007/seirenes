@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/elasticsearch/elasticsearch-rails.git
-  revision: cdc175f21185692ad9df095f02a323a28f481b7d
+  revision: f99b479a8fbba3af8fbea9de54ec28e8edc8d6e5
   specs:
     elasticsearch-rails (0.1.0)
 
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/joker1007/nico_downloader.git
-  revision: 4e57b299ff331b9a4c6e31e9163a21ae6155ac1c
+  revision: 114c7b61ed3860e89ca8f79bc40fcc1d5e609519
   specs:
     nico_downloader (0.0.1)
       lumberjack
@@ -47,10 +47,10 @@ GIT
 
 GIT
   remote: git://github.com/joker1007/sidekiq-ffmpeg.git
-  revision: 7508acf9ea3a616c8613c67e3ce2c884888d11c2
+  revision: 2f6677f48b58aa8c40128196b37680a8950d33d2
   specs:
-    sidekiq-ffmpeg (0.0.1)
-      sidekiq (~> 2.1)
+    sidekiq-ffmpeg (0.0.2)
+      sidekiq (>= 2.1, < 4)
 
 GIT
   remote: git://github.com/joker1007/which_browser.git
@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: git://github.com/netzpirat/haml_coffee_assets.git
-  revision: b5e5d163933bfe55c844e6608976f3298ff2cbe8
+  revision: 1c5038429dbcf14151759913352376107d62c891
   specs:
     haml_coffee_assets (1.16.0)
       coffee-script (~> 2.0)
@@ -72,37 +72,37 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
-    actionmailer (4.1.0.rc1)
-      actionpack (= 4.1.0.rc1)
-      actionview (= 4.1.0.rc1)
+    actionmailer (4.1.0.rc2)
+      actionpack (= 4.1.0.rc2)
+      actionview (= 4.1.0.rc2)
       mail (~> 2.5.4)
-    actionpack (4.1.0.rc1)
-      actionview (= 4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    actionpack (4.1.0.rc2)
+      actionview (= 4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    actionview (4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    actionview (4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       builder (~> 3.1)
       erubis (~> 2.7.0)
     active_decorator (0.3.4)
-    activemodel (4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    activemodel (4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       builder (~> 3.1)
-    activerecord (4.1.0.rc1)
-      activemodel (= 4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    activerecord (4.1.0.rc2)
+      activemodel (= 4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       arel (~> 5.0.0)
-    activesupport (4.1.0.rc1)
+    activesupport (4.1.0.rc2)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    addressable (2.3.5)
+    addressable (2.3.6)
     ansi (1.4.3)
     arel (5.0.0)
-    atomic (1.1.15)
+    atomic (1.1.16)
     awesome_print (1.2.0)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -163,12 +163,13 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     columnize (0.3.6)
-    compass (0.12.3)
+    compass (0.12.4)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
-      sass (= 3.2.14)
-    compass-rails (1.1.6)
+      sass (~> 3.2.17)
+    compass-rails (1.1.7)
       compass (>= 0.12.2)
+      sprockets (<= 2.11.0)
     connection_pool (2.0.0)
     coveralls (0.7.0)
       multi_json (~> 1.3)
@@ -186,7 +187,7 @@ GEM
       chronic
     diff-lcs (1.2.5)
     docile (1.1.3)
-    domain_name (0.5.16)
+    domain_name (0.5.18)
       unf (>= 0.0.5, < 1.0.0)
     elasticsearch (1.0.1)
       elasticsearch-api (= 1.0.1)
@@ -202,7 +203,7 @@ GEM
       multi_json
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.31.0)
+    excon (0.32.1)
     execjs (2.0.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -214,15 +215,23 @@ GEM
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     ffi (1.9.3)
-    fog (1.20.0)
+    fog (1.21.0)
+      fog-brightbox
+      fog-core (~> 1.21, >= 1.21.1)
+      fog-json
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-brightbox (0.0.1)
+      fog-core
+      fog-json
+    fog-core (1.21.1)
       builder
-      excon (~> 0.31.0)
+      excon (~> 0.32)
       formatador (~> 0.2.0)
       mime-types
-      multi_json (~> 1.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-      nokogiri (>= 1.5.11)
+    fog-json (1.0.0)
+      multi_json (~> 1.0)
     formatador (0.2.4)
     fssm (0.2.10)
     fuubar (1.3.2)
@@ -230,9 +239,9 @@ GEM
       ruby-progressbar (~> 1.3)
     gritter (1.1.0)
     growl (1.0.3)
-    guard (2.5.1)
+    guard (2.6.0)
       formatador (>= 0.2.4)
-      listen (~> 2.6)
+      listen (~> 2.7)
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
@@ -263,7 +272,7 @@ GEM
     i18n_generators (1.2.1)
       mechanize
       rails (>= 3.0.0)
-    jbuilder (2.0.4)
+    jbuilder (2.0.5)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
@@ -286,12 +295,12 @@ GEM
     libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
-    listen (2.7.0)
+    listen (2.7.1)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    lumberjack (1.0.4)
+    lumberjack (1.0.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -306,9 +315,9 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile (0.5.2)
-    minitest (5.3.0)
-    multi_json (1.9.0)
+    mini_portile (0.5.3)
+    minitest (5.3.1)
+    multi_json (1.9.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.15)
@@ -329,7 +338,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    oj (2.6.0)
+    oj (2.7.1)
     oj_mimic_json (1.0.0)
     omniauth (1.2.1)
       hashie (>= 1.2, < 3)
@@ -370,15 +379,15 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.1.0.rc1)
-      actionmailer (= 4.1.0.rc1)
-      actionpack (= 4.1.0.rc1)
-      actionview (= 4.1.0.rc1)
-      activemodel (= 4.1.0.rc1)
-      activerecord (= 4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    rails (4.1.0.rc2)
+      actionmailer (= 4.1.0.rc2)
+      actionpack (= 4.1.0.rc2)
+      actionview (= 4.1.0.rc2)
+      activemodel (= 4.1.0.rc2)
+      activerecord (= 4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.1.0.rc1)
+      railties (= 4.1.0.rc2)
       sprockets-rails (~> 2.0.0)
     rails-assets-backbone (1.1.2)
       rails-assets-underscore (>= 1.5.0)
@@ -395,15 +404,15 @@ GEM
     rails-assets-jqueryui (1.10.4)
       rails-assets-jquery (>= 1.6)
     rails-assets-lodash (2.4.1)
-    rails-assets-spin.js (1.3.3)
+    rails-assets-spin.js (2.0.0)
     rails-assets-underscore (1.5.2)
-    railties (4.1.0.rc1)
-      actionpack (= 4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    railties (4.1.0.rc2)
+      actionpack (= 4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
-    rake (10.1.1)
+    rake (10.2.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
@@ -423,7 +432,7 @@ GEM
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.6)
-    rspec-rails (2.14.1)
+    rspec-rails (2.14.2)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
@@ -434,10 +443,11 @@ GEM
     ruby-prof (0.14.2)
     ruby-progressbar (1.4.2)
     safe_yaml (1.0.1)
-    sass (3.2.14)
-    sass-rails (4.0.1)
+    sass (3.2.18)
+    sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
     sdoc (0.4.0)
       json (~> 1.8)
@@ -445,9 +455,9 @@ GEM
     settingslogic (2.0.9)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
-    sidekiq (2.17.7)
+    sidekiq (3.0.0)
       celluloid (>= 0.15.2)
-      connection_pool (>= 1.0.0)
+      connection_pool (>= 2.0.0)
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
@@ -462,7 +472,7 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    slop (3.4.7)
+    slop (3.5.0)
     spinjs-rails (1.3)
       rails (>= 3.1)
     spring (1.1.2)
@@ -494,12 +504,12 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
-    thor (0.18.1)
-    thread_safe (0.2.0)
+    thor (0.19.1)
+    thread_safe (0.3.1)
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
     timers (1.1.0)
-    tins (1.0.0)
+    tins (1.0.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -509,7 +519,7 @@ GEM
       ansi
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
-    uglifier (2.4.0)
+    uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.3)
@@ -521,7 +531,7 @@ GEM
       rack
       raindrops (~> 0.7)
     uniform_notifier (1.4.0)
-    vcr (2.8.0)
+    vcr (2.9.0)
     webmock (1.17.4)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -594,7 +604,7 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   quiet_assets
-  rails (= 4.1.0.rc1)
+  rails (= 4.1.0.rc2)
   rails-assets-backbone
   rails-assets-backbone.marionette (>= 1.6)
   rails-assets-backbone.stickit
