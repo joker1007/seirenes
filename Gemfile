@@ -150,6 +150,8 @@ gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
 
 gem "chronic_duration"
 
+gem "clockwork"
+
 # rails-assets
 gem 'rails-assets-jquery', require: false
 gem 'rails-assets-jqueryui', require: false
