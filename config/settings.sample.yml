@@ -1,13 +1,13 @@
 defaults: &default
-  twitter_consumer_key: "TWITTER CONSUMER KEY"
-  twitter_consumer_secret: "TWITTER CONSUMER SECRET"
-  facebook_consumer_key: "FACEBOOK CONSUMER KEY"
-  facebook_consumer_secret: "FACEBOOK CONSUMER SECRET"
-  aws_access_key_id: "AWS KEY"
-  aws_secret_access_key: "AWS SECRET KEY"
-  aws_region: "ap-northeast-1"
+  twitter_consumer_key: <%= ENV["TWITTER_CONSUMER_KEY"] %>
+  twitter_consumer_secret: <%= ENV["TWITTER_CONSUMER_SECRET"] %>
+  facebook_consumer_key: <%= ENV["FACEBOOK_CONSUMER_KEY"] %>
+  facebook_consumer_secret: <%= ENV["FACEBOOK_CONSUMER_SECRET"] %>
+  aws_access_key_id: <%= ENV["AWS_KEY"] || "dummy" %>
+  aws_secret_access_key: <%= ENV["AWS_SECRET_KEY"] || "dummy" %>
+  aws_region: <%= ENV.fetch("AWS_REGION", "ap-northeast-1") %>
   fog_directory: "dir"
-  download_dir: <%= (Rails.root + "public/videos").to_s %>
+  download_dir: <%= ENV["DOWNLOAD_DIR"] || (Rails.root + "public/videos").to_s %>
   stop_tag_words:
     - ニコニコカラオケDB
     - ニコニコカラオケＤＢ

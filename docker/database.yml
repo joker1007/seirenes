@@ -1,0 +1,28 @@
+development:
+  adapter: mysql2
+  host: <%= ENV.fetch("MYSQL_PORT_3306_TCP_ADDR", "localhost") %>
+  port: <%= ENV.fetch("MYSQL_PORT_3306_TCP_PORT", 3306) %>
+  encoding: utf8
+  database: seirenes_development
+  pool: 5
+  username: <%= ENV.fetch("MYSQL_USER", "root") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD", "") %>
+
+test:
+  adapter: mysql2
+  host: <%= ENV.fetch("MYSQL_PORT_3306_TCP_ADDR", "localhost") %>
+  port: <%= ENV.fetch("MYSQL_PORT_3306_TCP_PORT", 3306) %>
+  encoding: utf8
+  database: seirenes_test
+  username: <%= ENV.fetch("MYSQL_USER", "root") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD", "") %>
+
+production:
+  adapter: mysql2
+  host: <%= ENV.fetch("MYSQL_PORT_3306_TCP_ADDR", "localhost") %>
+  port: <%= ENV.fetch("MYSQL_PORT_3306_TCP_PORT", 3306) %>
+  encoding: utf8
+  database: seirenes_production
+  pool: 5
+  username: <%= ENV.fetch("MYSQL_USER", "root") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD", "") %>
