@@ -4,7 +4,7 @@ require_relative '../config/environment'
 
 module Clockwork
   handler do |job|
-    p DownloadList.all
+    DownloadList.download_all
   end
 
   every(1.day, 'daily.download', at: '06:00')
