@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "${FFMPEG_VERSION}" = "" ]; then
-  version=ffmpeg-1.1.3
+  version=ffmpeg-2.2.1
 else
   version=ffmpeg-${FFMPEG_VERSION}
 fi
