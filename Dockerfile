@@ -27,7 +27,7 @@ ADD ./Gemfile.lock /rails_app/Gemfile.lock
 RUN chown seirenes -R /rails_app
 USER seirenes
 WORKDIR /rails_app
-RUN bundle install -j4 --path bundle
+RUN bundle install -j4 --path /rails_app/bundle --without development test --deployment --quiet
 
 # Add application
 ADD . /rails_app/seirenes
@@ -38,7 +38,7 @@ USER seirenes
 WORKDIR /rails_app/seirenes
 
 ENV RAILS_ENV production
-RUN bundle install --path /rails_app/bundle
+RUN bundle install --path /rails_app/bundle --without development test --deployment --quiet
 RUN cp config/settings.sample.yml config/settings.yml
 
 EXPOSE 80
