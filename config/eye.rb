@@ -23,7 +23,7 @@ Eye.application 'seirenes' do
     start_timeout 15.seconds
     restart_grace 15.seconds
 
-    check :http, url: 'http://127.0.0.1:8000/check', pattern: /seirenes/, every: 5.seconds,
+    check :http, url: 'http://127.0.0.1:8000/check', pattern: /seirenes/, every: 15.seconds,
       times: [3, 5], timeout: 3.seconds
 
     monitor_children do
@@ -31,6 +31,16 @@ Eye.application 'seirenes' do
       check :cpu,    every: 30.seconds, below: 80, times: 3
       check :memory, every: 30.seconds, below: 400.megabytes, times: [3, 5]
     end
+  end
+
+  process :sidekiq do
+    pid_file "tmp/pids/sidekiq.pid"
+    start_command "bundle exec sidekiq -c 2 -q seirenes -e #{RAILS_ENV} -P tmp/pids/sidekiq.pid"
+    stdall "log/sidekiq.log"
+    daemonize true
+    stop_signals [:QUIT, 5.seconds, :TERM, 5.seconds, :KILL]
+
+    check :memory, every: 30.seconds, below: 400.megabytes, times: [3, 5]
   end
 end
 
