@@ -151,6 +151,7 @@ gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
 gem "chronic_duration"
 
 gem "clockwork"
+gem "daemons"
 
 gem "eye"
 

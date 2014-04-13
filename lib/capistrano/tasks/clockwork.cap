@@ -1,0 +1,36 @@
+namespace :clockwork do
+  desc "start clockwork server"
+  task :start do
+    on roles(:app) do |host|
+      within current_path do
+        with path: "#{current_path}/ffmpeg/bin:$PATH", rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :clockworkd, "-c", "config/clockwork.rb", "--pid-dir=tmp/pids", "--log", "--log-dir=log", "start"
+        end
+      end
+    end
+  end
+
+  desc "stop clockwork server"
+  task :stop do
+    on roles(:app) do |host|
+      within current_path do
+        with path: "#{current_path}/ffmpeg/bin:$PATH", rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :clockworkd, "-c", "config/clockwork.rb", "--pid-dir=tmp/pids", "--log", "--log-dir=log", "stop"
+        end
+      end
+    end
+  end
+
+  desc "restart clockwork server"
+  task :restart do
+    on roles(:app) do |host|
+      within current_path do
+        with path: "#{current_path}/ffmpeg/bin:$PATH", rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :clockworkd, "-c", "config/clockwork.rb", "--pid-dir=tmp/pids", "--log", "--log-dir=log", "restart"
+        end
+      end
+    end
+  end
+end
+
+# vim:ft=ruby
