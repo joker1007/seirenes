@@ -152,6 +152,8 @@ gem "chronic_duration"
 
 gem "clockwork"
 
+gem "eye"
+
 # rails-assets
 gem 'rails-assets-jquery', require: false
 gem 'rails-assets-jqueryui', require: false
