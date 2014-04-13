@@ -35,9 +35,9 @@ Eye.application 'seirenes' do
 
   process :sidekiq do
     pid_file "tmp/pids/sidekiq.pid"
+    env 'PATH' => "#{File.expand_path('../../ffmpeg/bin', __FILE__)}:#{ENV['PATH']}"
     start_command "bundle exec sidekiq -c 2 -q seirenes -e #{RAILS_ENV} -P tmp/pids/sidekiq.pid"
     stdall "log/sidekiq.log"
-    env 'PATH' => "#{File.expand_path('../../ffmpeg/bin', __FILE__)}:$PATH"
     daemonize true
     stop_signals [:QUIT, 5.seconds, :TERM, 5.seconds, :KILL]
 
