@@ -10,22 +10,35 @@ RUN apt-get -y install libmysqlclient-dev mysql-client
 RUN git clone https://github.com/sstephenson/ruby-build.git
 RUN ruby-build/install.sh
 
+# Install ruby
 RUN ruby-build 2.1.1 /usr/local
 
+# Install bundler
 RUN gem update --system
 RUN gem install bundler --no-document
 
+# Create app user
 RUN useradd -m seirenes
 
-WORKDIR /tmp
-ADD ./Gemfile Gemfile
-ADD ./Gemfile.lock Gemfile.lock
-RUN bundle install -j4
+# Create app dir
+RUN mkdir /rails_app
+ADD ./Gemfile /rails_app/Gemfile
+ADD ./Gemfile.lock /rails_app/Gemfile.lock
+RUN chown seirenes -R /rails_app
+USER seirenes
+WORKDIR /rails_app
+RUN bundle install -j4 --path bundle
 
-ADD . /app
+# Add application
+ADD . /rails_app/seirenes
+ADD ./docker/database.yml /rails_app/seirenes/config/database.yml
+USER root
+RUN chown seirenes -R /rails_app/seirenes
+USER seirenes
+WORKDIR /rails_app/seirenes
 
-RUN chown seirenes -R /app
-WORKDIR /app
-
-ADD ./docker/database.yml /app/config/database.yml
+ENV RAILS_ENV production
+RUN bundle install --path /rails_app/bundle
 RUN cp config/settings.sample.yml config/settings.yml
+
+EXPOSE 80

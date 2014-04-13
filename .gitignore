@@ -14,7 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /log/clockworkd.clockwork.output
-/tmp
+/tmp/*
 
 .DS_Store
 *.rbc
