@@ -42,6 +42,14 @@ Eye.application 'seirenes' do
 
     check :memory, every: 30.seconds, below: 400.megabytes, times: [3, 5]
   end
+
+  process :clockwork do
+    pid_file "tmp/pids/clockworkd.clockwork.pid"
+    start_command "bundle exec clockworkd -c config/clockwork.rb --pid-dir=tmp/pids --log --log-dir=log start"
+    stop_command "bundle exec clockworkd -c config/clockwork.rb --pid-dir=tmp/pids --log --log-dir=log stop"
+    restart_command "bundle exec clockworkd -c config/clockwork.rb --pid-dir=tmp/pids --log --log-dir=log restart"
+    check :memory, every: 30.seconds, below: 400.megabytes, times: [3, 5]
+  end
 end
 
 # vim:ft=ruby
