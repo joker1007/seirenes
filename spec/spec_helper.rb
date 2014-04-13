@@ -66,17 +66,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  require "webmock/rspec"
-  require "vcr"
-  # Webmock & VCR
-  WebMock.allow_net_connect!
-
-  VCR.configure do |c|
-    c.allow_http_connections_when_no_cassette = true
-    c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    c.hook_into :webmock
-  end
-
   # for Delorean
   config.include Delorean
 

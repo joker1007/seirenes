@@ -21,6 +21,9 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'handlebars_assets'
+gem 'spinjs-rails'
+gem 'gritter'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -46,7 +49,6 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
 
-  gem "rails3-generators", :git => "git://github.com/indirect/rails3-generators.git", :group => [:development]
   gem "i18n_generators"
 
   gem "binding_of_caller"
@@ -64,13 +66,15 @@ group :development do
 end
 
 group :development, :test do
+  gem "byebug"
+  gem "pry-stack_explorer"
+
   gem "rspec", "~> 2.11"
   gem "rspec-rails", "~> 2.11"
 
   gem "capybara"
   gem "poltergeist"
 
-  gem "minitest"
   gem "launchy"
 
   gem "guard-rspec"
@@ -82,16 +86,13 @@ group :development, :test do
 
   gem "teaspoon"
 
-  gem "webmock", :require => false
-  gem "vcr", :require => false
-
   gem "hirb"
   gem "hirb-unicode"
 end
 
 group :test do
+  gem "minitest"
   gem "shoulda-matchers"
-  gem "turn", :require => false
   gem "simplecov", :require => false
   gem "simplecov-rcov", :require => false
   gem "rspec-formatter-git_auto_commit", :github => "joker1007/rspec-formatter-git_auto_commit"
@@ -102,8 +103,6 @@ group :test do
 end
 
 gem "pry-rails"
-gem "pry-stack_explorer"
-gem "byebug"
 gem "awesome_print"
 gem "tapp"
 
@@ -139,12 +138,7 @@ gem 'sidekiq-ffmpeg', github: "joker1007/sidekiq-ffmpeg"
 gem 'redis'
 gem 'redis-namespace'
 
-gem 'handlebars_assets'
-gem 'spinjs-rails'
-
 gem 'celluloid'
-
-gem 'gritter'
 
 gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
 
