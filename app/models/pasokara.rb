@@ -50,11 +50,7 @@ class Pasokara < ActiveRecord::Base
 
   def encode_async(format = :mp4)
     if movie_url(format).blank?
-      # 超簡単な重複実行防止
-      unless Rails.cache.read("pasokara_#{id}_encoding")
-        Rails.cache.write("pasokara_#{id}_encoding", true)
-        EncodeJob.perform_async(fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
-      end
+      EncodeJob.perform_async(fullpath, (Rails.root + "tmp/#{SecureRandom.hex}.#{format}").to_s, {"id" => id}, format)
     end
   end
 

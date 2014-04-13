@@ -1,6 +1,14 @@
 class EncodeJob < Sidekiq::Ffmpeg::BaseJob
   sidekiq_options queue: :seirenes
 
+  def perform(input_filename, output_filename, extra_data = {}, format = :mp4)
+    Redis::Mutex.with_lock("seirenes_pasokara_#{extra_data["id"]}_encoding", block: 0, expire: 60.minutes) do
+      super
+    end
+  rescue Redis::Mutex::LockError
+    puts "Already encoding"
+  end
+
   def on_progress(progress, extra_data = {})
     @redis ||= Redis.new
     r = Redis::Namespace.new(:seirenes_pasokara_encoding, redis: @redis)
@@ -14,19 +22,15 @@ class EncodeJob < Sidekiq::Ffmpeg::BaseJob
     r = Redis::Namespace.new(:seirenes_pasokara_encoding, redis: @redis)
     r.del(extra_data["id"].to_s)
 
-    begin
-      case encoder
-      when Sidekiq::Ffmpeg::Encoder::MP4
-        pasokara.movie_mp4 = File.open(encoder.output_filename)
-      when Sidekiq::Ffmpeg::Encoder::WebM
-        pasokara.movie_webm = File.open(encoder.output_filename)
-      end
-
-      pasokara.save
-
-      File.delete(encoder.output_filename)
-    ensure
-      Rails.cache.delete("pasokara_#{pasokara.id}_encoding")
+    case encoder
+    when Sidekiq::Ffmpeg::Encoder::MP4
+      pasokara.movie_mp4 = File.open(encoder.output_filename)
+    when Sidekiq::Ffmpeg::Encoder::WebM
+      pasokara.movie_webm = File.open(encoder.output_filename)
     end
+
+    pasokara.save
+
+    File.delete(encoder.output_filename)
   end
 end

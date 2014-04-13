@@ -421,6 +421,10 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     redis (3.0.7)
+    redis-classy (1.2.0)
+      redis-namespace (~> 1.0)
+    redis-mutex (2.1.1)
+      redis-classy (~> 1.2)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
     ref (1.0.5)
@@ -615,6 +619,7 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   redis
+  redis-mutex
   redis-namespace
   rspec (~> 2.11)
   rspec-formatter-git_auto_commit!

@@ -137,6 +137,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'sidekiq-ffmpeg', github: "joker1007/sidekiq-ffmpeg"
 gem 'redis'
 gem 'redis-namespace'
+gem 'redis-mutex'
 
 gem 'celluloid'
 
