@@ -123,7 +123,7 @@ gem "settingslogic"
 
 gem "thor"
 
-gem 'elasticsearch-model', git: 'git://github.com/joker1007/elasticsearch-rails.git', branch: "more_intuitive_pagination"
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-extensions'
 
