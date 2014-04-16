@@ -152,21 +152,11 @@ describe Pasokara do
   end
 
   describe "#encode_async" do
-    before do
-      Rails.cache.clear
-    end
-
     subject { pasokara.encode_async }
 
     it "call EncodeJob.perform_async" do
       expect(EncodeJob).to receive(:perform_async).with(pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4)
       subject
-    end
-
-    it "prevent double enqueue" do
-      expect(EncodeJob).to receive(:perform_async).with(pasokara.fullpath, an_instance_of(String), {"id" => pasokara.id}, :mp4).once
-      subject
-      pasokara.encode_async
     end
   end
 
