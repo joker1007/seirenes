@@ -38,7 +38,6 @@
 
     # hack for Turbolinks
     $(document).on "page:load", ->
-      Backbone.history.stop()
-      Backbone.history.start(pushState: true)
+      Backbone.history.loadUrl()
 
   App
