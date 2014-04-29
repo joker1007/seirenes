@@ -30,9 +30,18 @@ class Pasokara < ActiveRecord::Base
   validates_uniqueness_of :fullpath
   validates_uniqueness_of :nico_vid, allow_nil: true
 
+  include Searchable
   include ::SimpleTaggable
   include ::Thumbnailable
-  include Searchable
+
+  add_tag_converter ->(_, tag_name) { tag_name.strip }
+  add_tag_converter ->(_, tag_name) { tag_name.tr('ａ-ｚＡ-Ｚ', 'a-zA-Z') }
+  add_tag_converter ->(_, tag_name) { tag_name.tr('０-９', '0-9') }
+  add_tag_converter ->(_, tag_name) { NKF.nkf("-wWX", tag_name) }
+  add_tag_converter ->(_, tag_name) { tag_name.downcase }
+  add_tag_converter ->(_, tag_name) { tag_name.gsub(/db\Z/i, "DB") }
+  add_tag_filter    ->(_, tag_name) { tag_name.present? }
+  add_tag_filter    ->(tag_list, tag_name) { !tag_list.include?(tag_name) }
 
   mount_uploader :thumbnail, ThumbnailUploader
   mount_uploader :movie_mp4, MovieUploader
