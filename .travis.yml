@@ -12,7 +12,7 @@ before_script:
   - "echo '--color --format d' > .rspec"
 script: bundle exec rake db:create db:migrate spec
 rvm:
-  - 2.1.0
+  - 2.1.1
 env:
   global:
     - CI=true
