@@ -1,5 +1,4 @@
-# config valid only for Capistrano 3.1
-lock '3.2.0'
+lock '3.2.1'
 
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.1.1'
