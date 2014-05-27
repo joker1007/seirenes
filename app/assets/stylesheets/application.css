@@ -10,6 +10,8 @@
  *
  *= require_self
  *= require screen
+ *= require nprogress
+ *= require nprogress-bootstrap
  *= require bootstrap_load
  *= require gritter
  *= require_tree .

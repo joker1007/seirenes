@@ -16,6 +16,8 @@
 //= require jquery.lazyload
 //= require turbolinks
 //= require jquery.turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require bootstrap
 //= require lodash
 //= require backbone

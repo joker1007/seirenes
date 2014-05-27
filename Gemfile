@@ -154,6 +154,8 @@ gem "daemons"
 
 gem "eye"
 
+gem "nprogress-rails"
+
 # rails-assets
 gem 'rails-assets-jquery', require: false
 gem 'rails-assets-jqueryui', require: false
