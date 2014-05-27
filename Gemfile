@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 
 gem 'mysql2'
 
@@ -69,10 +69,13 @@ group :development, :test do
   gem "byebug"
   gem "pry-stack_explorer"
 
-  gem "rspec", "~> 2.11"
-  gem "rspec-rails", "~> 2.11"
+  gem "rspec", ">= 3.0.0.rc1"
+  gem "rspec-rails", ">= 3.0.0.rc1"
+  gem "transpec"
+  gem "rspec-its"
+  gem 'rspec-activemodel-mocks'
 
-  gem "capybara"
+  gem "capybara", github: "jnicklas/capybara"
   gem "poltergeist"
 
   gem "launchy"
@@ -99,7 +102,7 @@ group :test do
   gem "delorean"
   gem "database_cleaner"
   gem "coveralls"
-  gem "fuubar"
+  gem "fuubar", github: "thekompanee/fuubar"
 end
 
 gem "pry-rails"

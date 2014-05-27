@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Pasokara, elasticsearch: true do
+describe Pasokara, type: :model, elasticsearch: true do
   let(:pasokara) { create(:pasokara) }
 
   describe ".create_by_movie_info" do
@@ -13,7 +13,7 @@ describe Pasokara, elasticsearch: true do
     end
 
     before do
-      movie_info.title.should_not be_blank
+      expect(movie_info.title).not_to be_blank
     end
 
     subject { Pasokara.create_by_movie_info(movie_info) }
@@ -54,11 +54,11 @@ describe Pasokara, elasticsearch: true do
         user.pasokaras << pasokara
       end
 
-      it { should be_true }
+      it { is_expected.to be_truthy }
     end
 
     context "user has no pasokara" do
-      it { should be_false }
+      it { is_expected.to be_falsey }
     end
   end
 
@@ -84,7 +84,7 @@ describe Pasokara, elasticsearch: true do
       pasokara.__elasticsearch__.index_document
       Elasticsearch::Model.client.indices.flush
       response = Pasokara.search(query: {match: {tags: "tag1"}})
-      expect(response.results).to have(1).items
+      expect(response.results.size).to eq 1
       expect(response.records.first).to eq pasokara
     end
 
@@ -93,7 +93,7 @@ describe Pasokara, elasticsearch: true do
       pasokara2.__elasticsearch__.index_document
       Elasticsearch::Model.client.indices.flush
       response = Pasokara.search(query: {match: {title: "混じり"}})
-      expect(response.records).to have(1).items
+      expect(response.records.size).to eq 1
       expect(response.records.first).to eq pasokara
     end
 
@@ -102,7 +102,7 @@ describe Pasokara, elasticsearch: true do
       pasokara2.__elasticsearch__.index_document
       Elasticsearch::Model.client.indices.flush
       response = Pasokara.search(query: {match: {title: "Title"}})
-      expect(response.records).to have(2).items
+      expect(response.records.size).to eq 2
       expect(response.records.sort_by(&:id).first).to eq pasokara
     end
 
@@ -133,11 +133,11 @@ describe Pasokara, elasticsearch: true do
       it "検索結果と共にfacetが取得できること" do
         parameter = Pasokara::SearchParameter.new(keyword: "Title")
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.results).to have(2).items
+        expect(response.results.size).to eq 2
         expect(response.records[0]).to eq pasokara2
         expect(response.records[1]).to eq pasokara
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(3).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 3
         expect(response.response["facets"]["tags"]["terms"][0]["term"]).to eq "tag2"
         expect(response.response["facets"]["tags"]["terms"][0]["count"]).to eq 2
       end
@@ -145,36 +145,36 @@ describe Pasokara, elasticsearch: true do
       it "SearchParameterにタグを渡して絞り込めること" do
         parameter = Pasokara::SearchParameter.new(keyword: "Title", tags: %w(tag1))
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.results).to have(1).items
+        expect(response.results.size).to eq 1
         expect(response.records[0]).to eq pasokara
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(2).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 2
       end
 
       it "keywordの指定が無い場合は全件を返す" do
         parameter = Pasokara::SearchParameter.new
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.results).to have(3).items
+        expect(response.results.size).to eq 3
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(4).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 4
       end
 
       it "日本語のタグで検索する" do
         parameter = Pasokara::SearchParameter.new(tags: %w(タグ))
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.results).to have(1).items
+        expect(response.results.size).to eq 1
         expect(response.records[0]).to eq pasokara3
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(1).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 1
       end
 
       it "複数のタグにマッチする結果を返す" do
         parameter = Pasokara::SearchParameter.new(tags: %w(tag2 Tag3))
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.results).to have(1).items
+        expect(response.results.size).to eq 1
         expect(response.records[0]).to eq pasokara2
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(2).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 2
       end
 
       it "ページネーションされている" do
@@ -185,28 +185,28 @@ describe Pasokara, elasticsearch: true do
 
         parameter = Pasokara::SearchParameter.new(per_page: 10)
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.records).to have(10).items
+        expect(response.records.size).to eq 10
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(4).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 4
 
         parameter = Pasokara::SearchParameter.new(page: 2, per_page: 10)
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.records).to have(3).items
+        expect(response.records.size).to eq 3
         expect(response.response["facets"]).to be_a(Hash)
-        expect(response.response["facets"]["tags"]["terms"]).to have(4).items
+        expect(response.response["facets"]["tags"]["terms"].size).to eq 4
       end
 
       it "user_idで検索できる" do
         parameter = Pasokara::SearchParameter.new(user_id: user.id)
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.records).to have(1).items
+        expect(response.records.size).to eq 1
         expect(response.records[0]).to eq pasokara3
       end
 
       it "ソート方法を指定できる" do
         parameter = Pasokara::SearchParameter.new(order_by: [[:created_at, :asc]])
         response = Pasokara.search_with_facet_tags(parameter)
-        expect(response.records).to have(3).items
+        expect(response.records.size).to eq 3
         expect(response.records[0]).to eq pasokara
       end
     end

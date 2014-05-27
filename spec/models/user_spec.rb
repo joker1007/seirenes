@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   let(:auth) do
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
       :provider => 'twitter',
@@ -24,12 +24,12 @@ describe User do
     end
 
     it "creates user_auth" do
-      UserAuth.count.should == 0
+      expect(UserAuth.count).to eq(0)
       subject
       user_auth = UserAuth.find_by(provider: "twitter")
-      user_auth.should be_present
-      user_auth.uid.should == "123545"
-      user_auth.user.should be_present
+      expect(user_auth).to be_present
+      expect(user_auth.uid).to eq("123545")
+      expect(user_auth.user).to be_present
     end
 
     context "When User is already exists" do
@@ -40,7 +40,7 @@ describe User do
       end
 
       it "returns existing user" do
-        subject.should == user
+        expect(subject).to eq(user)
       end
     end
   end

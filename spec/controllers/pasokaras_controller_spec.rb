@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PasokarasController do
+describe PasokarasController, :type => :controller do
 
   describe "GET 'index'" do
     it "returns http success" do
@@ -9,7 +9,7 @@ describe PasokarasController do
       expect(Pasokara).to receive(:search_with_facet_tags).with(search_parameter) {
         resp
       }
-      resp.stub_chain(:records, :includes) { [mock_model(Pasokara)] }
+      allow(resp).to receive_message_chain(:records, :includes) { [mock_model(Pasokara)] }
       expect(resp).to receive(:response) {
         {"facets" => {
           "tags" => {
@@ -18,7 +18,7 @@ describe PasokarasController do
         }}
       }
       get 'index'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 end

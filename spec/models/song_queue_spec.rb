@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SongQueue do
+describe SongQueue, :type => :model do
   describe "#finish!" do
     let(:pasokara) { FactoryGirl.create(:pasokara) }
     let!(:song_queue) { FactoryGirl.create(:song_queue, pasokara: pasokara) }
@@ -8,7 +8,7 @@ describe SongQueue do
     subject { song_queue.finish! }
 
     it "remove SongQueue and create History" do
-      song_queue.should_receive(:destroy!)
+      expect(song_queue).to receive(:destroy!)
       subject
     end
 
@@ -19,7 +19,7 @@ describe SongQueue do
     describe "created History" do
       it "is related with song_queue.pasokara" do
         subject
-        History.last.pasokara.should eq pasokara
+        expect(History.last.pasokara).to eq pasokara
       end
     end
   end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe HistoriesController do
+describe HistoriesController, :type => :controller do
 
 end

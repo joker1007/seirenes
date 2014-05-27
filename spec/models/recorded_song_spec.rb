@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe RecordedSong do
+describe RecordedSong, :type => :model do
 end

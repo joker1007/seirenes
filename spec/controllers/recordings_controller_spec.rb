@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe RecordingsController do
+describe RecordingsController, :type => :controller do
 
 end

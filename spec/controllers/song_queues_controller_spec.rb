@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe SongQueuesController do
+describe SongQueuesController, :type => :controller do
 
 end
