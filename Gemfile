@@ -2,15 +2,17 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', github: 'rails/rails'
+gem 'arel', github: 'rails/arel'
 
 gem 'mysql2'
 
-gem 'sass-rails',   '~> 4.0.3'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sprockets-rails',  github: "rails/sprockets-rails"
+gem 'sass-rails', github: 'rails/sass-rails'
+gem 'coffee-rails', github: 'rails/coffee-rails'
 gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
 gem 'bootstrap-sass'
-gem 'compass-rails'
+gem 'compass-rails', github: "Compass/compass-rails"
 gem 'coffee-rails-source-maps'
 gem 'zurui-sass-rails'
 
