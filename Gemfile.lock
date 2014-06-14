@@ -186,9 +186,6 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
-    bullet (4.10.0)
-      activesupport
-      uniform_notifier (~> 1.6.0)
     byebug (3.1.2)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
@@ -594,7 +591,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uniform_notifier (1.6.2)
     webrobots (0.1.1)
     websocket-driver (0.3.3)
     xpath (2.0.0)
@@ -613,7 +609,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  bullet
   byebug
   capistrano
   capistrano-bundler
