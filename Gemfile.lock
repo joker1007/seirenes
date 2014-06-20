@@ -444,6 +444,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rails-assets-Polymer--platform (0.3.3)
     rails-assets-backbone (1.1.2)
       rails-assets-underscore (>= 1.5.0)
     rails-assets-backbone.babysitter (0.1.4)
@@ -665,6 +666,7 @@ DEPENDENCIES
   pry-stack_explorer
   quiet_assets
   rails!
+  rails-assets-Polymer--platform
   rails-assets-backbone
   rails-assets-backbone.marionette (>= 1.6)
   rails-assets-backbone.stickit

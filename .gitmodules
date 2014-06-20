@@ -1,0 +1,3 @@
+[submodule "public/webaudio-controls"]
+	path = public/webaudio-controls
+	url = https://github.com/g200kg/webaudio-controls.git

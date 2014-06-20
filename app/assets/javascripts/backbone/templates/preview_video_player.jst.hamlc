@@ -1,5 +1,9 @@
 #pasokara-preview
 #record-control
+  #mic-volume-control
+    Mic Volume
+    %webaudio-slider.slider{id: "mic-volume", src: "/webaudio-controls/img/hsliderbody.png", knobsrc: "/webaudio-controls/img/hsliderknob.png", min: -6, max: 6, step: 0.1, direction: "horz"}
+  %button.js-add_rec Add Record Track
   %button.js-start_rec Start Rec
   %button.js-stop_rec Stop Rec
   #recorded
