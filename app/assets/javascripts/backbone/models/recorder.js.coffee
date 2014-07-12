@@ -46,7 +46,6 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
 
       micAnalyser = @context.createAnalyser()
       micAnalyser.fftSize = 256
-      micAnalyser.maxDecibels = -40
 
       @mic.connect(splitter)
       splitter.connect(highpassFilter, 0)
@@ -67,7 +66,6 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
 
       musicAnalyser = @context.createAnalyser()
       musicAnalyser.fftSize = 256
-      musicAnalyser.maxDecibels = -40
       @music.connect(musicAnalyser)
       @music.connect(@context.destination)
 
@@ -100,29 +98,8 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       @video.currentTime = 0
       @video.play()
 
-      musicLevelCanvas = document.getElementById("music-level")
-      ctx = musicLevelCanvas.getContext("2d")
-      ctx.lineWidth = 0.5
-      ctx.strokeStyle = "rgb(220, 220, 220)"
-      ctx.beginPath()
-      ctx.moveTo(0, 128)
-      ctx.lineTo(350, 128)
-      ctx.closePath()
-      ctx.stroke()
-      grad = ctx.createLinearGradient(0, 0, 0, 256)
-      grad.addColorStop(0, "rgb(0,171,255)")
-
-      micLevelCanvas = document.getElementById("mic-level")
-      ctx2 = micLevelCanvas.getContext("2d")
-      ctx2.lineWidth = 0.5
-      ctx2.strokeStyle = "rgb(220, 220, 220)"
-      ctx2.beginPath()
-      ctx2.moveTo(0, 128)
-      ctx2.lineTo(350, 128)
-      ctx2.closePath()
-      ctx2.stroke()
-      grad2 = ctx.createLinearGradient(0, 0, 0, 256)
-      grad2.addColorStop(0, "rgb(255,134,0)")
+      musicLevelCanvasView = new App.Views.MusicLevelCanvasView(canvas: document.getElementById("music-level"), analyzer: musicAnalyser)
+      micLevelCanvasView = new App.Views.MicLevelCanvasView(canvas: document.getElementById("mic-level"), analyzer: micAnalyser)
 
       musicSpectrumCanvas = document.getElementById("music-spectrum")
       musicSpectrum = new Models.Spectrum()
@@ -131,44 +108,17 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       micSpectrum = new Models.Spectrum()
       micSpectrum.setChartImage("/assets/spectrum-mic.png")
 
-      start = 0
+      musicLevelCanvasView.start()
+      micLevelCanvasView.start()
+
       @timer = setInterval ->
-        musicData = new Uint8Array(musicAnalyser.fftSize)
-        micData = new Uint8Array(micAnalyser.fftSize)
         musicFreq = new Uint8Array(musicAnalyser.frequencyBinCount)
         micFreq = new Uint8Array(micAnalyser.frequencyBinCount)
-        musicAnalyser.getByteTimeDomainData(musicData)
-        micAnalyser.getByteTimeDomainData(micData)
         musicAnalyser.getByteFrequencyData(musicFreq)
         micAnalyser.getByteFrequencyData(micFreq)
 
         musicSpectrum.draw(musicSpectrumCanvas, musicFreq)
         micSpectrum.draw(micSpectrumCanvas, micFreq)
-
-        musicSignal = musicData[0]
-        micSignal = micData[0]
-        musicDelta = Math.abs(musicSignal - 128)
-        micDelta = Math.abs(micSignal - 128)
-
-        ctx.fillStyle = grad
-        ctx2.fillStyle = grad2
-        ctx.fillRect(start, 128 - musicDelta, 1, musicDelta * 2 + 1)
-        ctx2.fillRect(start, 128 - micDelta, 1, micDelta * 2 + 1)
-        start += 0.5
-        if start >= 350
-          start = 0
-          ctx.clearRect(0, 0, musicLevelCanvas.width, musicLevelCanvas.height)
-          ctx.beginPath()
-          ctx.moveTo(0, 128)
-          ctx.lineTo(350, 128)
-          ctx.closePath()
-          ctx.stroke()
-          ctx2.clearRect(0, 0, micLevelCanvas.width, micLevelCanvas.height)
-          ctx2.beginPath()
-          ctx2.moveTo(0, 128)
-          ctx2.lineTo(350, 128)
-          ctx2.closePath()
-          ctx2.stroke()
       , 50
 
     captureFail: (s) ->
