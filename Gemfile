@@ -157,6 +157,7 @@ gem "daemons"
 gem "eye"
 
 gem "nprogress-rails"
+gem "non-stupid-digest-assets"
 
 # rails-assets
 gem 'rails-assets-jquery', require: false
