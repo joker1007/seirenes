@@ -3,6 +3,7 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
     template: "backbone/templates/preview_video_player"
 
     events:
+      "click .js-add_rec": "addRecordTrack"
       "click .js-start_rec": "startRecord"
       "click .js-stop_rec": "stopRecord"
       "click .js-upload" : "uploadRecordedData"
@@ -38,8 +39,11 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
     onRender: ->
       @stickit()
 
-    startRecord: ->
+    addRecordTrack: ->
       @recorder = new App.Models.Recorder(video: @$("video")[0])
+      @recorder.addRecordTrack()
+
+    startRecord: ->
       @recorder.record()
 
     stopRecord: ->

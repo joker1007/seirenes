@@ -8,8 +8,8 @@ module Pasokara::CreateMethods
         fullpath: movie_info.path,
         duration: movie_info.duration,
         nico_vid: movie_info.vid.presence,
-        nico_view_count: movie_info.view_count,
-        nico_mylist_count: movie_info.mylist_count,
+        nico_view_count: movie_info.view_count.presence || 0,
+        nico_mylist_count: movie_info.mylist_count.presence || 0,
         nico_posted_at: movie_info.posted_at,
         nico_description: movie_info.description
       )

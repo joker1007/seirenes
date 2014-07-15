@@ -10,6 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require _request_animation_frame
 //= require jquery
 //= require jquery_ujs
 //= require jquery.spin
@@ -30,6 +31,8 @@
 //= require recorder
 //= require jquery.ui.widget
 //= require jquery.fileupload
+//= require platform/platform
+//= require polymer/polymer
 //= require_self
 //= require_tree .
 

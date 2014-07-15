@@ -5,28 +5,23 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
     musicDelayTime: 0.018
 
     initialize: ({video: @video, monitor: @monitor}) ->
+      @context = new AudioContext()
+      @music = @context.createMediaElementSource(@video)
       throw new Error("no video") unless @video
 
+    addRecordTrack: ->
+      navigator.getUserMedia({audio: true}, _.bind(@__assignRecordTrack, @), _.bind(@captureFail, @))
+
+    __assignRecordTrack: (s) ->
+      @micStream = s
+      @mic = @context.createMediaStreamSource(s)
+
     record: ->
-      navigator.getUserMedia({audio: true}, _.bind(@captureSuccess, @), _.bind(@captureFail, @))
-
-    captureSuccess: (s) ->
-      @context = new webkitAudioContext()
-
       # ビデオとマイクのミキサー
       @mixer = @context.createGain()
 
-      # ビデオのゲイン
-      @musicGain = @context.createGain()
-
       # マイクのゲイン
       @micGain = @context.createGain()
-
-      @elementMediaSource = @context.createMediaElementSource(@video)
-      @elementMediaSource.connect(@musicGain)
-
-      @micStream = s
-      @mediaStreamSource = @context.createMediaStreamSource(s)
 
       splitter = @context.createChannelSplitter()
 
@@ -49,10 +44,15 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       deesser.Q.value = 5
       deesser.gain.value = -3
 
-      @mediaStreamSource.connect(splitter)
+      micAnalyser = @context.createAnalyser()
+      micAnalyser.fftSize = 256
+
+      @mic.connect(splitter)
       splitter.connect(highpassFilter, 0)
       highpassFilter.connect(peaking)
       peaking.connect(deesser)
+      deesser.connect(micAnalyser)
+
       compressor = new Models.VocalCompressor(source: deesser)
       delayEffector = new Models.DelayEffector(source: compressor.output)
       delayEffector.output.connect(@micGain)
@@ -60,11 +60,14 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
 
       musicDelay = @context.createDelay()
       musicDelay.delayTime.value = @musicDelayTime
-      @elementMediaSource.connect(musicDelay)
-      musicDelay.connect(@musicGain)
+      @music.connect(musicDelay)
 
-      @musicGain.connect(@mixer)
-      @elementMediaSource.connect(@context.destination)
+      musicDelay.connect(@mixer)
+
+      musicAnalyser = @context.createAnalyser()
+      musicAnalyser.fftSize = 256
+      @music.connect(musicAnalyser)
+      @music.connect(@context.destination)
 
       # 高音域を軽くブーストする
       trebleBoost = @context.createBiquadFilter()
@@ -95,12 +98,28 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       @video.currentTime = 0
       @video.play()
 
+      @musicLevelCanvasView = new App.Views.MusicLevelCanvasView(canvas: document.getElementById("music-level"), analyzer: musicAnalyser)
+      @micLevelCanvasView = new App.Views.MicLevelCanvasView(canvas: document.getElementById("mic-level"), analyzer: micAnalyser)
+
+      @musicSpectrumCanvasView = new App.Views.SpectrumCanvasView(canvas: document.getElementById("music-spectrum"), analyzer: musicAnalyser, imagePath: "/assets/spectrum-music.png")
+      @micSpectrumCanvasView = new App.Views.SpectrumCanvasView(canvas: document.getElementById("mic-spectrum"), analyzer: micAnalyser, imagePath: "/assets/spectrum-mic.png")
+
+      @musicLevelCanvasView.start()
+      @micLevelCanvasView.start()
+      @musicSpectrumCanvasView.start()
+      @micSpectrumCanvasView.start()
+
     captureFail: (s) ->
       alert("マイクが利用できません")
 
     stopRecord: (callback) ->
       @video.pause()
       @video.currentTime = 0
+      clearInterval(@timer)
+      @musicLevelCanvasView.stop()
+      @micLevelCanvasView.stop()
+      @musicSpectrumCanvasView.stop()
+      @micSpectrumCanvasView.stop()
       @recorder.stop()
       @micStream.stop()
       @recorder.exportWAV (blob) =>

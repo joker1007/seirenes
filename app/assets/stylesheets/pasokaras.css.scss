@@ -118,6 +118,11 @@
   }
 }
 
+#pasokara-preview-player {
+  padding: 4px;
+  @include clearfix;
+}
+
 #pasokara-movie-area {
   @media #{$small} {
     width: 240px;
@@ -130,7 +135,44 @@
   @media #{$large} {
     width: 640px;
   }
-  display: inline-block;
+  float: left;
+}
+
+#pasokara-visualizer-area {
+  @media #{$small} {
+    width: 240px;
+    margin-left: 10px;
+  }
+
+  @media #{$middle} {
+    width: 480px;
+    margin-left: 20px;
+  }
+
+  @media #{$large} {
+    width: 900px;
+    margin-left: 40px;
+  }
+
+  margin-top: 20px;
+  float: left;
+
+  canvas {
+    background-color: black;
+    background-image: image-url("canvasbg.png");
+  }
+
+  canvas.level {
+    @include zurui-box-deboss;
+    width: 350px;
+    height: 256px;
+    margin-right: 2px;
+  }
+  canvas.spectrum {
+    @include zurui-box-deboss;
+    width: 512px;
+    height: 256px;
+  }
 }
 
 #pasokara-recordings {
@@ -189,6 +231,11 @@
     vertical-align: middle;
     margin-right: 8px;
   }
+}
+
+#mic-volume-control {
+  text-align: left;
+  padding-left: 10px;
 }
 
 #sort-field {

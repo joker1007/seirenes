@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Compass/compass-rails.git
+  revision: 5067c08c4c7d801f76bdad5bd6c6945dd18ffd2f
+  specs:
+    compass-rails (2.0.0.pre)
+      compass (>= 0.12.2)
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: c60fa282d74051e2fb5d41b600f919a39d9edcb4
   specs:
@@ -76,6 +83,85 @@ GIT
       tilt (~> 1.1)
 
 GIT
+  remote: git://github.com/rails/arel.git
+  revision: 9ea4d4689711d86777715360da47ae25c0acc337
+  specs:
+    arel (6.0.0.20140505020427)
+
+GIT
+  remote: git://github.com/rails/coffee-rails.git
+  revision: 044d0d683b436128dedf45f780b8fca138d005e2
+  specs:
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+
+GIT
+  remote: git://github.com/rails/rails.git
+  revision: cf67031546735651375b7df06bda6721ad57fbe2
+  specs:
+    actionmailer (4.2.0.alpha)
+      actionpack (= 4.2.0.alpha)
+      actionview (= 4.2.0.alpha)
+      mail (~> 2.5, >= 2.5.4)
+    actionpack (4.2.0.alpha)
+      actionview (= 4.2.0.alpha)
+      activesupport (= 4.2.0.alpha)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionview (4.2.0.alpha)
+      activesupport (= 4.2.0.alpha)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activemodel (4.2.0.alpha)
+      activesupport (= 4.2.0.alpha)
+      builder (~> 3.1)
+    activerecord (4.2.0.alpha)
+      activemodel (= 4.2.0.alpha)
+      activesupport (= 4.2.0.alpha)
+      arel (~> 6.0.0)
+    activesupport (4.2.0.alpha)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    rails (4.2.0.alpha)
+      actionmailer (= 4.2.0.alpha)
+      actionpack (= 4.2.0.alpha)
+      actionview (= 4.2.0.alpha)
+      activemodel (= 4.2.0.alpha)
+      activerecord (= 4.2.0.alpha)
+      activesupport (= 4.2.0.alpha)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.2.0.alpha)
+      sprockets-rails (~> 2.1)
+    railties (4.2.0.alpha)
+      actionpack (= 4.2.0.alpha)
+      activesupport (= 4.2.0.alpha)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+
+GIT
+  remote: git://github.com/rails/sass-rails.git
+  revision: 3a9e47db7d769221157c82229fc1bade55b580f0
+  specs:
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2)
+      sprockets (~> 2.12)
+      sprockets-rails (~> 2.0)
+
+GIT
+  remote: git://github.com/rails/sprockets-rails.git
+  revision: 60d9e2e3b4482f05ca0e45399134dae0d73b34df
+  specs:
+    sprockets-rails (2.1.2)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (~> 2.8)
+
+GIT
   remote: git://github.com/thekompanee/fuubar.git
   revision: 04742082befd60210ef55e84fa689f420ff26175
   specs:
@@ -87,36 +173,9 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
-    actionmailer (4.1.1)
-      actionpack (= 4.1.1)
-      actionview (= 4.1.1)
-      mail (~> 2.5.4)
-    actionpack (4.1.1)
-      actionview (= 4.1.1)
-      activesupport (= 4.1.1)
-      rack (~> 1.5.2)
-      rack-test (~> 0.6.2)
-    actionview (4.1.1)
-      activesupport (= 4.1.1)
-      builder (~> 3.1)
-      erubis (~> 2.7.0)
     active_decorator (0.3.4)
-    activemodel (4.1.1)
-      activesupport (= 4.1.1)
-      builder (~> 3.1)
-    activerecord (4.1.1)
-      activemodel (= 4.1.1)
-      activesupport (= 4.1.1)
-      arel (~> 5.0.0)
-    activesupport (4.1.1)
-      i18n (~> 0.6, >= 0.6.9)
-      json (~> 1.7, >= 1.7.7)
-      minitest (~> 5.1)
-      thread_safe (~> 0.1)
-      tzinfo (~> 1.1)
     addressable (2.3.6)
     ansi (1.4.3)
-    arel (5.0.1.20140414130214)
     ast (2.0.0)
     awesome_print (1.2.0)
     better_errors (1.1.0)
@@ -127,9 +186,6 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
-    bullet (4.10.0)
-      activesupport
-      uniform_notifier (~> 1.6.0)
     byebug (3.1.2)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
@@ -165,9 +221,6 @@ GEM
       activesupport
       tzinfo
     coderay (1.1.0)
-    coffee-rails (4.0.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.0)
     coffee-rails-source-maps (1.4.0)
       coffee-script-source (>= 1.6.1)
     coffee-script (2.2.0)
@@ -180,9 +233,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.2.19)
-    compass-rails (1.1.7)
-      compass (>= 0.12.2)
-      sprockets (<= 2.11.0)
     connection_pool (2.0.0)
     coveralls (0.7.0)
       multi_json (~> 1.3)
@@ -314,20 +364,19 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     lumberjack (1.0.6)
-    mail (2.5.4)
-      mime-types (~> 1.16)
-      treetop (~> 1.4.8)
-    mechanize (2.7.2)
+    mail (2.6.1)
+      mime-types (>= 1.16, < 3)
+    mechanize (2.7.3)
       domain_name (~> 0.5, >= 0.5.1)
-      http-cookie (~> 1.0.0)
-      mime-types (~> 1.17, >= 1.17.2)
+      http-cookie (~> 1.0)
+      mime-types (~> 2.0)
       net-http-digest_auth (~> 1.1, >= 1.1.1)
       net-http-persistent (~> 2.5, >= 2.5.2)
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
-    mime-types (1.25.1)
+    mime-types (2.3)
     mini_portile (0.6.0)
     minitest (5.3.4)
     multi_json (1.10.1)
@@ -379,7 +428,6 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    polyglot (0.3.5)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -396,16 +444,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.1.1)
-      actionmailer (= 4.1.1)
-      actionpack (= 4.1.1)
-      actionview (= 4.1.1)
-      activemodel (= 4.1.1)
-      activerecord (= 4.1.1)
-      activesupport (= 4.1.1)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 4.1.1)
-      sprockets-rails (~> 2.0)
+    rails-assets-Polymer--platform (0.3.3)
     rails-assets-backbone (1.1.2)
       rails-assets-underscore (>= 1.5.0)
     rails-assets-backbone.babysitter (0.1.4)
@@ -426,11 +465,6 @@ GEM
     rails-assets-lodash (2.4.1)
     rails-assets-spin.js (2.0.1)
     rails-assets-underscore (1.6.0)
-    railties (4.1.1)
-      actionpack (= 4.1.1)
-      activesupport (= 4.1.1)
-      rake (>= 0.8.7)
-      thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     raindrops (0.13.0)
     rake (10.3.2)
@@ -479,11 +513,6 @@ GEM
     ruby-prof (0.15.1)
     ruby-progressbar (1.5.1)
     sass (3.2.19)
-    sass-rails (4.0.3)
-      railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.0)
-      sprockets (~> 2.8, <= 2.11.0)
-      sprockets-rails (~> 2.0)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -514,15 +543,11 @@ GEM
     spring (1.1.3)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
-    sprockets (2.11.0)
+    sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.1.3)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      sprockets (~> 2.8)
     sshkit (1.5.1)
       colorize
       net-scp (>= 1.1.2)
@@ -552,9 +577,6 @@ GEM
       json (~> 1.8)
       parser (>= 2.1.6, < 3.0)
       rainbow (>= 1.99.1, < 3.0)
-    treetop (1.4.15)
-      polyglot
-      polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
     tzinfo (1.2.1)
@@ -570,7 +592,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uniform_notifier (1.6.2)
     webrobots (0.1.1)
     websocket-driver (0.3.3)
     xpath (2.0.0)
@@ -584,11 +605,11 @@ PLATFORMS
 DEPENDENCIES
   active_decorator
   annotate!
+  arel!
   awesome_print
   better_errors
   binding_of_caller
   bootstrap-sass
-  bullet
   byebug
   capistrano
   capistrano-bundler
@@ -599,9 +620,9 @@ DEPENDENCIES
   celluloid
   chronic_duration
   clockwork
-  coffee-rails (~> 4.0.0)
+  coffee-rails!
   coffee-rails-source-maps
-  compass-rails
+  compass-rails!
   coveralls
   daemons
   database_cleaner
@@ -644,7 +665,8 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   quiet_assets
-  rails (= 4.1.1)
+  rails!
+  rails-assets-Polymer--platform
   rails-assets-backbone
   rails-assets-backbone.marionette (>= 1.6)
   rails-assets-backbone.stickit
@@ -663,7 +685,7 @@ DEPENDENCIES
   rspec-formatter-git_auto_commit!
   rspec-its
   rspec-rails (>= 3.0.0.rc1)
-  sass-rails (~> 4.0.3)
+  sass-rails!
   sdoc
   settingslogic
   shoulda-matchers
@@ -676,6 +698,7 @@ DEPENDENCIES
   spinjs-rails
   spring
   spring-commands-rspec
+  sprockets-rails!
   tapp
   teaspoon
   therubyracer
