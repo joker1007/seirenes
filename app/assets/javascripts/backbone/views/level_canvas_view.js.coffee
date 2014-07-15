@@ -22,15 +22,12 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
     grad: ->
 
     start: ->
-      @updateCanvas()
+      @analyzer.getByteTimeDomainData(@buffer)
+      @renderSignal(@buffer[0])
+      @req = requestAnimationFrame(_.bind(@start, @))
 
     stop: ->
       cancelAnimationFrame(@req)
-
-    updateCanvas: ->
-      @analyzer.getByteTimeDomainData(@buffer)
-      @renderSignal(@buffer[0])
-      @req = requestAnimationFrame(_.bind(@updateCanvas, @))
 
     renderInit: ->
       @ctx.beginPath()

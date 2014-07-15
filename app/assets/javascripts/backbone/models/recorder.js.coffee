@@ -98,28 +98,16 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       @video.currentTime = 0
       @video.play()
 
-      musicLevelCanvasView = new App.Views.MusicLevelCanvasView(canvas: document.getElementById("music-level"), analyzer: musicAnalyser)
-      micLevelCanvasView = new App.Views.MicLevelCanvasView(canvas: document.getElementById("mic-level"), analyzer: micAnalyser)
+      @musicLevelCanvasView = new App.Views.MusicLevelCanvasView(canvas: document.getElementById("music-level"), analyzer: musicAnalyser)
+      @micLevelCanvasView = new App.Views.MicLevelCanvasView(canvas: document.getElementById("mic-level"), analyzer: micAnalyser)
 
-      musicSpectrumCanvas = document.getElementById("music-spectrum")
-      musicSpectrum = new Models.Spectrum()
-      musicSpectrum.setChartImage("/assets/spectrum-music.png")
-      micSpectrumCanvas = document.getElementById("mic-spectrum")
-      micSpectrum = new Models.Spectrum()
-      micSpectrum.setChartImage("/assets/spectrum-mic.png")
+      @musicSpectrumCanvasView = new App.Views.SpectrumCanvasView(canvas: document.getElementById("music-spectrum"), analyzer: musicAnalyser, imagePath: "/assets/spectrum-music.png")
+      @micSpectrumCanvasView = new App.Views.SpectrumCanvasView(canvas: document.getElementById("mic-spectrum"), analyzer: micAnalyser, imagePath: "/assets/spectrum-mic.png")
 
-      musicLevelCanvasView.start()
-      micLevelCanvasView.start()
-
-      @timer = setInterval ->
-        musicFreq = new Uint8Array(musicAnalyser.frequencyBinCount)
-        micFreq = new Uint8Array(micAnalyser.frequencyBinCount)
-        musicAnalyser.getByteFrequencyData(musicFreq)
-        micAnalyser.getByteFrequencyData(micFreq)
-
-        musicSpectrum.draw(musicSpectrumCanvas, musicFreq)
-        micSpectrum.draw(micSpectrumCanvas, micFreq)
-      , 50
+      @musicLevelCanvasView.start()
+      @micLevelCanvasView.start()
+      @musicSpectrumCanvasView.start()
+      @micSpectrumCanvasView.start()
 
     captureFail: (s) ->
       alert("マイクが利用できません")
@@ -128,6 +116,10 @@ Seirenes.module "Models", (Models, App, Backbone, Marionette, $, _) ->
       @video.pause()
       @video.currentTime = 0
       clearInterval(@timer)
+      @musicLevelCanvasView.stop()
+      @micLevelCanvasView.stop()
+      @musicSpectrumCanvasView.stop()
+      @micSpectrumCanvasView.stop()
       @recorder.stop()
       @micStream.stop()
       @recorder.exportWAV (blob) =>
