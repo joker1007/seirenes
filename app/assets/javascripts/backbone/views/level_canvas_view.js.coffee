@@ -4,10 +4,11 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
   Views.LevelCanvasView = Marionette.View.extend
     initialize:(canvas: @canvas, analyzer: @analyzer) ->
       @buffer = new Uint8Array(@analyzer.fftSize)
+      @bufferSize = @analyzer.fftSize
 
       @ctx = @canvas.getContext("2d")
       @ctx.lineWidth = 1
-      @ctx.strokeStyle = "rgb(220, 220, 220)"
+      @ctx.strokeStyle = "rgb(240, 240, 240)"
 
       @ctx.fillStyle = @grad()
 
@@ -21,6 +22,10 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
     start: ->
       @analyzer.getByteTimeDomainData(@buffer)
       @renderSignal(@buffer[0])
+      @renderSignal(@buffer[@bufferSize / 4 * 1])
+      @renderSignal(@buffer[@bufferSize / 4 * 2])
+      @renderSignal(@buffer[@bufferSize / 4 * 3])
+      @renderSignal(@buffer[Math.max(@bufferSize / 4 * 4, @bufferSize)])
       @req = requestAnimationFrame(_.bind(@start, @))
 
     stop: ->
@@ -39,7 +44,7 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
         @reset()
       delta = Math.abs(signal - @canvas.height / 2)
       @ctx.fillRect(@counter, @canvas.height / 2 - delta, 1, delta * 2 + 1)
-      @counter += 0.5
+      @counter += 0.1
       @
 
     reset: ->
