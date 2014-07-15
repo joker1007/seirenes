@@ -2,12 +2,10 @@
 
 Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
   Views.SpectrumCanvasView = Marionette.View.extend
-    WIDTH: 512
-    HEIGHT: 256
-    BAR_WIDTH: 3
+    BAR_WIDTH: 5
 
     initialize:(canvas: @canvas, analyzer: @analyzer, imagePath: imagePath) ->
-      @buffer = new Uint8Array(@analyzer.frequencyBinCount)
+      @buffer = new Uint8Array(@analyzer.frequencyBinCount / 4)
       @ctx = @canvas.getContext("2d")
       @image = new Image()
       @image.src = imagePath

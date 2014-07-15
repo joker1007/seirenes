@@ -2,9 +2,6 @@
 
 Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
   Views.LevelCanvasView = Marionette.View.extend
-    WIDTH: 350
-    HEIGHT: 256
-
     initialize:(canvas: @canvas, analyzer: @analyzer) ->
       @buffer = new Uint8Array(@analyzer.fftSize)
 
@@ -31,23 +28,23 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
 
     renderInit: ->
       @ctx.beginPath()
-      @ctx.moveTo(0, @HEIGHT / 2)
-      @ctx.lineTo(@WIDTH, @HEIGHT / 2)
+      @ctx.moveTo(0, @canvas.height / 2)
+      @ctx.lineTo(@canvas.width, @canvas.height / 2)
       @ctx.closePath()
       @ctx.stroke()
       @
 
     renderSignal: (signal) ->
-      if @counter >= @WIDTH
+      if @counter >= @canvas.width
         @reset()
-      delta = Math.abs(signal - @HEIGHT / 2)
-      @ctx.fillRect(@counter, @HEIGHT / 2 - delta, 1, delta * 2 + 1)
+      delta = Math.abs(signal - @canvas.height / 2)
+      @ctx.fillRect(@counter, @canvas.height / 2 - delta, 1, delta * 2 + 1)
       @counter += 0.5
       @
 
     reset: ->
       @counter = 0
-      @ctx.clearRect(0, 0, @WIDTH, @HEIGHT)
+      @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
       @renderInit()
       @
 

@@ -150,7 +150,7 @@
   }
 
   @media #{$large} {
-    width: 900px;
+    width: 600px;
     margin-left: 40px;
   }
 
@@ -163,14 +163,14 @@
   }
 
   canvas.level {
-    @include zurui-box-deboss;
-    width: 350px;
+    @include zurui-box-emboss;
+    width: 320px;
     height: 256px;
     margin-right: 2px;
   }
   canvas.spectrum {
-    @include zurui-box-deboss;
-    width: 512px;
+    @include zurui-box-emboss;
+    width: 256px;
     height: 256px;
   }
 }
