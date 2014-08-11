@@ -1,33 +1,33 @@
 GIT
   remote: git://github.com/Compass/compass-rails.git
-  revision: 5067c08c4c7d801f76bdad5bd6c6945dd18ffd2f
+  revision: 36eebc69253f2bb6bb236b13373aff4f7cc11928
   specs:
-    compass-rails (2.0.0.pre)
+    compass-rails (2.0.0)
       compass (>= 0.12.2)
 
 GIT
   remote: git://github.com/ctran/annotate_models.git
-  revision: c60fa282d74051e2fb5d41b600f919a39d9edcb4
+  revision: 9634ea6e67851d4a9a4d0b89597a6a9d3fc4d1f4
   specs:
-    annotate (2.6.3)
+    annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
 
 GIT
   remote: git://github.com/elasticsearch/elasticsearch-rails.git
-  revision: f2ca55f8891152420be50a7684bf6a58b3bec633
+  revision: 64111a2b5602c311e08c7d40201a758e6001fb34
   specs:
-    elasticsearch-model (0.1.3)
+    elasticsearch-model (0.1.4)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
-    elasticsearch-rails (0.1.3)
+    elasticsearch-rails (0.1.4)
 
 GIT
   remote: git://github.com/jnicklas/capybara.git
-  revision: 6d3d8d915a6a5654efcf7dd75a62d8d0c619d65c
+  revision: 304e2fbfe1e54702eb65f2a3feda1c7b9b99ff36
   specs:
-    capybara (2.3.0)
+    capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -83,8 +83,14 @@ GIT
       tilt (~> 1.1)
 
 GIT
+  remote: git://github.com/rack/rack.git
+  revision: 92811eec6e86cb4dba52b3969c4dd66e639df158
+  specs:
+    rack (1.6.0.alpha)
+
+GIT
   remote: git://github.com/rails/arel.git
-  revision: 9ea4d4689711d86777715360da47ae25c0acc337
+  revision: 66cee768bc163537087037a583f60639eae49fc3
   specs:
     arel (6.0.0.20140505020427)
 
@@ -98,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: cf67031546735651375b7df06bda6721ad57fbe2
+  revision: b45b99894a60eda434abec94d133a1cfd8de2dda
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -107,7 +113,7 @@ GIT
     actionpack (4.2.0.alpha)
       actionview (= 4.2.0.alpha)
       activesupport (= 4.2.0.alpha)
-      rack (~> 1.5.2)
+      rack (~> 1.6.0.alpha)
       rack-test (~> 0.6.2)
     actionview (4.2.0.alpha)
       activesupport (= 4.2.0.alpha)
@@ -121,7 +127,7 @@ GIT
       activesupport (= 4.2.0.alpha)
       arel (~> 6.0.0)
     activesupport (4.2.0.alpha)
-      i18n (~> 0.6, >= 0.6.9)
+      i18n (>= 0.7.0.dev, < 0.8)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.1)
@@ -144,9 +150,9 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 3a9e47db7d769221157c82229fc1bade55b580f0
+  revision: 57ec3397ff99655890895df29a7bf3f683410256
   specs:
-    sass-rails (4.0.1)
+    sass-rails (5.0.0.dev)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2)
       sprockets (~> 2.12)
@@ -154,7 +160,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 60d9e2e3b4482f05ca0e45399134dae0d73b34df
+  revision: 58ed3c3a73d082c2ff79898affe5bdab378eeba2
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -162,11 +168,26 @@ GIT
       sprockets (~> 2.8)
 
 GIT
-  remote: git://github.com/thekompanee/fuubar.git
-  revision: 04742082befd60210ef55e84fa689f420ff26175
+  remote: git://github.com/rails/turbolinks.git
+  revision: 153f1b0f04c718442cfd73365a2778dfe1a1c5c7
+  branch: master
   specs:
-    fuubar (2.0.0.rc1)
-      rspec (~> 3.0.rc1)
+    turbolinks (2.2.2)
+      coffee-rails
+
+GIT
+  remote: git://github.com/svenfuchs/i18n.git
+  revision: cb679b8cdbab675703a3f88de4d48a48f7b50e06
+  branch: master
+  specs:
+    i18n (0.7.0.dev)
+
+GIT
+  remote: git://github.com/thekompanee/fuubar.git
+  revision: 0dcad9ada7d67823cbd167dd1734aaeae778081d
+  specs:
+    fuubar (2.0.0)
+      rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
 
 GEM
@@ -177,24 +198,26 @@ GEM
     addressable (2.3.6)
     ansi (1.4.3)
     ast (2.0.0)
+    astrolabe (0.6.0)
+      parser (>= 2.2.0.pre.3, < 3.0)
     awesome_print (1.2.0)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.1.1.1)
+    bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
-    byebug (3.1.2)
+    byebug (3.2.0)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
-    capistrano-bundler (1.1.2)
-      capistrano (~> 3.0)
+    capistrano-bundler (1.1.3)
+      capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
@@ -213,23 +236,23 @@ GEM
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
     chronic (0.10.2)
-    chronic_duration (0.10.4)
+    chronic_duration (0.10.5)
       numerizer (~> 0.1.1)
     chunky_png (1.3.1)
     cliver (0.3.2)
-    clockwork (0.7.5)
+    clockwork (0.7.7)
       activesupport
       tzinfo
     coderay (1.1.0)
     coffee-rails-source-maps (1.4.0)
       coffee-script-source (>= 1.6.1)
-    coffee-script (2.2.0)
+    coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.0)
+    coffee-script-source (1.7.1)
     colorize (0.7.3)
     columnize (0.8.9)
-    compass (0.12.6)
+    compass (0.12.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.2.19)
@@ -247,25 +270,25 @@ GEM
     delorean (2.1.0)
       chronic
     diff-lcs (1.2.5)
-    docile (1.1.4)
+    docile (1.1.5)
     domain_name (0.5.19)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (1.0.2)
-      elasticsearch-api (= 1.0.2)
-      elasticsearch-transport (= 1.0.2)
-    elasticsearch-api (1.0.2)
+    elasticsearch (1.0.4)
+      elasticsearch-api (= 1.0.4)
+      elasticsearch-transport (= 1.0.4)
+    elasticsearch-api (1.0.4)
       multi_json
     elasticsearch-extensions (0.0.15)
       ansi
       ruby-prof
-    elasticsearch-transport (1.0.2)
+    elasticsearch-transport (1.0.4)
       faraday
       multi_json
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.37.0)
-    execjs (2.2.0)
-    eye (0.6.1)
+    excon (0.39.4)
+    execjs (2.2.1)
+    eye (0.6.2)
       celluloid (~> 0.15.0)
       celluloid-io (~> 0.15.0)
       sigar (~> 0.7.2)
@@ -281,24 +304,29 @@ GEM
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
     ffi (1.9.3)
-    fog (1.22.1)
+    fog (1.23.0)
       fog-brightbox
-      fog-core (~> 1.22)
+      fog-core (~> 1.23)
       fog-json
+      fog-softlayer
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.0.2)
-      fog-core
+    fog-brightbox (0.2.0)
+      fog-core (~> 1.22)
       fog-json
-    fog-core (1.22.0)
+      inflecto
+    fog-core (1.23.0)
       builder
-      excon (~> 0.33)
+      excon (~> 0.38)
       formatador (~> 0.2)
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
     fog-json (1.0.0)
       multi_json (~> 1.0)
+    fog-softlayer (0.3.13)
+      fog-core
+      fog-json
     formatador (0.2.5)
     fssm (0.2.10)
     gritter (1.1.0)
@@ -309,7 +337,7 @@ GEM
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
-    guard-rspec (4.2.10)
+    guard-rspec (4.3.1)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     haml (4.0.5)
@@ -319,12 +347,12 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
-    handlebars_assets (0.16)
+    handlebars_assets (0.17.1)
       execjs (>= 1.2.9)
       multi_json
       sprockets (>= 2.0.3)
       tilt
-    hashie (2.1.2)
+    hashie (3.2.0)
     hike (1.2.3)
     hirb (0.7.2)
     hirb-unicode (0.0.5)
@@ -332,21 +360,21 @@ GEM
       unicode-display_width (~> 0.1.1)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    i18n (0.6.9)
     i18n_generators (1.2.1)
       mechanize
       rails (>= 3.0.0)
+    inflecto (0.0.2)
     ipaddress (0.8.0)
-    jbuilder (2.1.0)
+    jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jquery-rails (3.1.0)
+    jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-turbolinks (2.0.2)
       railties (>= 3.1.0)
       turbolinks
-    jquery-ui-rails (4.2.1)
+    jquery-ui-rails (5.0.0)
       railties (>= 3.2.16)
     json (1.8.1)
     jwt (1.0.0)
@@ -359,11 +387,11 @@ GEM
     libnotify (0.8.3)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
-    listen (2.7.8)
+    listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    lumberjack (1.0.6)
+    lumberjack (1.0.9)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     mechanize (2.7.3)
@@ -378,7 +406,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.3)
     mini_portile (0.6.0)
-    minitest (5.3.4)
+    minitest (5.4.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -388,39 +416,40 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    netrc (0.7.7)
     nio4r (1.0.0)
-    nokogiri (1.6.2.1)
+    nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     non-stupid-digest-assets (1.0.4)
-    nprogress-rails (0.1.3.0)
+    nprogress-rails (0.1.3.1)
     ntlm-http (0.1.1)
     numerizer (0.1.1)
     oauth (0.4.7)
-    oauth2 (0.9.4)
+    oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    oj (2.9.5)
+    oj (2.10.0)
     oj_mimic_json (1.0.1)
-    omniauth (1.2.1)
-      hashie (>= 1.2, < 3)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
       rack (~> 1.0)
-    omniauth-facebook (1.6.0)
-      omniauth-oauth2 (~> 1.1)
+    omniauth-facebook (2.0.0)
+      omniauth-oauth2 (~> 1.2)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.1.2)
+    omniauth-oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       multi_json (~> 1.3)
-      oauth2 (~> 0.9.3)
+      oauth2 (~> 1.0)
       omniauth (~> 1.2)
     omniauth-twitter (1.0.1)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
-    parser (2.1.9)
+    parser (2.2.0.pre.4)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
     pit (0.0.7)
@@ -438,18 +467,19 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    quiet_assets (1.0.2)
+    quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
-    rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails-assets-Polymer--platform (0.3.3)
+    rails-assets-Polymer--platform (0.3.5)
     rails-assets-backbone (1.1.2)
       rails-assets-underscore (>= 1.5.0)
     rails-assets-backbone.babysitter (0.1.4)
-    rails-assets-backbone.marionette (1.8.5)
+    rails-assets-backbone.marionette (2.1.0)
       rails-assets-backbone (>= 1.0.0, < 1.1.3)
       rails-assets-backbone.babysitter (>= 0.1.0, < 0.2)
       rails-assets-backbone.wreqr (>= 1.0.0, < 2)
@@ -461,7 +491,7 @@ GEM
       rails-assets-underscore (>= 1.3.3, <= 1.6.0)
     rails-assets-jquery (2.1.0)
     rails-assets-jquery.lazyload (1.9.3)
-    rails-assets-jqueryui (1.10.4)
+    rails-assets-jqueryui (1.11.0)
       rails-assets-jquery (>= 1.6)
     rails-assets-lodash (2.4.1)
     rails-assets-spin.js (2.0.1)
@@ -474,16 +504,17 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
-    redis (3.0.7)
+    redis (3.1.0)
     redis-classy (1.2.0)
       redis-namespace (~> 1.0)
     redis-mutex (3.0.0)
       redis-classy (~> 1.2)
-    redis-namespace (1.4.1)
-      redis (~> 3.0.4)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -492,17 +523,17 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       rspec-mocks (>= 2.99, < 4.0)
-    rspec-core (3.0.1)
+    rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
-    rspec-expectations (3.0.1)
+    rspec-expectations (3.0.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
     rspec-its (1.0.1)
       rspec-core (>= 2.99.0.beta1)
       rspec-expectations (>= 2.99.0.beta1)
-    rspec-mocks (3.0.1)
+    rspec-mocks (3.0.3)
       rspec-support (~> 3.0.0)
-    rspec-rails (3.0.1)
+    rspec-rails (3.0.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -510,24 +541,24 @@ GEM
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
-    rspec-support (3.0.0)
+    rspec-support (3.0.3)
     ruby-prof (0.15.1)
     ruby-progressbar (1.5.1)
     sass (3.2.19)
-    sdoc (0.4.0)
-      json (~> 1.8)
-      rdoc (~> 4.0, < 5.0)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
     settingslogic (2.0.9)
-    shoulda-matchers (2.6.1)
+    shoulda-matchers (2.6.2)
       activesupport (>= 3.0.0)
-    sidekiq (3.1.4)
+    sidekiq (3.2.1)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
     sigar (0.7.2)
-    simplecov (0.8.2)
+    simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
       simplecov-html (~> 0.8.0)
@@ -538,7 +569,7 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    slop (3.5.0)
+    slop (3.6.0)
     spinjs-rails (1.3)
       rails (>= 3.1)
     spring (1.1.3)
@@ -554,7 +585,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     state_machine (1.2.0)
-    tapp (1.4.0)
+    tapp (1.4.1)
       thor
     teaspoon (0.8.0)
       railties (>= 3.2.5, < 5)
@@ -572,17 +603,16 @@ GEM
     tilt (1.4.1)
     timers (1.1.0)
     tins (1.3.0)
-    transpec (2.2.4)
+    transpec (2.3.6)
       activesupport (>= 3.0, < 5.0)
+      astrolabe (>= 0.6, < 0.7)
       bundler (~> 1.3)
       json (~> 1.8)
-      parser (>= 2.1.6, < 3.0)
+      parser (>= 2.2.0.pre.3, < 3.0)
       rainbow (>= 1.99.1, < 3.0)
-    turbolinks (2.2.2)
-      coffee-rails
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.5.1)
+    uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)
@@ -594,7 +624,7 @@ GEM
       rack
       raindrops (~> 0.7)
     webrobots (0.1.1)
-    websocket-driver (0.3.3)
+    websocket-driver (0.3.4)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zurui-sass-rails (0.0.4)
@@ -645,6 +675,7 @@ DEPENDENCIES
   handlebars_assets
   hirb
   hirb-unicode
+  i18n!
   i18n_generators
   jbuilder
   jquery-rails
@@ -667,6 +698,8 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   quiet_assets
+  rack!
+  rack-cache (~> 1.2)
   rails!
   rails-assets-Polymer--platform
   rails-assets-backbone
@@ -707,7 +740,7 @@ DEPENDENCIES
   thin
   thor
   transpec
-  turbolinks
+  turbolinks!
   uglifier (>= 1.3.0)
   unicorn
   which_browser!

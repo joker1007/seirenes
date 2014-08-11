@@ -4,6 +4,10 @@ source 'https://rails-assets.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', github: 'rails/rails'
 gem 'arel', github: 'rails/arel'
+gem 'rack', github: 'rack/rack'
+gem 'rack-cache', '~> 1.2'
+gem 'turbolinks', github: 'rails/turbolinks', branch: 'master'
+gem 'i18n', github: 'svenfuchs/i18n', branch: 'master'
 
 gem 'mysql2'
 
@@ -27,8 +31,6 @@ gem 'handlebars_assets'
 gem 'spinjs-rails'
 gem 'gritter'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
