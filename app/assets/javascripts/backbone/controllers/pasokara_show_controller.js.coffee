@@ -24,5 +24,5 @@ Seirenes.module "PasokaraShowController", (PasokaraShowController, App, Backbone
     @API = controller
 
   @addFinalizer ->
-    @API.layout.close()
-    @API.close()
+    @API.layout.destroy()
+    @API.destroy()
