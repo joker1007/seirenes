@@ -22,10 +22,12 @@ describe Pasokara, type: :model, elasticsearch: true do
       expect { subject }.to change(Pasokara, :count).by(1)
     end
 
-    its(:title) { should eq movie_info.title }
-    its(:duration) { should eq 205 }
-    its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
-    its(:tags) { should match_array SimpleTaggable::Models::Tag.where(name: %w(vocaloid tag2)) }
+    its(:title) { is_expected.to eq movie_info.title }
+    its(:duration) { is_expected.to eq 205 }
+    its(:nico_posted_at) { is_expected.to eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
+    its(:tags) {
+      is_expected.to match_array SimpleTaggable::Models::Tag.where(name: %w(vocaloid tag2)) 
+    }
   end
 
   describe ".create_by_movie_file" do
@@ -37,10 +39,12 @@ describe Pasokara, type: :model, elasticsearch: true do
       expect { subject }.to change(Pasokara, :count).by(1)
     end
 
-    its(:fullpath) { should eq (Rails.root + "spec/datas/testdir1/test002.mp4").to_s }
-    its(:duration) { should eq 205 }
-    its(:nico_posted_at) { should eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
-    its(:tags) { should match_array SimpleTaggable::Models::Tag.where(name: %w(vocaloid tag2)) }
+    its(:fullpath) { is_expected.to eq (Rails.root + "spec/datas/testdir1/test002.mp4").to_s }
+    its(:duration) { is_expected.to eq 205 }
+    its(:nico_posted_at) { is_expected.to eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
+    its(:tags) {
+      is_expected.to match_array SimpleTaggable::Models::Tag.where(name: %w(vocaloid tag2))
+    }
   end
 
   describe "#favorited_by?" do

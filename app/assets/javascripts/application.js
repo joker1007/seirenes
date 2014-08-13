@@ -23,6 +23,8 @@
 //= require lodash
 //= require backbone
 //= require backbone.stickit/backbone.stickit
+//= require backbone.babysitter
+//= require backbone.wreqr
 //= require backbone.marionette
 //= require gritter
 //= require gritter_image
