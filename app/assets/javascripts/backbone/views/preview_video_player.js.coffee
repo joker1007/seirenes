@@ -47,9 +47,10 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
       @recorder.record()
 
     stopRecord: ->
-      @recorder.stopRecord (audioData) =>
-        @model.set("recordedData", audioData)
-        @model.set("recordedDataUrl", webkitURL.createObjectURL(audioData))
+      @recorder.stopRecord (result) =>
+        recordedResult = new App.Models.RecordedResult(result)
+        modal = new Views.RecordedModal(model: recordedResult)
+        modal.render()
 
     uploadRecordedData: ->
       @model.uploadRecordedData()

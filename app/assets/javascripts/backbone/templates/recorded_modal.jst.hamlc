@@ -1,0 +1,14 @@
+.modal-dialog.modal-lg
+  #recorded.modal-content
+    .modal-header
+      %h4 録音データ
+    .modal-body
+      %button#play-recorded 再生
+      %button#stop-recorded 停止
+      %button#rendering レンダリング
+      #recorded-music
+        %input#music-delay-field{type: "text"}
+        %audio#music-audio{src: "#{@musicURL}", controls: "controls"}
+      #recorded-mic
+        %input#mic-delay-field{type: "text"}
+        %audio#mic-audio{src: "#{@micURL}", controls: "controls"}

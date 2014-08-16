@@ -6,4 +6,3 @@
   %button.js-add_rec Add Record Track
   %button.js-start_rec Start Rec
   %button.js-stop_rec Stop Rec
-  #recorded

@@ -13,6 +13,7 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
       @ctx.fillStyle = @grad()
 
       @counter = 0
+      @signalBuffer = []
 
       @renderInit()
 
@@ -22,10 +23,13 @@ Seirenes.module "Views", (Views, App, Backbone, Marionette, $, _) ->
     start: ->
       @analyzer.getByteTimeDomainData(@buffer)
       @renderSignal(@buffer[0])
+      @signalBuffer.push(@buffer[0])
       @renderSignal(@buffer[@bufferSize / 4 * 1])
+      @signalBuffer.push(@buffer[@bufferSize / 4 * 1])
       @renderSignal(@buffer[@bufferSize / 4 * 2])
+      @signalBuffer.push(@buffer[@bufferSize / 4 * 2])
       @renderSignal(@buffer[@bufferSize / 4 * 3])
-      @renderSignal(@buffer[Math.max(@bufferSize / 4 * 4, @bufferSize)])
+      @signalBuffer.push(@buffer[@bufferSize / 4 * 3])
       @req = requestAnimationFrame(_.bind(@start, @))
 
     stop: ->

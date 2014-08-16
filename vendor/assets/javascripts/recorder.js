@@ -3,9 +3,12 @@
   var WORKER_PATH = 'recorderWorker.js';
 
   var Recorder = function(source, cfg){
+    var that = this;
     var config = cfg || {};
     var bufferLen = config.bufferLen || 4096;
+    this.bufferLen = bufferLen
     this.context = source.context;
+    this.frameLength = 0;
     this.node = this.context.createScriptProcessor(bufferLen, 2, 2);
     var worker = new Worker(config.workerPath || WORKER_PATH);
     worker.postMessage({
@@ -19,6 +22,7 @@
 
     this.node.onaudioprocess = function(e){
       if (!recording) return;
+      that.frameLength = that.frameLength + that.bufferLen;
       worker.postMessage({
         command: 'record',
         buffer: [

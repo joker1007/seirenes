@@ -252,3 +252,17 @@
     }
   }
 }
+
+#recorded {
+  canvas {
+    background-color: black;
+    background-image: image-url("canvasbg.png");
+  }
+
+  canvas.level {
+    @include zurui-box-emboss;
+    width: 800px;
+    height: 128px;
+    margin-right: 2px;
+  }
+}

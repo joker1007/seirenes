@@ -31,6 +31,7 @@
 //= require get_user_media_wrap
 //= require add_song_queue_notification
 //= require recorder
+//= require RecordRTC
 //= require jquery.ui.widget
 //= require jquery.fileupload
 //= require platform/platform
