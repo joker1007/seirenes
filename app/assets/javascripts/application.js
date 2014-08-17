@@ -33,8 +33,6 @@
 //= require recorder
 //= require jquery.ui.widget
 //= require jquery.fileupload
-//= require platform/platform
-//= require polymer/polymer
 //= require_self
 //= require_tree .
 
