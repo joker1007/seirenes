@@ -47,6 +47,59 @@ gem 'unicorn'
 
 gem "haml-rails"
 
+gem "pry-rails"
+
+gem "awesome_print"
+gem "tapp"
+
+gem "factory_girl_rails"
+gem "kaminari"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem 'oj'
+gem 'oj_mimic_json'
+
+gem "faraday"
+gem "faraday_middleware"
+
+gem "nico_downloader", github: "joker1007/nico_downloader"
+gem "simple_taggable", github: "joker1007/simple_taggable"
+
+gem "settingslogic"
+
+gem "thor"
+
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-extensions'
+
+gem 'active_decorator'
+
+gem 'carrierwave'
+gem 'fog', '>= 1.12'
+
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sidekiq-ffmpeg', github: "joker1007/sidekiq-ffmpeg"
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-mutex'
+
+gem 'celluloid'
+
+gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
+
+gem "chronic_duration"
+
+gem "clockwork"
+gem "daemons"
+
+gem "eye"
+
+gem "nprogress-rails"
+gem "non-stupid-digest-assets"
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-rbenv', require: false
@@ -108,58 +161,6 @@ group :test do
   gem "coveralls"
   gem "fuubar", github: "thekompanee/fuubar"
 end
-
-gem "pry-rails"
-gem "awesome_print"
-gem "tapp"
-
-gem "factory_girl_rails"
-gem "kaminari"
-gem "omniauth"
-gem "omniauth-twitter"
-gem "omniauth-facebook"
-gem 'oj'
-gem 'oj_mimic_json'
-
-gem "faraday"
-gem "faraday_middleware"
-
-gem "nico_downloader", github: "joker1007/nico_downloader"
-gem "simple_taggable", github: "joker1007/simple_taggable"
-
-gem "settingslogic"
-
-gem "thor"
-
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-extensions'
-
-gem 'active_decorator'
-
-gem 'carrierwave'
-gem 'fog', '>= 1.12'
-
-gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'sidekiq-ffmpeg', github: "joker1007/sidekiq-ffmpeg"
-gem 'redis'
-gem 'redis-namespace'
-gem 'redis-mutex'
-
-gem 'celluloid'
-
-gem "which_browser", :git => 'git://github.com/joker1007/which_browser.git'
-
-gem "chronic_duration"
-
-gem "clockwork"
-gem "daemons"
-
-gem "eye"
-
-gem "nprogress-rails"
-gem "non-stupid-digest-assets"
 
 # rails-assets
 gem 'rails-assets-jquery', require: false
