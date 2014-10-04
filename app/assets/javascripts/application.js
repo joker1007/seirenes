@@ -13,6 +13,7 @@
 //= require _request_animation_frame
 //= require jquery
 //= require jquery_ujs
+//= require spin.js
 //= require jquery.spin
 //= require jquery.lazyload
 //= require turbolinks
