@@ -5,8 +5,14 @@
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
     %meta{:content => "noindex,nofollow", :name => "robots"}/
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    - if Rails.env.production?
+      = stylesheet_link_tag    "bundle", "data-turbolinks-track" => true
+      = javascript_include_tag "bundle", "data-turbolinks-track" => true
+      = javascript_include_tag "turbolinks", "data-turbolinks-track" => true
+    - else
+      = stylesheet_link_tag    "/assets/bundle", "data-turbolinks-track" => true
+      = javascript_include_tag "/assets/bundle", "data-turbolinks-track" => true
+      = javascript_include_tag "turbolinks", "data-turbolinks-track" => true
     = csrf_meta_tags
     :coffee
       $ ->

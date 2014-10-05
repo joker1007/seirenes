@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/Compass/compass-rails.git
-  revision: cd406796724f7bebcd58f92a31507ba56f3d1b18
-  specs:
-    compass-rails (2.0.0)
-      compass (~> 1.0.0)
-
-GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: 038b13c04e575cc0f0c89c702c994166c7dc9955
   specs:
@@ -276,6 +269,8 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
+    compass-rails (2.0.0)
+      compass (>= 0.12.2)
     connection_pool (2.0.0)
     coveralls (0.7.1)
       multi_json (~> 1.3)
@@ -686,7 +681,7 @@ DEPENDENCIES
   clockwork
   coffee-rails!
   coffee-rails-source-maps
-  compass-rails!
+  compass-rails
   coveralls
   daemons
   database_cleaner

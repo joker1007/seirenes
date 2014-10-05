@@ -16,7 +16,7 @@ gem 'sass-rails', github: 'rails/sass-rails'
 gem 'coffee-rails', github: 'rails/coffee-rails'
 gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
 gem 'bootstrap-sass'
-gem 'compass-rails', github: "Compass/compass-rails"
+gem 'compass-rails'
 gem 'coffee-rails-source-maps'
 gem 'zurui-sass-rails'
 

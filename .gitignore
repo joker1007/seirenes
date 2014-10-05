@@ -19,6 +19,7 @@
 .DS_Store
 *.rbc
 *.sassc
+.sass-cache
 capybara-*.html
 .rspec
 config/database.yml
@@ -39,13 +40,12 @@ runner.html
 *~
 tags
 
-public/videos
-public/audios
-public/assets
-solr/data
-solr41/sunspot/data
-solr41/sunspot/data*
-log/*.lck
+/public/videos
+/public/audios
+/public/assets
+/log/*.lck
 
-contrib/solr
 contrib/elasticsearch
+
+node_modules
+bower_components

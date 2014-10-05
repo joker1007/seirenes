@@ -1,0 +1,24 @@
+{
+  "name": "seirenes",
+  "version": "1.0.0",
+  "homepage": "https://github.com/joker1007/seirenes",
+  "authors": [
+    "joker1007 <kakyoin.hierophant@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ujs": "~1.0.1",
+    "bootstrap-sass-official": "~3.2.0",
+    "toastr": "~2.0.3"
+  }
+}

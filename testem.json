@@ -1,0 +1,15 @@
+{
+  "framework": "mocha",
+  "before_tests": "gulp browserify-test",
+  "on_exit": "rm -rf ./spec/.powered-javascripts/",
+  "src_files": [
+    "./frontend/assets/javascripts/**/*.{js,coffee,ts}",
+    "./spec/javascripts/**/*_spec.{js,ts,coffee}"
+  ],
+  "serve_files": [
+    "./spec/.powered-javascripts/**/*.js"
+  ],
+  "launch_in_dev": [
+    "PhantomJS"
+  ]
+}
