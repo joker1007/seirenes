@@ -28,10 +28,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'handlebars_assets'
-gem 'spinjs-rails'
-gem 'gritter'
-
 gem 'jquery-turbolinks'
+gem "nprogress-rails"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
@@ -97,7 +95,6 @@ gem "daemons"
 
 gem "eye"
 
-gem "nprogress-rails"
 gem "non-stupid-digest-assets"
 
 group :development do
