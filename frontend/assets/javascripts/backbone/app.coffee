@@ -2,12 +2,14 @@ Backbone = require('backbone')
 Backbone.$ = window.$
 Marionette = require('backbone.marionette')
 Router = require('director').Router
+_ = require('lodash')
 
 Seirenes = do (Backbone, Marionette) ->
   App = new Marionette.Application()
 
   stopControllers = ->
-    console.log "stopControllers"
+    App.PlayerController.stop()
+    App.PasokaraShowController.stop()
 
   player =  ->
     stopControllers()

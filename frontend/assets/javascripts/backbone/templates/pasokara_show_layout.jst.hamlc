@@ -1,4 +1,3 @@
-%link{rel: "import", href: "/webaudio-controls/webcomponents/controls.html"}
 %h3#pasokara-preview-title= @title
 #pasokara-preview-player
   #pasokara-movie-area
@@ -7,4 +6,3 @@
     %canvas#music-spectrum.spectrum{width: 256, height: 256}
     %canvas#mic-level.level{width: 320, height: 256}
     %canvas#mic-spectrum.spectrum{width: 256, height: 256}
-#pasokara-recordings-area

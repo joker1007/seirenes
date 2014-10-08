@@ -32,6 +32,7 @@ require('jquery_lazyload/jquery.lazyload')
 
 window.Seirenes = require('./backbone/app')
 require('./backbone/controllers/player_controller')
+require('./backbone/controllers/pasokara_show_controller')
 
 requestAnimationFrameWrap = require('./request_animation_frame_wrap')
 window.requestAnimationFrame = requestAnimationFrameWrap.requestAnimationFrame
