@@ -1,8 +1,8 @@
 class DelayEffector
-  delayTime: 0.16
-  feedbackLevel: 0.2
-  wetGainLevel: 0.17
-  dryGainLevel: 1
+  delayTime: 0.2
+  feedbackLevel: 0.15
+  wetGainLevel: 0.12
+  dryGainLevel: 0.9
 
   constructor: ({source: @source}) ->
     throw new Error("no audio source") unless @source
