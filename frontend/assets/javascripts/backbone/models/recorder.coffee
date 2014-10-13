@@ -39,7 +39,7 @@ class MyRecorder
     peaking = @context.createBiquadFilter()
     peaking.type = "peaking"
     peaking.Q.value = 0 # All frequency
-    peaking.gain.value = 2.5 # db
+    peaking.gain.value = 0 # db
 
     # サシスセソ領域の音を減衰させる
     deesser = @context.createBiquadFilter()
@@ -105,35 +105,12 @@ class MyRecorder
     if typeof @started == "function"
       @started()
 
-    # @musicLevelCanvasView = new App.Views.MusicLevelCanvasView
-      # canvas: document.getElementById("music-level")
-      # analyzer: musicAnalyser
-    # @micLevelCanvasView = new App.Views.MicLevelCanvasView
-      # canvas: document.getElementById("mic-level")
-      # analyzer: micAnalyser
-    # @musicSpectrumCanvasView = new App.Views.SpectrumCanvasView
-      # canvas: document.getElementById("music-spectrum")
-      # analyzer: musicAnalyser, imagePath: "/assets/spectrum-music.png"
-    # @micSpectrumCanvasView = new App.Views.SpectrumCanvasView
-      # canvas: document.getElementById("mic-spectrum")
-      # analyzer: micAnalyser
-      # imagePath: "/assets/spectrum-mic.png"
-
-    # @musicLevelCanvasView.start()
-    # @micLevelCanvasView.start()
-    # @musicSpectrumCanvasView.start()
-    # @micSpectrumCanvasView.start()
-
   captureFail: (s) ->
     alert("マイクが利用できません")
 
   stopRecord: (callback) ->
     @video.pause()
     @video.currentTime = 0
-    # @musicLevelCanvasView.stop()
-    # @micLevelCanvasView.stop()
-    # @musicSpectrumCanvasView.stop()
-    # @micSpectrumCanvasView.stop()
     @recorder.stop()
     @micStream.stop()
     @recorder.exportWAV (blob) =>

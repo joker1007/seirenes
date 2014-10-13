@@ -1,8 +1,0 @@
-%h3#pasokara-preview-title= @title
-#pasokara-preview-player
-  #pasokara-movie-area
-  #pasokara-visualizer-area
-    %canvas#music-level.level{width: 320, height: 256}
-    %canvas#music-spectrum.spectrum{width: 256, height: 256}
-    %canvas#mic-level.level{width: 320, height: 256}
-    %canvas#mic-spectrum.spectrum{width: 256, height: 256}

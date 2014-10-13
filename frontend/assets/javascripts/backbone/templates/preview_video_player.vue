@@ -12,7 +12,9 @@
   <div id="record-control">
     <button class="js-start_rec" v-on="click: startRecording">Start Rec</button>
     <button class="js-stop_rec" v-on="click: stopRecording">Stop Rec</button>
-    <div id="recorded"></div>
+    <div id="recorded" v-if="recordedUrl">
+      <audio v-attr="src: recordedUrl" controls></audio>
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,10 @@
             @recording = true
             @$dispatch('startRecording', @recorder)
       stopRecording: ->
-        @recorder.stopRecord()
-        @recording = false
-        @$dispatch('stopRecording', @recorder)
+        @recorder.stopRecord (blob) =>
+          console.log blob
+          @recording = false
+          @recordedData = blob
+          @recordedUrl = URL.createObjectURL(blob)
+          @$dispatch('stopRecording', @recorder)
 </script>
