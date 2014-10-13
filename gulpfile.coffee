@@ -70,12 +70,12 @@ gulp.task 'browserify', ->
         getBundler(file.path, {
           extensions: [".ts"]
           plugins: ["tsify"]
-          transforms: ["browserify-shim", "vueify", "espowerify"]
+          transforms: ["browserify-shim", "vueify", "brfs", "espowerify"]
         }).bundle().pipe(source(output))
       else
         getBundler(file.path, {
           extensions: [".coffee"]
-          transforms: ["coffeeify", "browserify-shim", "vueify", "espowerify"]
+          transforms: ["coffeeify", "browserify-shim", "vueify", "brfs", "espowerify"]
         }).bundle().on('error', util.log).pipe(source(output))
 
       stream = if minify
@@ -105,12 +105,12 @@ gulp.task 'browserify-test', ->
         getBundler(file.path, {
           extensions: [".ts"]
           plugins: ["tsify"]
-          transforms: ["browserify-shim", "hbsfy", "espowerify"]
+          transforms: ["browserify-shim", "vueify", "brfs", "espowerify"]
         }).bundle()
       else
         getBundler(file.path, {
           extensions: [".coffee"]
-          transforms: ["coffeeify", "browserify-shim", "hbsfy", "espowerify"]
+          transforms: ["coffeeify", "browserify-shim", "vueify", "brfs", "espowerify"]
         }).bundle().on('error', util.log)
 
       bundler
@@ -160,7 +160,7 @@ try
 
   ### watch ###########################################
   gulp.task 'watch', ['browser-sync'], ->
-    gulp.watch('frontend/assets/javascripts/**/*.{js,coffee,ts}', ['browserify'])
+    gulp.watch('frontend/assets/javascripts/**/*.{js,coffee,ts,vue}', ['browserify'])
     gulp.watch('frontend/assets/stylesheets/**/*.{scss,sass}', ['sass'])
     gulp.watch([
       'public/assets/**/*.js',

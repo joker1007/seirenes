@@ -141,17 +141,17 @@
 #pasokara-visualizer-area {
   @media #{$small} {
     width: 240px;
-    margin-left: 10px;
+    margin-left: 8px;
   }
 
   @media #{$middle} {
     width: 480px;
-    margin-left: 20px;
+    margin-left: 12px;
   }
 
   @media #{$large} {
     width: 600px;
-    margin-left: 40px;
+    margin-left: 20px;
   }
 
   margin-top: 20px;
@@ -159,19 +159,17 @@
 
   canvas {
     background-color: black;
-    background-image: image-url("canvasbg.png");
+    background-image: url("/assets/canvasbg.png");
   }
 
   canvas.level {
-    @include zurui-box-emboss;
-    width: 320px;
-    height: 256px;
-    margin-right: 2px;
+    width: 280px;
+    height: 160px;
+    margin-right: 1px;
   }
   canvas.spectrum {
-    @include zurui-box-emboss;
-    width: 256px;
-    height: 256px;
+    width: 280px;
+    height: 160px;
   }
 }
 

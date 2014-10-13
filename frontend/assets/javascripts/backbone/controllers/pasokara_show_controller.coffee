@@ -1,7 +1,8 @@
 Seirenes = require('../app')
-Vue = require('vue')
-Vue.component('preview_video_player', require('../templates/preview_video_player.vue'))
+
 _ = require('lodash')
+Vue = require('vue')
+Vue.component 'preview_video_player', _.extend require('../templates/preview_video_player.vue')
 
 Pasokara = require('../models/pasokara')
 EncodingStatus = require('../models/encoding_status')
@@ -24,8 +25,9 @@ module.exports = Seirenes.module "PasokaraShowController", (PasokaraShowControll
           data.movie_url = url
         encodingStatus.encode()
 
-        pasokaraShowVueOptions = require('../templates/pasokara_show.vue')
-        pasokaraShowVueOptions.data = data
+        pasokaraShowVueOptions = _.extend require('../templates/pasokara_show.vue'),
+          data: data
+
         @pasokaraShowVM = new Vue(pasokaraShowVueOptions)
         @pasokaraShowVM.$appendTo('#main-contents')
         @pasokaraShowVM.$.preview_video_player.$data = data

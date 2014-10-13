@@ -1,6 +1,6 @@
 <template>
   <div id="pasokara-preview">
-    <video id="preview-player" v-if="movie_url" controls>
+    <video id="preview-player" class="preview" v-if="movie_url" controls>
       <source type="video/mp4" v-attr="src: movie_url"></source>
     </video>
     <div class="progress" v-if="encoding">
@@ -10,9 +10,24 @@
     </div>
   </div>
   <div id="record-control">
-    <button class="js-add_rec">Add Record Track</button>
-    <button class="js-start_rec">Start Rec</button>
-    <button class="js-stop_rec">Stop Rec</button>
+    <button class="js-start_rec" v-on="click: startRecording">Start Rec</button>
+    <button class="js-stop_rec" v-on="click: stopRecording">Stop Rec</button>
     <div id="recorded"></div>
   </div>
 </template>
+
+<script lang="coffee">
+  Recorder = require('../models/recorder')
+  module.exports =
+    methods:
+      startRecording: ->
+        @recorder = new Recorder
+          video: document.getElementById('preview-player')
+          started: =>
+            @recording = true
+            @$dispatch('startRecording', @recorder)
+      stopRecording: ->
+        @recorder.stopRecord()
+        @recording = false
+        @$dispatch('stopRecording', @recorder)
+</script>
