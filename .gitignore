@@ -45,6 +45,9 @@ tags
 /public/assets
 /log/*.lck
 
+config/deploy.rb
+config/deploy
+
 contrib/elasticsearch
 
 node_modules

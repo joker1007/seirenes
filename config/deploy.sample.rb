@@ -1,142 +1,123 @@
-## Bundler
-require "bundler/capistrano"
+lock '3.2.1'
+
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.1.3'
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 set :application, "seirenes"
-set :repository,  "git@github.com:joker1007/seirenes.git"
+set :repo_url,  "git@github.com:joker1007/seirenes.git"
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+# Default branch is :master
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+
+# Default deploy_to directory is /var/www/my_app
+# set :deploy_to, '/var/www/my_app'
+
+# Default value for :scm is :git
 set :scm, :git
 set :user, "joker"
 
-set :branch, 'master'
-set :git_enable_submodules, 1
+# Default value for :format is :pretty
+# set :format, :pretty
 
-role :web, "anubis"                          # Your HTTP server, Apache/etc
-role :app, "anubis"                          # This may be the same as your `Web` server
-role :db,  "anubis", :primary => true # This is where Rails migrations will run
-role :solr, "anubis"
+# Default value for :log_level is :debug
+# set :log_level, :debug
 
-# if you want to clean up old releases on each deploy uncomment this:
-after "deploy:restart", "deploy:cleanup"
+# Default value for :pty is false
+# set :pty, true
 
-set :deploy_to, "/home/joker/rails_apps/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
+set :linked_files, %w{config/database.yml config/resque.yml config/settings.yml}
 
-default_run_options[:pty] = true
+set :linked_dirs, %w{log contrib tmp/pids tmp/cache tmp/sockets public/system public/videos node_modules bower_components}
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+# Default value for keep_releases is 5
+# set :keep_releases, 5
 
+set :bundle_jobs, 4
 
 namespace :deploy do
-  task :start, :roles => :app do
-    run "cd #{current_path} && BUNDLE_GEMFILE=#{File.join(current_path, "Gemfile")} bundle exec unicorn_rails -D -E production -c config/unicorn.rb"
-  end
-  task :stop, :roles => :app do
-    run "if [ -f #{shared_path}/pids/unicorn.pid ]; then kill -s QUIT `cat #{shared_path}/pids/unicorn.pid`; fi"
-  end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
-  end
-  task :full_restart, :roles => :app, :except => { :no_release => true } do
-    stop
-    start
+  task :elasticsearch_setup do
+    on roles(:app) do |host|
+      within current_path do
+        execute :sh, "./elasticsearch_setup"
+      end
+    end
   end
 
-  task :solr_setup, :roles => :app do
-    run "cd #{current_path} && ci/solr_setup"
+  task :ffmpeg_setup do
+    on roles(:app) do |host|
+      run "cd #{current_path} && ci/install_ffmpeg"
+    end
   end
 
-  task :ffmpeg_setup, :roles => :app do
-    run "cd #{current_path} && ci/install_ffmpeg"
+  namespace :npm do
+    task :install do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH" do
+            execute :npm, "install"
+            execute :bower, "install"
+          end
+        end
+      end
+    end
   end
+
+  namespace :assets do
+    task :gulp_build do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH", env: "production", lang: "ja_JP.UTF-8", lc_all: "ja_JP.utf8" do
+            execute :gulp
+          end
+        end
+      end
+    end
+  end
+
+  before 'deploy:assets:precompile', 'deploy:assets:gulp_build'
+  before 'deploy:assets:gulp_build', 'deploy:npm:install'
 end
 
 namespace :config do
-  task :setup, :except => {:no_release => true } do
-    run "mkdir -p #{shared_path}/config"
-    run "mkdir -p #{shared_path}/contrib"
-    run "mkdir -p #{shared_path}/solr/data_production"
-    run "mkdir -p #{shared_path}/ffmpeg"
-    run "mkdir -p #{shared_path}/videos"
-    run "mkdir -p #{shared_path}/audios"
-    upload("config/database.yml", "#{shared_path}/config/database.yml")
-    upload("config/resque.yml", "#{shared_path}/config/resque.yml")
-    upload("config/settings.yml", "#{shared_path}/config/settings.yml")
-    upload("config/sunspot.yml", "#{shared_path}/config/sunspot.yml")
-  end
-
-  task :symlink, :except => { :no_release => true } do
-    run "ln -fs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -fs #{shared_path}/config/resque.yml #{release_path}/config/resque.yml"
-    run "ln -fs #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
-    run "ln -fs #{shared_path}/config/sunspot.yml #{release_path}/config/sunspot.yml"
-    run "ln -fs #{shared_path}/public/assets #{release_path}/public/assets"
-    run "ln -fs #{shared_path}/contrib #{release_path}/contrib"
-    run "ln -fs #{shared_path}/ffmpeg #{release_path}/ffmpeg"
-    run "ln -fs #{shared_path}/videos #{release_path}/public/videos"
-    run "ln -fs #{shared_path}/audios #{release_path}/public/audios"
-    run "ln -fs #{shared_path}/solr/data_production #{release_path}/solr41/sunspot/data_production"
-  end
-end
-
-namespace :solr_task do
-  task :start, :roles => :solr do
-    run "cd #{current_path} && bundle exec rake sunspot:solr:start RAILS_ENV=production"
-  end
-  task :stop, :roles => :solr do
-    run "cd #{current_path} && bundle exec rake sunspot:solr:stop RAILS_ENV=production"
-  end
-  task :restart, :roles => :solr do
-    stop
-    start
-  end
-end
-
-namespace :resque do
-  task :start, :roles => :app do
-    run "cd #{current_path} && PATH=#{current_path}/ffmpeg/bin:$PATH QUEUE=seirenes PIDFILE=tmp/pids/resque-worker.pid BACKGROUND=yes bundle exec rake resque:work RAILS_ENV=production"
-  end
-  task :stop, :roles => :app do
-    run "cd #{current_path} && kill `cat tmp/pids/resque-worker.pid`"
-  end
-  task :restart, :roles => :app do
-    stop
-    start
-  end
-end
-
-desc "task=command runs rake 'command' on application servers"
-task :raketask, :roles => [:app] do
-  if ENV['task']
-    run "cd #{current_path} && RAILS_ENV=production bundle exec rake #{ENV['task']}"
-  else
-    # FIXME use logger instead of warn?
-    warn "USAGE: cap raketask task=..."
-  end
-end
-
-namespace :app do
-  task :logview, :roles => :app do
-    trap("INT") { puts 'Interupted'; exit 0; }
-    ENV['n'] ||= '20'
-    run "tail -n #{ENV['n']} -f #{shared_path}/log/production.log" do |channel, stream, data|
-      puts "#{channel[:host]}: #{data}"
-      break if stream == :err
+  task :setup do
+    on roles(:app) do |host|
+      execute :mkdir, "-p", "#{shared_path}/config"
+      upload! "config/database.yml", "#{shared_path}/config/database.yml"
+      upload! "config/resque.yml", "#{shared_path}/config/resque.yml"
+      upload! "config/settings.yml", "#{shared_path}/config/settings.yml"
     end
   end
 end
 
-after "deploy:setup", "config:setup"
-after "deploy:finalize_update", "config:symlink"
+desc "task=command runs rake 'command' on application servers"
+task :raketask do
+  on roles(:app) do |host|
+    if ENV['TASK']
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :rake, "#{ENV['TASK']}"
+        end
+      end
+    else
+      # FIXME use logger instead of warn?
+      warn "USAGE: cap raketask TASK=..."
+    end
+  end
+end
+
+namespace :app do
+  task :logview do
+    on roles(:app) do |host|
+      trap("INT") { puts 'Interupted'; exit 0; }
+      ENV['n'] ||= '20'
+      run "tail -n #{ENV['n']} -f #{shared_path}/log/production.log" do |channel, stream, data|
+        puts "#{channel[:host]}: #{data}"
+        break if stream == :err
+      end
+    end
+  end
+end
