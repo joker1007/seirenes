@@ -70,7 +70,7 @@ namespace :deploy do
     task :gulp_build do
       on roles(fetch(:assets_roles)) do
         within release_path do
-          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH", env: "production" do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH", env: "production", lang: "ja_JP.UTF-8", lc_all: "ja_JP.utf8" do
             execute :gulp
           end
         end
