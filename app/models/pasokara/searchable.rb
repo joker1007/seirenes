@@ -74,8 +74,8 @@ module Pasokara::Searchable
   end
 
   module ClassMethods
-    def search_with_facet_tags(search_parameter, facet_size: 50)
-      query = Jbuilder.encode do |json|
+    def search_with_facet_tags_query(search_parameter, facet_size: 50)
+      Jbuilder.encode do |json|
         json.query do
           build_query(search_parameter.keyword, search_parameter.tags, search_parameter.user_id, json)
         end
@@ -88,7 +88,28 @@ module Pasokara::Searchable
           end
         end
       end
+    end
 
+    def search_with_facet_tags(search_parameter, facet_size: 50)
+      query = search_with_facet_tags_query(search_parameter, facet_size: facet_size)
+      search(query).page(search_parameter.page).limit(search_parameter.per_page)
+    end
+
+    def random_search_query(search_parameter)
+      Jbuilder.encode do |json|
+        json.query do
+          json.function_score do
+            json.query do
+              build_query(search_parameter.keyword, search_parameter.tags, search_parameter.user_id, json)
+            end
+            json.random_score Object.new
+          end
+        end
+      end
+    end
+
+    def random_search(search_parameter)
+      query = random_search_query(search_parameter)
       search(query).page(search_parameter.page).limit(search_parameter.per_page)
     end
 
@@ -125,11 +146,10 @@ module Pasokara::Searchable
     def keyword_proc(keyword)
       if keyword.present?
         ->(json) {
-          json.match do
-            json.title do
-              json.query keyword
-              json.operator "and"
-            end
+          json.query_string do
+            json.query keyword
+            json.default_field "title"
+            json.default_operator "and"
           end
         }
       else
