@@ -1,3 +1,5 @@
+current_path = "/home/joker/rails_apps/seirenes/current"
+
 worker_processes 4
 
 preload_app true
@@ -7,7 +9,6 @@ timeout 30
 listen "/tmp/.seirenes.sock"
 listen 8000, :tcp_nodelay => true
 
-current_path "/home/joker/rails_apps/seirenes/current"
 pid "/home/joker/rails_apps/seirenes/shared/tmp/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
