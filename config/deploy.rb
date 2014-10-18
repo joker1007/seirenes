@@ -30,7 +30,7 @@ set :user, "joker"
 set :linked_files, %w{config/database.yml config/resque.yml config/settings.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log contrib tmp/pids tmp/cache tmp/sockets public/system public/videos}
+set :linked_dirs, %w{log contrib tmp/pids tmp/cache tmp/sockets public/system public/videos node_modules bower_components}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
