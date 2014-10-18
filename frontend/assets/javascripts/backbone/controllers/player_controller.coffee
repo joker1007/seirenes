@@ -21,29 +21,16 @@ module.exports = Seirenes.module "PlayerController", (PlayerController, App, Bac
 
       playingVM = new Vue
         template: '<div class="song_queue" v-component="song_queue_item" v-with="playing" v-if="playing.title"></div>'
-        data:
-          playing: {}
+        data: {playing: {}}
       playingVM.$appendTo('#playing')
 
       videoPlayerVueOptions = require('../templates/video_player.vue')
       _.extend videoPlayerVueOptions,
-        data:
-          playing: {}
-        methods:
-          ended: (e) ->
-            new SongQueue(id: @playing.id, finish: true).save()
-            setTimeout =>
-              @$set('playing', {})
-            , 2000
+        data: playingVM.$data
       videoPlayerVM = new Vue(videoPlayerVueOptions)
       videoPlayerVM.$appendTo('#video-area')
 
-      if document.querySelector("#query_for_random")
-        queryVM = new Vue
-          el: "#query_for_random"
-          data: {q: 'onvocal OR "on vocal"'}
-      else
-        queryVM = null
+      queryVM = @__buildQueryVM()
 
       @listenTo @songQueues, 'sync', =>
         songQueuesData = @songQueues.toJSON()
@@ -55,19 +42,26 @@ module.exports = Seirenes.module "PlayerController", (PlayerController, App, Bac
         return if playingVM.playing?.id?
         return if _.isEmpty(songQueuesData)
 
-        playingVM.$data = {playing: songQueuesData[0]}
-        videoPlayerVM.$data = playingVM.$data
+        playingVM.playing = songQueuesData[0]
 
         encodingStatus = new EncodingStatus(id: playingVM.playing.pasokara_id)
-        encodingStatus.on "encoded", (url) =>
+        encodingStatus.on "encoded", (url) ->
           playingVM.playing.movie_url = url
         encodingStatus.periodicallyCheck()
+
+    __buildQueryVM: ->
+      if document.querySelector("#query_for_random")
+        new Vue
+          el: "#query_for_random"
+          data: {q: 'onvocal OR "on vocal"'}
+      else
+        null
 
     startLoop: ->
       @songQueues.startFetchLoop(5000)
 
     stopLoop: ->
-      @songQueuesFetchTimer.stopFetchLoop()
+      @songQueues.stopFetchLoop()
 
   @addInitializer ->
     controller = new APIBase()
