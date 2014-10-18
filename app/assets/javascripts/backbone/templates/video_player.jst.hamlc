@@ -1,3 +1,0 @@
-#video-layer
-  %video.fullscreen{width: 640, height: 480, controls: "controls", autoplay: "autoplay"}
-    %source{src: "#{@movie_url}", type: "video/mp4"}

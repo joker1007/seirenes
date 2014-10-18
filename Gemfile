@@ -25,9 +25,6 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'handlebars_assets'
 gem 'jquery-turbolinks'
 gem "nprogress-rails"
 
@@ -159,13 +156,3 @@ group :test do
   gem "fuubar", github: "thekompanee/fuubar"
 end
 
-# rails-assets
-gem 'rails-assets-jquery', require: false
-gem 'rails-assets-jqueryui', require: false
-gem 'rails-assets-spin.js'
-gem 'rails-assets-jquery.lazyload'
-gem 'rails-assets-lodash'
-gem 'rails-assets-backbone'
-gem 'rails-assets-backbone.marionette', '>= 1.6'
-gem 'rails-assets-backbone.stickit'
-gem 'rails-assets-Polymer--platform'

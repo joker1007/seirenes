@@ -9,6 +9,8 @@ streamify = require('gulp-streamify')
 size      = require('gulp-size')
 tap       = require('gulp-tap')
 rev       = require('gulp-rev')
+extend    = require('gulp-extend')
+rename    = require('gulp-rename')
 manifest  = require('gulp-rev-rails-manifest')
 
 browserify = require('browserify')
@@ -16,8 +18,10 @@ ts         = require('tsify')
 source     = require('vinyl-source-stream')
 espowerify = require('espowerify')
 mold       = require('mold-source-map')
+deepExtend = require('deep-extend')
 
 path        = require('path')
+fs          = require('fs')
 pkg         = require(__dirname + '/package.json')
 
 minify = false
@@ -80,18 +84,17 @@ gulp.task 'browserify', ->
 
       stream = if minify
         bundler.pipe(streamify(uglify()))
+          .pipe(streamify(size()))
+          .pipe(streamify(rev()))
+          .pipe(gulp.dest("public/assets"))
+          .pipe(manifest(path: 'js-manifest.json'))
+          .pipe(gulp.dest("public/assets"))
       else
         bundler
+          .pipe(streamify(size()))
+          .pipe(gulp.dest("public/assets"))
 
       stream
-        .pipe(streamify(size()))
-        .pipe(gulp.dest("public/assets"))
-      # stream
-        # .pipe(streamify(size()))
-        # .pipe(streamify(rev()))
-        # .pipe(gulp.dest("public/assets"))
-        # .pipe(manifest())
-        # .pipe(gulp.dest("public/assets"))
     )
 
 gulp.task 'browserify-test', ->
@@ -140,11 +143,25 @@ gulp.task 'sass', ['glyphicon'], ->
     ))
 
   stream = if minify
-    css.pipe(minifyCSS()).pipe(size())
+    css.pipe(minifyCSS())
+      .pipe(size())
+      .pipe(rev())
+      .pipe(gulp.dest("public/assets"))
+      .pipe(manifest(path: "css-manifest.json"))
+      .pipe(gulp.dest("public/assets"))
   else
-    css
+    css.pipe(gulp.dest("public/assets"))
 
-  stream.pipe(gulp.dest("public/assets"))
+  stream
+
+
+### manifest merging #########################
+gulp.task 'manifest', ['browserify', 'sass'], ->
+  if fs.existsSync('public/assets/js-manifest.json') && fs.existsSync('public/assets/css-manifest.json')
+    jsManifest = JSON.parse(fs.readFileSync('public/assets/js-manifest.json'))
+    cssManifest = JSON.parse(fs.readFileSync('public/assets/css-manifest.json'))
+    merged = deepExtend(jsManifest, cssManifest)
+    fs.writeFileSync('public/assets/manifest.json', JSON.stringify(merged))
 
 
 ### browserSync ###########################################
@@ -168,4 +185,4 @@ try
     ], ['bs-reload'])
 catch error
 
-gulp.task 'default', ['browserify', 'sass']
+gulp.task 'default', ['browserify', 'sass', 'manifest']

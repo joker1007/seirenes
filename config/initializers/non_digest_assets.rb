@@ -1,4 +1,3 @@
 NonStupidDigestAssets.whitelist = [
-  "spectrum-mic.png",
-  "spectrum-music.png",
+  /.*\.(?:jpg|gif|png)/,
 ]

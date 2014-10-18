@@ -1,4 +1,0 @@
-.progress
-  .progress-bar{role: "progressbar", aria: {valuenow: "#{@progress}", valuemin: 0, valuemax: 100}, style: "width: #{@progress}%;"}
-    #{@progress}%
-
