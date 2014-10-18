@@ -1,7 +1,7 @@
 #!/bin/bash
 
 [ ! -s contrib ] && mkdir contrib
-version=1.0.1
+version=1.3.4
 curl -O "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${version}.tar.gz"
 tar xzf elasticsearch-${version}.tar.gz
 mv elasticsearch-${version} contrib/elasticsearch/
