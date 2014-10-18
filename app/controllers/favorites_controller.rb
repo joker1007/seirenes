@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
       user_id: current_user.id
     )
     @search = Pasokara.search_with_facet_tags(search_parameter)
-    @pasokaras = @search.records.includes(:tags, :favorites, :users)
+    @pasokaras = @search.records.eager_load(:tags, :favorites, :users)
     @facets = @search.response["facets"]["tags"]["terms"]
 
     render "pasokaras/index"

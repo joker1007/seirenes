@@ -14,7 +14,7 @@ class PasokarasController < ApplicationController
       order_by: [order_by]
     )
     @search = Pasokara.search_with_facet_tags(search_parameter)
-    @pasokaras = @search.records.includes(:tags)
+    @pasokaras = @search.records.eager_load(:tags, :users, :favorites)
     @facets = @search.response["facets"]["tags"]["terms"]
   end
 
