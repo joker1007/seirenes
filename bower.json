@@ -19,6 +19,6 @@
   "dependencies": {
     "jquery-ujs": "~1.0.1",
     "bootstrap-sass-official": "~3.2.0",
-    "toastr": "~2.0.3"
+    "toastr": ">= 2.0.0"
   }
 }
