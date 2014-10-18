@@ -31,4 +31,3 @@ $(document).on "ajax:success", ".js-remove_favorite", (e, data) ->
 
 $(document).on "ajax:error", ".js-remove_favorite", (e, data) ->
   toastr.success("既に削除済みです")
-

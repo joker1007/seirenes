@@ -38,8 +38,18 @@ module.exports = Seirenes.module "PlayerController", (PlayerController, App, Bac
       videoPlayerVM = new Vue(videoPlayerVueOptions)
       videoPlayerVM.$appendTo('#video-area')
 
+      if document.querySelector("#query_for_random")
+        queryVM = new Vue
+          el: "#query_for_random"
+          data: {q: 'onvocal OR "on vocal"'}
+      else
+        queryVM = null
+
       @listenTo @songQueues, 'sync', =>
         songQueuesData = @songQueues.toJSON()
+        if songQueuesData.length < 2 && queryVM
+          SongQueue.createRandom(queryVM.q)
+
         songQueuesVM.$set('items', songQueuesData)
 
         return if playingVM.playing?.id?

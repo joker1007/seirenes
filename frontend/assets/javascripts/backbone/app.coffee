@@ -11,7 +11,7 @@ Seirenes = do (Backbone, Marionette) ->
     App.PlayerController.stop()
     App.PasokaraShowController.stop()
 
-  player =  ->
+  player = ->
     stopControllers()
     App.PlayerController.start()
 
@@ -27,6 +27,7 @@ Seirenes = do (Backbone, Marionette) ->
 
   routes =
     '/player': player
+    '/party': player
     '/pasokaras/:id': pasokaraShow
 
   App.addInitializer ->

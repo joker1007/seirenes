@@ -146,10 +146,16 @@ module Pasokara::Searchable
     def keyword_proc(keyword)
       if keyword.present?
         ->(json) {
-          json.query_string do
-            json.query keyword
-            json.default_field "title"
-            json.default_operator "and"
+          json.constant_score do
+            json.query do
+              json.query_string do
+                json.query keyword
+                json.default_field "title"
+                json.default_operator "and"
+                json.use_dis_max false
+              end
+            end
+            json.boost 1
           end
         }
       else
