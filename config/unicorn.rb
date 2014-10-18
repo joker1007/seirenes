@@ -7,13 +7,18 @@ timeout 30
 listen "/tmp/.seirenes.sock"
 listen 8000, :tcp_nodelay => true
 
-pid File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
+current_path "/home/joker/rails_apps/seirenes/current"
+pid "/home/joker/rails_apps/seirenes/shared/tmp/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
 # so prevent them from going to /dev/null when daemonized here:
 stderr_path File.join(File.dirname(__FILE__), "..", "log/unicorn.stderr.log")
 stdout_path File.join(File.dirname(__FILE__), "..", "log/unicorn.stdout.log")
+
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = File.join(current_path, "Gemfile")
+end
 
 before_fork do |server, worker|
   # the following is highly recomended for Rails + "preload_app true"

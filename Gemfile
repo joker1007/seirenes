@@ -95,6 +95,7 @@ gem "non-stupid-digest-assets"
 
 group :development do
   gem 'capistrano'
+  gem 'capistrano3-unicorn', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
