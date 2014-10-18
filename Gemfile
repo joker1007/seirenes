@@ -116,7 +116,7 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
 
-  # gem 'bullet'
+  gem 'bullet'
 end
 
 group :development, :test do
