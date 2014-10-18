@@ -2,6 +2,7 @@ window.jQuery = require('jquery')
 window.$ = jQuery
 require('jquery-ujs')
 require('jquery_lazyload/jquery.lazyload')
+require('bootstrap')
 
 window.Seirenes = require('./backbone/app')
 require('./backbone/controllers/player_controller')

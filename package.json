@@ -56,10 +56,12 @@
   },
   "browser": {
     "jquery-ujs": "./bower_components/jquery-ujs/src/rails.js",
-    "toastr": "./bower_components/toastr/toastr.js"
+    "toastr": "./bower_components/toastr/toastr.js",
+    "bootstrap": "./bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
   },
   "browserify-shim": {
-    "toastr": "toastr"
+    "toastr": "toastr",
+    "bootstrap": "bootstrap"
   },
   "browserify": {
     "entryScripts": [
