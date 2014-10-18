@@ -9,6 +9,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_user_auths_on_user_id  (user_id)
+#
 
 class UserAuth < ActiveRecord::Base
   belongs_to :user

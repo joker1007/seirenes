@@ -8,6 +8,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+# Indexes
+#
+#  index_song_queues_on_pasokara_id  (pasokara_id)
+#  index_song_queues_on_user_id      (user_id)
+#
 
 class SongQueue < ActiveRecord::Base
   belongs_to :pasokara

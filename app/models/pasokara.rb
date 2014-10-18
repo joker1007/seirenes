@@ -7,8 +7,8 @@
 #  fullpath          :string(255)      not null
 #  nico_vid          :string(20)
 #  nico_posted_at    :datetime
-#  nico_view_count   :integer          default(0), not null
-#  nico_mylist_count :integer          default(0), not null
+#  nico_view_count   :integer          default("0"), not null
+#  nico_mylist_count :integer          default("0"), not null
 #  duration          :integer
 #  nico_description  :string(700)
 #  thumbnail         :string(255)
@@ -16,6 +16,12 @@
 #  movie_webm        :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
+#
+# Indexes
+#
+#  index_pasokaras_on_fullpath  (fullpath) UNIQUE
+#  index_pasokaras_on_nico_vid  (nico_vid) UNIQUE
+#  index_pasokaras_on_title     (title)
 #
 
 require "shellwords"

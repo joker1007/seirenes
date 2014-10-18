@@ -8,6 +8,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+# Indexes
+#
+#  index_histories_on_pasokara_id  (pasokara_id)
+#  index_histories_on_user_id      (user_id)
+#
 
 class History < ActiveRecord::Base
   belongs_to :pasokara

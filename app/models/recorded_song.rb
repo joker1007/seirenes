@@ -10,6 +10,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+# Indexes
+#
+#  index_recorded_songs_on_pasokara_id  (pasokara_id)
+#  index_recorded_songs_on_user_id      (user_id)
+#
 
 class RecordedSong < ActiveRecord::Base
   belongs_to :user
