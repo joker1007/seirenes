@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(version: 20130526150126) do
 
   create_table "download_lists", force: true do |t|
-    t.string   "url",                       null: false
-    t.boolean  "download",   default: true, null: false
+    t.string   "url",        limit: 255,                null: false
+    t.boolean  "download",   limit: 1,   default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "favorites", force: true do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "pasokara_id", null: false
+    t.integer  "user_id",     limit: 4, null: false
+    t.integer  "pasokara_id", limit: 4, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "histories", force: true do |t|
-    t.integer  "pasokara_id"
-    t.integer  "user_id"
+    t.integer  "pasokara_id", limit: 4
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,17 +41,17 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
   create_table "pasokaras", force: true do |t|
-    t.string   "title",                                     null: false
-    t.string   "fullpath",                                  null: false
+    t.string   "title",             limit: 255,             null: false
+    t.string   "fullpath",          limit: 255,             null: false
     t.string   "nico_vid",          limit: 20
     t.datetime "nico_posted_at"
-    t.integer  "nico_view_count",               default: 0, null: false
-    t.integer  "nico_mylist_count",             default: 0, null: false
-    t.integer  "duration"
+    t.integer  "nico_view_count",   limit: 4,   default: 0, null: false
+    t.integer  "nico_mylist_count", limit: 4,   default: 0, null: false
+    t.integer  "duration",          limit: 4
     t.string   "nico_description",  limit: 700
-    t.string   "thumbnail"
-    t.string   "movie_mp4"
-    t.string   "movie_webm"
+    t.string   "thumbnail",         limit: 255
+    t.string   "movie_mp4",         limit: 255
+    t.string   "movie_webm",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,10 +61,10 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "pasokaras", ["title"], name: "index_pasokaras_on_title", using: :btree
 
   create_table "recorded_songs", force: true do |t|
-    t.string   "data"
-    t.boolean  "public_flag"
-    t.integer  "user_id"
-    t.integer  "pasokara_id"
+    t.string   "data",        limit: 255
+    t.boolean  "public_flag", limit: 1
+    t.integer  "user_id",     limit: 4
+    t.integer  "pasokara_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "recorded_songs", ["user_id"], name: "index_recorded_songs_on_user_id", using: :btree
 
   create_table "song_queues", force: true do |t|
-    t.integer  "pasokara_id"
-    t.integer  "user_id"
+    t.integer  "pasokara_id", limit: 4
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,11 +83,11 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "song_queues", ["user_id"], name: "index_song_queues_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.integer  "tag_id",        limit: 4
+    t.integer  "taggable_id",   limit: 4
+    t.string   "taggable_type", limit: 255
+    t.integer  "tagger_id",     limit: 4
+    t.string   "tagger_type",   limit: 255
     t.datetime "created_at"
   end
 
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "taggings", ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,9 +103,9 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
 
   create_table "user_auths", force: true do |t|
-    t.string   "provider",   null: false
-    t.string   "uid",        null: false
-    t.integer  "user_id"
+    t.string   "provider",   limit: 255, null: false
+    t.string   "uid",        limit: 255, null: false
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20130526150126) do
   add_index "user_auths", ["user_id"], name: "index_user_auths_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "screen_name", null: false
+    t.string   "screen_name", limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

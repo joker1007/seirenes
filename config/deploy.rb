@@ -30,7 +30,7 @@ set :user, "joker"
 set :linked_files, %w{config/database.yml config/resque.yml config/settings.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log contrib tmp/pids tmp/cache tmp/sockets public/system public/videos}
+set :linked_dirs, %w{log contrib tmp/pids tmp/cache tmp/sockets public/system public/videos node_modules bower_components}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -52,6 +52,34 @@ namespace :deploy do
       run "cd #{current_path} && ci/install_ffmpeg"
     end
   end
+
+  namespace :npm do
+    task :install do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH" do
+            execute :npm, "install"
+            execute :bower, "install"
+          end
+        end
+      end
+    end
+  end
+
+  namespace :assets do
+    task :gulp_build do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH", env: "production", lang: "ja_JP.UTF-8", lc_all: "ja_JP.utf8" do
+            execute :gulp
+          end
+        end
+      end
+    end
+  end
+
+  before 'deploy:assets:precompile', 'deploy:assets:gulp_build'
+  before 'deploy:assets:gulp_build', 'deploy:npm:install'
 end
 
 namespace :config do

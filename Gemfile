@@ -16,7 +16,7 @@ gem 'sass-rails', github: 'rails/sass-rails'
 gem 'coffee-rails', github: 'rails/coffee-rails'
 gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
 gem 'bootstrap-sass'
-gem 'compass-rails', github: "Compass/compass-rails"
+gem 'compass-rails'
 gem 'coffee-rails-source-maps'
 gem 'zurui-sass-rails'
 
@@ -25,13 +25,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'handlebars_assets'
-gem 'spinjs-rails'
-gem 'gritter'
-
-gem 'jquery-turbolinks'
+gem "nprogress-rails"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
@@ -97,7 +91,6 @@ gem "daemons"
 
 gem "eye"
 
-gem "nprogress-rails"
 gem "non-stupid-digest-assets"
 
 group :development do
@@ -119,7 +112,7 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
 
-  # gem 'bullet'
+  gem 'bullet'
 end
 
 group :development, :test do
@@ -162,13 +155,3 @@ group :test do
   gem "fuubar", github: "thekompanee/fuubar"
 end
 
-# rails-assets
-gem 'rails-assets-jquery', require: false
-gem 'rails-assets-jqueryui', require: false
-gem 'rails-assets-spin.js'
-gem 'rails-assets-jquery.lazyload'
-gem 'rails-assets-lodash'
-gem 'rails-assets-backbone'
-gem 'rails-assets-backbone.marionette', '>= 1.6'
-gem 'rails-assets-backbone.stickit'
-gem 'rails-assets-Polymer--platform'

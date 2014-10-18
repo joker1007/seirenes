@@ -1,4 +1,0 @@
-.song_queue
-  %img.thumb{width: 160, height: 120, src: "#{@thumbnail_url}"}
-  %span.title
-    = @title
