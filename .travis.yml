@@ -1,18 +1,19 @@
 language: ruby
 bundler_args: -j4 --without development --deployment --path=${BUNDLE_PATH:-vendor/bundle}
-cache: bundler
+cache:
+  directories:
+    - vendor/bundle
 services:
   - elasticsearch
   - redis
 before_script:
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - "echo '--color --format d' > .rspec"
+  - "echo '-r power_assert --color --format d' > .rspec"
 script: bundle exec rake db:create db:migrate spec
 rvm:
-  - 2.1.1
+  - 2.1
+  - 2.2
 env:
   global:
     - CI=true
