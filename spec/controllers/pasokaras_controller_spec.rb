@@ -9,7 +9,7 @@ describe PasokarasController, :type => :controller do
       expect(Pasokara).to receive(:search_with_facet_tags).with(search_parameter) {
         resp
       }
-      allow(resp).to receive_message_chain(:records, :includes) { [mock_model(Pasokara)] }
+      allow(resp).to receive_message_chain(:records, :eager_load) { [mock_model(Pasokara)] }
       expect(resp).to receive(:response) {
         {"facets" => {
           "tags" => {
