@@ -5,3 +5,14 @@
     </video>
   </div>
 </template>
+
+<script lang="coffee">
+  SongQueue = require('../models/song_queue').SongQueue
+  module.exports =
+    methods:
+      ended: (e) ->
+        new SongQueue(id: @playing.id, finish: true).save()
+        setTimeout =>
+          @$set('playing', {})
+        , 2000
+</script>

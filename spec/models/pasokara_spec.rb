@@ -214,5 +214,19 @@ describe Pasokara, type: :model, elasticsearch: true do
         expect(response.records[0]).to eq pasokara
       end
     end
+
+    describe ".random_search" do
+      subject { Pasokara.random_search(parameter) }
+
+      let(:parameter) { Pasokara::SearchParameter.new(keyword: "Title") }
+
+      before do
+        pasokara.__elasticsearch__.index_document
+        pasokara2.__elasticsearch__.index_document
+        Elasticsearch::Model.client.indices.flush
+      end
+
+      it_is_asserted_by { subject.records.to_a.length == 2 }
+    end
   end
 end

@@ -8,11 +8,16 @@ Seirenes::Application.routes.draw do
     resources :recordings, only: [:create]
   end
 
-  resources :song_queues, only: [:index, :show, :update, :destroy]
+  resources :song_queues, only: [:index, :show, :update, :destroy] do
+    collection do
+      post :random
+    end
+  end
   resources :playlists, only: [:index, :show, :destroy]
   resources :histories, only: [:index]
   resources :favorites, only: [:index, :destroy]
   resource :player, only: [:show], controller: "player"
+  resource :party,  only: [:show], controller: "party"
   resources :recordings, only: [:index, :show, :destroy]
 
   # for OmniAuth

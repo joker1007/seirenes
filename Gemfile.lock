@@ -44,6 +44,14 @@ GIT
       rspec (>= 2.11, < 4)
 
 GIT
+  remote: git://github.com/joker1007/rspec-power_assert.git
+  revision: c1c40fa1c6e1d8156bf39f5a992ca3e47e96b8c7
+  specs:
+    rspec-power_assert (0.1.0)
+      power_assert (>= 0.1.4)
+      rspec (>= 2.14)
+
+GIT
   remote: git://github.com/joker1007/sidekiq-ffmpeg.git
   revision: 7fade8e3b1b29d71ff1712b9a703bdade013ad82
   specs:
@@ -65,6 +73,12 @@ GIT
   specs:
     which_browser (0.1.2.1)
       rack (>= 1.0.1)
+
+GIT
+  remote: git://github.com/k-tsj/power_assert.git
+  revision: 6ec6b5aaff955880e4072a559b89fe0171b09373
+  specs:
+    power_assert (0.1.5dev)
 
 GIT
   remote: git://github.com/netzpirat/haml_coffee_assets.git
@@ -696,6 +710,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   poltergeist
+  power_assert!
   pry-rails
   pry-stack_explorer
   quiet_assets
@@ -711,6 +726,7 @@ DEPENDENCIES
   rspec-activemodel-mocks
   rspec-formatter-git_auto_commit!
   rspec-its
+  rspec-power_assert!
   rspec-rails (>= 3.0.0.rc1)
   sass-rails!
   sdoc

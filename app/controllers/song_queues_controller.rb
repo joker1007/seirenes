@@ -1,6 +1,8 @@
 class SongQueuesController < ApplicationController
   before_action :set_song_queue, only: [:show, :update, :destroy]
 
+  SearchParameter = Pasokara::Searchable::SearchParameter # class alias
+
   def index
     @song_queues = SongQueue.includes(:pasokara).page(params[:page])
   end
@@ -10,6 +12,14 @@ class SongQueuesController < ApplicationController
 
   def create
     @pasokara = Pasokara.find(params[:pasokara_id])
+    @song_queue = @pasokara.song_queues.create!
+    render :show
+  end
+
+  def random
+    keyword = params[:q].presence
+    search_parameter = SearchParameter.new(keyword: keyword)
+    @pasokara = Pasokara.random_search(search_parameter).records.sample
     @song_queue = @pasokara.song_queues.create!
     render :show
   end

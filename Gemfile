@@ -133,9 +133,9 @@ group :development, :test do
   gem "guard-rspec"
   gem "growl"
 
-  gem "libnotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "libnotify" : false
-  gem "rb-inotify", :require => RUBY_PLATFORM.downcase =~ /linux/ ? "rb-inotify" : false
-  gem "rb-fsevent", :require => RUBY_PLATFORM.downcase =~ /darwin/ ? "rb-fsevent" : false
+  gem "libnotify", require: RUBY_PLATFORM.downcase =~ /linux/ ? "libnotify" : false
+  gem "rb-inotify", require: RUBY_PLATFORM.downcase =~ /linux/ ? "rb-inotify" : false
+  gem "rb-fsevent", require: RUBY_PLATFORM.downcase =~ /darwin/ ? "rb-fsevent" : false
 
   gem "teaspoon"
 
@@ -146,12 +146,14 @@ end
 group :test do
   gem "minitest"
   gem "shoulda-matchers"
-  gem "simplecov", :require => false
-  gem "simplecov-rcov", :require => false
-  gem "rspec-formatter-git_auto_commit", :github => "joker1007/rspec-formatter-git_auto_commit"
+  gem "simplecov", require: false
+  gem "simplecov-rcov", require: false
+  gem "rspec-formatter-git_auto_commit", github: "joker1007/rspec-formatter-git_auto_commit"
   gem "delorean"
   gem "database_cleaner"
   gem "coveralls"
   gem "fuubar", github: "thekompanee/fuubar"
+  gem "power_assert", github: "k-tsj/power_assert"
+  gem "rspec-power_assert", github: "joker1007/rspec-power_assert"
 end
 
