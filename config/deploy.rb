@@ -52,6 +52,21 @@ namespace :deploy do
       run "cd #{current_path} && ci/install_ffmpeg"
     end
   end
+
+
+  namespace :assets do
+    task :gulp_build do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :gulp
+          end
+        end
+      end
+    end
+  end
+
+  before 'deploy:assets:precompile', 'deploy:assets:gulp_build'
 end
 
 namespace :config do
