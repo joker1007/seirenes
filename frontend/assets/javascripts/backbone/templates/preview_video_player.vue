@@ -30,7 +30,6 @@
             @$dispatch('startRecording', @recorder)
       stopRecording: ->
         @recorder.stopRecord (blob) =>
-          console.log blob
           @recording = false
           @recordedData = blob
           @recordedUrl = URL.createObjectURL(blob)
