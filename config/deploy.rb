@@ -53,12 +53,24 @@ namespace :deploy do
     end
   end
 
+  namespace :npm do
+    task :install do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH" do
+            execute :npm, "install"
+            execute :bower, "install"
+          end
+        end
+      end
+    end
+  end
 
   namespace :assets do
     task :gulp_build do
       on roles(fetch(:assets_roles)) do
         within release_path do
-          with rails_env: fetch(:rails_env) do
+          with rails_env: fetch(:rails_env), path: "#{release_path}/node_modules/.bin:$PATH" do
             execute :gulp
           end
         end
@@ -67,6 +79,7 @@ namespace :deploy do
   end
 
   before 'deploy:assets:precompile', 'deploy:assets:gulp_build'
+  before 'deploy:assets:gulp_build', 'deploy:npm:install'
 end
 
 namespace :config do
