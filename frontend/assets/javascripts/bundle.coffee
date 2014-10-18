@@ -1,30 +1,3 @@
-# require _request_animation_frame
-# require jquery
-# require jquery_ujs
-# require spin.js
-# require jquery.spin
-# require jquery.lazyload
-# require turbolinks
-# require jquery.turbolinks
-# require nprogress
-# require nprogress-turbolinks
-# require bootstrap
-# require lodash
-# require backbone
-# require backbone.stickit/backbone.stickit
-# require backbone.babysitter
-# require backbone.wreqr
-# require backbone.marionette
-# require gritter
-# require gritter_image
-# require get_user_media_wrap
-# require add_song_queue_notification
-# require recorder
-# require jquery.ui.widget
-# require jquery.fileupload
-# require_self
-# require_tree .
-
 window.jQuery = require('jquery')
 window.$ = jQuery
 require('jquery-ujs')
