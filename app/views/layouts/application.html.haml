@@ -18,10 +18,7 @@
     = csrf_meta_tags
     :coffee
       $ ->
-        Seirenes.start(current_user: #{current_user.to_json})
-    :coffee
-      $ ->
-        $("img.lazy").lazyload()
+        Seirenes.start()
 
   %body
     #site-title

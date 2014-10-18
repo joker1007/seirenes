@@ -20,8 +20,9 @@ Seirenes = do (Backbone, Marionette) ->
     App.PasokaraShowController.start()
     App.PasokaraShowController.API.show(_.parseInt(id))
 
-  nop = ->
-    console.log("nop")
+  defaultAction = ->
+    console.log("defaultAction")
+    $("img.lazy").lazyload()
     stopControllers()
 
   routes =
@@ -30,7 +31,7 @@ Seirenes = do (Backbone, Marionette) ->
 
   App.addInitializer ->
     router = Router(routes).configure
-      notfound: nop
+      notfound: defaultAction
       html5history: true
     router.init()
 
