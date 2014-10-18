@@ -25,7 +25,6 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-turbolinks'
 gem "nprogress-rails"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
