@@ -42,13 +42,22 @@ body {
 
   h1 {
     @media #{$small} {
+      margin-top: 4px;
       font-size: 20px;
     }
     @media #{$middle} {
-      font-size: 28px;
+      margin-top: 10px;
+      font-size: 24px;
     }
     @media #{$large} {
+      margin-top: 10px;
+      font-size: 32px;
     }
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
   }
 }
 
@@ -126,6 +135,8 @@ ul.nav {
 
       @media #{$small} {
         font-size: 12px;
+        padding-top: 4px;
+        padding-bottom: 4px;
         padding-left: 4px;
         padding-right: 4px;
         height: $small-menu-height;

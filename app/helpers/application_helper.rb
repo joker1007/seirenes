@@ -25,6 +25,6 @@ module ApplicationHelper
       ["タイトル(降順)", "raw_title desc"],
       ["マイリスト(多い順)", "nico_mylist_count desc"],
       ["マイリスト(少ない順)", "nico_mylist_count asc"]
-    ], params[:order_by])
+    ], params[:order_by]), class: %w(form-control)
   end
 end

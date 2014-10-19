@@ -9,8 +9,9 @@
 }
 
 #current-filter-tags {
-  @include zurui-box-deboss;
-  padding-left: 10px;
+  @include zurui-box-emboss;
+  background-color: #FAFAFA;
+  padding: 10px 4px 10px 4px;
   margin-bottom: 6px;
 
   span {

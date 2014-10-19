@@ -23,8 +23,9 @@
   %body
     #site-title
       %h1
-        %span> S
-        eirenes
+        = link_to root_path do
+          %span> S
+          eirenes
 
     - if notice
       .alert.alert-success
@@ -57,14 +58,13 @@
               %a{href: "/auth/facebook"} Facebook
     #main
       %ul.nav
-        %li
-          = link_to "ホーム", root_path
-        %li
-          = link_to "お気に入り", favorites_path
+        - if current_user
+          %li
+            = link_to "お気に入り", favorites_path
         %li
           = link_to "予約確認", song_queues_path
         %li
-          = link_to "りれき", histories_path
+          = link_to "履歴", histories_path
         %li
           = link_to "再生", player_path, target: "_blank"
         %li

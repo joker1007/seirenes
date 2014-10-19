@@ -1,15 +1,17 @@
 #facet-tags
-  %h3 タグ一覧
-
-  #current-filter-tags
-    - if params[:filter_tags].present?
-      %h4 選択中のタグ
-      - params[:filter_tags].each do |t|
-        %span.current-tag
-          &gt;
-          = t
-          = link_to "×", url_for(q: params[:q], filter_tags: params[:filter_tags] - [t]), class: ["btn", "btn-mini", "btn-danger"]
+  %h4
+    %span.glyphicon.glyphicon-tags
+    タグ一覧
   #facet-tags-list
     - @facets.each do |f|
       %span.facet-tag
         = link_to "#{f["term"]}(#{f["count"]})", url_for(q: params[:q], filter_tags: params[:filter_tags].to_a + [f["term"]])
+
+- if params[:filter_tags].present?
+  #current-filter-tags
+    - params[:filter_tags].each do |t|
+      %span.current-tag
+        &gt;
+        = t
+        = link_to url_for(q: params[:q], filter_tags: params[:filter_tags] - [t]), class: ["btn", "btn-xs", "btn-danger"] do
+          %span.glyphicon.glyphicon-remove
