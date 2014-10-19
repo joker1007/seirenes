@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PasokarasController, :type => :controller do
+describe PasokarasController, type: :controller do
 
   describe "GET 'index'" do
     it "returns http success" do

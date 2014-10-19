@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe User, :type => :model do
+describe User, type: :model do
   let(:auth) do
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
-      :provider => 'twitter',
-      :uid => '123545',
-      :info => {
-        :nickname => "joker1007",
-        :name => "Tomohiro Hashidate",
+      provider: 'twitter',
+      uid: '123545',
+      info: {
+        nickname: "joker1007",
+        name:     "Tomohiro Hashidate",
       },
-      :credentials => {
-        :token => "token",
-        :secret => "secret"
+      credentials: {
+        token:  "token",
+        secret: "secret"
       }
     })
   end
@@ -20,7 +20,7 @@ describe User, :type => :model do
     subject { User.find_or_create_by_omniauth(auth) }
 
     it "creates user" do
-      expect{subject}.to change(User, :count).by(1)
+      expect { subject }.to change(User, :count).by(1)
     end
 
     it "creates user_auth" do

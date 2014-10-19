@@ -22,5 +22,5 @@ class History < ActiveRecord::Base
 
   delegate :title, :thumbnail, :movie_mp4, :movie_webm, to: :pasokara
 
-  default_scope -> {order("created_at DESC")}
+  default_scope -> { order("created_at DESC") }
 end

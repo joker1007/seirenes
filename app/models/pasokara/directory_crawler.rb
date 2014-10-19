@@ -23,7 +23,7 @@ class Pasokara::DirectoryCrawler
     def crawl(directory)
       dir = Dir.open(directory)
       futures = []
-      dir.reject{|name| name =~ /^\./}.each do |name|
+      dir.reject { |name| name =~ /^\./ }.each do |name|
         path = File.join(directory, name)
         if File.directory?(path)
           puts "Open Dir: #{path}"
@@ -33,7 +33,7 @@ class Pasokara::DirectoryCrawler
         end
       end
       dir.close
-      futures.map {|f| f.value}
+      futures.map(&:value)
     end
   end
 end

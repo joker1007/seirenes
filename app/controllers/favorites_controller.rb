@@ -23,7 +23,6 @@ class FavoritesController < ApplicationController
     render :show
   end
 
-
   def destroy
     @favorite = current_user.favorites.find(params[:id])
     @favorite.destroy

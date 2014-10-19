@@ -3,9 +3,9 @@ module PasokaraDecorator
     link_to "予約する",
       pasokara_song_queues_path(self),
       data: {
-        method: :post,
-        remote: true,
-        type: :json,
+        method:  :post,
+        remote:  true,
+        type:    :json,
         confirm: "「#{title}」を予約に追加しますか？"
       },
       class: %w(btn btn-primary js-add_queue)
@@ -15,11 +15,11 @@ module PasokaraDecorator
     if user
       if favorited_by?(user)
         link_to "お気に入りを削除する",
-          favorite_path(favorites.find {|f| f.user_id == user.id}),
+          favorite_path(favorites.find { |f| f.user_id == user.id }),
           data: {
-            remote: true,
-            method: :delete,
-            type: :json,
+            remote:  true,
+            method:  :delete,
+            type:    :json,
             confirm: "「#{title}」をお気に入りから削除しますか？",
           },
           class: %w(btn btn-danger js-remove_favorite)
@@ -27,9 +27,9 @@ module PasokaraDecorator
         link_to "お気に入りに追加する",
           pasokara_favorites_path(self),
           data: {
-            remote: true,
-            method: :post,
-            type: :json,
+            remote:  true,
+            method:  :post,
+            type:    :json,
             confirm: "「#{title}」をお気に入りに追加しますか？"
           },
           class: %w(btn btn-primary js-add_favorite)

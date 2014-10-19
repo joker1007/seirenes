@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe FavoritesController, :type => :controller do
+describe FavoritesController, type: :controller do
 
 end

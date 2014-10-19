@@ -26,7 +26,7 @@ describe Pasokara, type: :model, elasticsearch: true do
     its(:duration) { is_expected.to eq 205 }
     its(:nico_posted_at) { is_expected.to eq Time.zone.local(2011, 7, 21, 3, 29, 1) }
     its(:tags) {
-      is_expected.to match_array SimpleTaggable::Models::Tag.where(name: %w(vocaloid tag2)) 
+      is_expected.to match_array SimpleTaggable::Models::Tag.where(name: %w(vocaloid tag2))
     }
   end
 

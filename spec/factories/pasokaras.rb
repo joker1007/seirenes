@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :pasokara do
     title "ペガサス幻想"
     fullpath { (Rails.root + "spec/datas/testfile.mp4").to_s }
-    sequence(:nico_vid) {|n| "sm999999#{n}"}
+    sequence(:nico_vid) { |n| "sm999999#{n}" }
     nico_posted_at "2013-03-02 21:31:43"
     nico_view_count 1
     nico_mylist_count 1

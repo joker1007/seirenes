@@ -14,7 +14,7 @@ module Pasokara::CreateMethods
         nico_description: movie_info.description
       )
       pasokara.tag_list = movie_info.tags
-      pasokara.thumbnail = File.open(movie_info.thumbnail_path) if movie_info.thumbnail_path.present? && File.exists?(movie_info.thumbnail_path)
+      pasokara.thumbnail = File.open(movie_info.thumbnail_path) if movie_info.thumbnail_path.present? && File.exist?(movie_info.thumbnail_path)
       pasokara.save
       pasokara.__elasticsearch__.index_document
       Elasticsearch::Model.client.indices.flush
@@ -29,8 +29,8 @@ module Pasokara::CreateMethods
       directory_path = File.dirname(movie_file)
       thumbnail_file = File.join(directory_path, File.basename(movie_file, ".*") + ".jpg")
       info_file = File.join(directory_path, File.basename(movie_file, ".*") + "_info.xml")
-      movie_info = NicoDownloader::Info.new(path: movie_file, posted_at: nil, thumbnail_path: File.exists?(thumbnail_file) ? thumbnail_file : nil)
-      if File.exists?(info_file)
+      movie_info = NicoDownloader::Info.new(path: movie_file, posted_at: nil, thumbnail_path: File.exist?(thumbnail_file) ? thumbnail_file : nil)
+      if File.exist?(info_file)
         movie_info.parse(File.read(info_file))
       end
       create_by_movie_info(movie_info)

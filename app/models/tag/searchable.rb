@@ -6,19 +6,19 @@ module Tag::Searchable
 
     settings index: {
       analysis: {
-        analyzer: {
-          myNgramAnalyzer: {
+        analyzer:  {
+          myNgramAnalyzer:   {
             tokenizer: "myNgramTokenizer",
-            filter: %w(lowercase),
+            filter:    %w(lowercase),
           },
           myKeywordAnalyzer: {
             tokenizer: "keyword",
-            filter: %w(lowercase),
+            filter:    %w(lowercase),
           },
         },
         tokenizer: {
           myNgramTokenizer: {
-            type: "nGram",
+            type:        "nGram",
             token_chars: %w(letter digit symbol)
           },
         },

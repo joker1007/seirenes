@@ -6,19 +6,19 @@ module Pasokara::Searchable
 
     settings index: {
       analysis: {
-        analyzer: {
-          myNgramAnalyzer: {
+        analyzer:  {
+          myNgramAnalyzer:   {
             tokenizer: "myNgramTokenizer",
-            filter: %w(lowercase),
+            filter:    %w(lowercase),
           },
           myKeywordAnalyzer: {
             tokenizer: "keyword",
-            filter: %w(lowercase),
+            filter:    %w(lowercase),
           },
         },
         tokenizer: {
           myNgramTokenizer: {
-            type: "nGram",
+            type:        "nGram",
             token_chars: %w(letter digit symbol)
           },
         },
@@ -42,7 +42,7 @@ module Pasokara::Searchable
     __elasticsearch__.create_index!
   end
 
-  def as_indexed_json(options = {})
+  def as_indexed_json(_options = {})
     as_json(
       only: [:title, :nico_vid, :nico_view_count, :nico_mylist_count, :nico_description, :nico_posted_at, :duration, :created_at],
       methods: [:user_ids]

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     def find_or_create_by_omniauth(auth)
       case auth.provider
       when "twitter", "facebook"
-        user = User.joins(:user_auths).merge( UserAuth.where(provider: auth.provider, uid: auth.uid) ).first
+        user = User.joins(:user_auths).merge(UserAuth.where(provider: auth.provider, uid: auth.uid)).first
         return user if user
 
         transaction do

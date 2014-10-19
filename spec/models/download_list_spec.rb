@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DownloadList, :type => :model do
+describe DownloadList, type: :model do
   describe ".download_all" do
     before do
       FactoryGirl.create_list(:download_list, 2)

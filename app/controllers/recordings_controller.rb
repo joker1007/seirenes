@@ -58,17 +58,17 @@ class RecordingsController < ApplicationController
   end
 
   def initial_chunk_process
-    File.open(temp_chunked_filename, "wb") {|f| f.write(params[:files].first.read)}
+    File.open(temp_chunked_filename, "wb") { |f| f.write(params[:files].first.read) }
     render json: {chunk: "ok"}
   end
 
   def chunk_process
-    File.open(temp_chunked_filename, "ab") {|f| f.write(params[:files].first.read)}
+    File.open(temp_chunked_filename, "ab") { |f| f.write(params[:files].first.read) }
     render json: {chunk: "ok"}
   end
 
   def last_chunk_process
-    File.open(temp_chunked_filename, "ab") {|f| f.write(params[:files].first.read)}
+    File.open(temp_chunked_filename, "ab") { |f| f.write(params[:files].first.read) }
     create_recorded_song
   end
 end

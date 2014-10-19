@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SongQueue, :type => :model do
+describe SongQueue, type: :model do
   describe "#finish!" do
     let(:pasokara) { FactoryGirl.create(:pasokara) }
     let!(:song_queue) { FactoryGirl.create(:song_queue, pasokara: pasokara) }
@@ -13,7 +13,7 @@ describe SongQueue, :type => :model do
     end
 
     it "create History" do
-      expect{ subject }.to change(History, :count).to(1)
+      expect { subject }.to change(History, :count).to(1)
     end
 
     describe "created History" do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe EncodingsController, :type => :controller do
+describe EncodingsController, type: :controller do
   let(:pasokara) { FactoryGirl.create(:pasokara) }
 
   describe "POST create" do

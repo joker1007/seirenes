@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :download_list do
-    sequence(:url) {|n| "http://www.test.dummy/list/#{n}"}
+    sequence(:url) { |n| "http://www.test.dummy/list/#{n}" }
     download true
   end
 end
