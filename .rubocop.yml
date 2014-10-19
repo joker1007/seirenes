@@ -1,0 +1,72 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - doc/**/*
+    - config/**/*
+    - tmp/**/*
+    - Gemfile
+    - Rakefile
+    - Vagrantfile
+    - Guardfile
+    - vendor/**/*
+
+# Use UTF-8 as the source file encoding.
+Style/Encoding:
+  Enabled: false
+
+# Class::SubClassスタイルの定義
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Use only ascii symbols in comments.
+Style/AsciiComments:
+  Enabled: false
+
+Style/TrailingComma:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/Semicolon:
+  # Allow ; to separate several expressions on the same line.
+  AllowAsExpressionSeparator: true
+
+Style/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+  EnforcedLastArgumentHashStyle: always_ignore
+
+Style/CollectionMethods:
+  PreferredMethods:
+    inject: 'inject'
+
+Style/TrivialAccessors:
+  AllowDSLWriters: true
+
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Max: 300
+
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 30
+
+# Configuration parameters: AllowURI.
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - lib/tasks/**/*
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Max: 7
+
+Metrics/PerceivedComplexity:
+  Max: 8
