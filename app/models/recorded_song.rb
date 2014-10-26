@@ -17,8 +17,8 @@
 #
 
 class RecordedSong < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :pasokara
+  belongs_to :user, required: true
+  belongs_to :pasokara, required: true
 
   mount_uploader :data, RecordedDataUploader
 

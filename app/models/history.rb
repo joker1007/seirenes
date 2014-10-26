@@ -15,7 +15,7 @@
 #
 
 class History < ActiveRecord::Base
-  belongs_to :pasokara
+  belongs_to :pasokara, required: true
   belongs_to :user
 
   paginates_per 500
