@@ -21,7 +21,7 @@ before_script:
   - sudo chmod +x /usr/local/bin/chromedriver
   - npm install
   - ./node_modules/.bin/bower install
-script: bundle exec rake db:create db:migrate spec
+script: bundle exec rake travis
 rvm:
   - 2.1
   - 2.2

@@ -24,7 +24,7 @@ feature "Pasokaraの一覧を表示する", elasticsearch: true do
     expect(page).to have_selector(".pasokara")
   end
 
-  scenario "動画をオンデマンドでエンコードしてプレビュー再生できる", js: true, redis: true, sidekiq: true do
+  scenario "動画をオンデマンドでエンコードしてプレビュー再生できる", js: true, redis: true, sidekiq: true, ffmpeg: true do
     visit pasokara_path(pasokara)
 
     expect(page).not_to have_selector("#preview-player")
