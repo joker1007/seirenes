@@ -70,12 +70,12 @@ RSpec.configure do |config|
   # for poltergeist
   require "capybara/poltergeist"
   Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    Capybara::Selenium::Driver.new(app, browser: :chrome, switches: %w(--no-sandbox))
   end
   Capybara.javascript_driver = :chrome
 
   config.before(:suite) do
-    system("gulp")
+    system(Rails.root.join("node_modules", ".bin", "gulp").to_s)
   end
 
   config.before(:each, elasticsearch: true) do

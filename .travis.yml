@@ -19,10 +19,13 @@ before_script:
   - wget -O chromedriver.zip http://chromedriver.storage.googleapis.com/2.11/chromedriver_linux64.zip
   - sudo unzip chromedriver.zip chromedriver -d /usr/local/bin/
   - sudo chmod +x /usr/local/bin/chromedriver
+  - npm install
 script: bundle exec rake db:create db:migrate spec
 rvm:
   - 2.1
   - 2.2
+node_js:
+  - "0.10"
 env:
   global:
     - CI=true
