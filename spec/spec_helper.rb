@@ -14,6 +14,11 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Elasticsearch::Model.client = Elasticsearch::Client.new(host: "localhost:9250") unless ENV["CI"]
 
+redis_url = "redis://localhost:6380"
+Sidekiq.configure_client do |config|
+  config.redis = {url: redis_url, namespace: "seirenes_sidekiq"}
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -45,16 +50,16 @@ RSpec.configure do |config|
 
   # If you use database_cleaner, comment out following line.
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseRewinder.strategy = :transaction
+    DatabaseRewinder.clean_with(:truncation)
   end
 
   config.before(:each) do
-    DatabaseCleaner.start
+    DatabaseRewinder.start
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean
+    DatabaseRewinder.clean
   end
 
   # for Delorean
@@ -64,7 +69,14 @@ RSpec.configure do |config|
 
   # for poltergeist
   require "capybara/poltergeist"
-  Capybara.javascript_driver = :poltergeist
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  end
+  Capybara.javascript_driver = :chrome
+
+  config.before(:suite) do
+    system("gulp")
+  end
 
   config.before(:each, elasticsearch: true) do
     unless ENV["CI"]
@@ -75,11 +87,40 @@ RSpec.configure do |config|
 
     Pasokara.__elasticsearch__.create_index! force: true
     Pasokara.__elasticsearch__.refresh_index!
+    Elasticsearch::Model.client.indices.flush
   end
 
   at_exit do
     if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
       Elasticsearch::Extensions::Test::Cluster.stop port: 9250
     end
+  end
+
+  config.before(:each, redis: true) do
+    unless $redis_pid
+      $redis_pid = spawn_process(
+        command: "redis-server #{Rails.root.join('spec', 'redis_test.conf')}",
+        spawn_checker: -> { sleep 0.2; true },
+      )
+    end
+    Redis.new(url: redis_url).flushall
+  end
+
+  config.before(:each, sidekiq: true) do
+    Sidekiq::Testing.disable!
+
+    unless $sidekiq_pid
+      log = Rails.root.join('log', 'sidekiq_test.log').to_s
+      $redis_pid = spawn_process(
+        command: "bundle exec sidekiq -q seirenes -c 1",
+        env: {"REDIS_PORT" => "6380"},
+        stdout_log: log,
+        spawn_checker: -> { File.read(log) =~ /Starting processing/ },
+      )
+    end
+  end
+
+  config.after(:each, sidekiq: true) do
+    Sidekiq::Testing.fake!
   end
 end

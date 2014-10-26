@@ -128,6 +128,7 @@ group :development, :test do
 
   gem "capybara", github: "jnicklas/capybara"
   gem "poltergeist"
+  gem "selenium-webdriver"
 
   gem "launchy"
 
@@ -151,7 +152,7 @@ group :test do
   gem "simplecov-rcov", require: false
   gem "rspec-formatter-git_auto_commit", github: "joker1007/rspec-formatter-git_auto_commit"
   gem "delorean"
-  gem "database_cleaner"
+  gem "database_rewinder", github: "amatsuda/database_rewinder"
   gem "coveralls"
   gem "fuubar", github: "thekompanee/fuubar"
   gem "power_assert", github: "k-tsj/power_assert"
