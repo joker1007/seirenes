@@ -91,8 +91,7 @@ module Pasokara::Searchable
     end
 
     def search_with_facet_tags(search_parameter, facet_size: 50)
-      query = search_with_facet_tags_query(search_parameter, facet_size: facet_size)
-      search(query).page(search_parameter.page).limit(search_parameter.per_page)
+      search_by(search_parameter) { search_with_facet_tags_query(search_parameter, facet_size: facet_size) }
     end
 
     def random_search_query(search_parameter)
@@ -109,11 +108,15 @@ module Pasokara::Searchable
     end
 
     def random_search(search_parameter)
-      query = random_search_query(search_parameter)
-      search(query).page(search_parameter.page).limit(search_parameter.per_page)
+      search_by(search_parameter) { random_search_query(search_parameter) }
     end
 
     private
+
+    def search_by(search_parameter, &query_builder)
+      query = query_builder.call
+      search(query).page(search_parameter.page).limit(search_parameter.per_page)
+    end
 
     def build_query(keyword, tags, user_id, json)
       queries = []
