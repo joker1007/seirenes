@@ -6,10 +6,16 @@ cache:
 services:
   - elasticsearch
   - redis
+before_install:
+  - "sh -e /etc/init.d/xvfb start"
 before_script:
   - cp config/database.sample.yml config/database.yml
   - cp config/settings.sample.yml config/settings.yml
   - "echo '-r power_assert --color --format d' > .rspec"
+  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+  - sudo apt-get update
+  - sudo apt-get install google-chrome-stable
 script: bundle exec rake db:create db:migrate spec
 rvm:
   - 2.1
@@ -17,6 +23,7 @@ rvm:
 env:
   global:
     - CI=true
+    - DISPLAY=:99.0
 notifications:
   email:
     on_success: change
