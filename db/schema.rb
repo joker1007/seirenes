@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526150126) do
+ActiveRecord::Schema.define(version: 20141026095927) do
 
   create_table "download_lists", force: true do |t|
     t.string   "url",        limit: 255,                null: false
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20130526150126) do
     t.datetime "updated_at"
   end
 
+  add_index "user_auths", ["provider", "uid"], name: "index_user_auths_on_provider_and_uid", unique: true, using: :btree
   add_index "user_auths", ["user_id"], name: "index_user_auths_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

@@ -11,9 +11,13 @@
 #
 # Indexes
 #
-#  index_user_auths_on_user_id  (user_id)
+#  index_user_auths_on_provider_and_uid  (provider,uid) UNIQUE
+#  index_user_auths_on_user_id           (user_id)
 #
 
 class UserAuth < ActiveRecord::Base
   belongs_to :user, required: true
+
+  validates_presence_of :provider, :uid
+  validates_uniqueness_of :uid, scope: [:provider]
 end
