@@ -25,6 +25,9 @@ Seirenes::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
 
+  # Generate digests for assets URLs.
+  config.assets.digest = true
+
   # bullet config
   config.after_initialize do
     Bullet.enable = true
