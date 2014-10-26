@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', github: 'rails/rails'
@@ -158,4 +157,3 @@ group :test do
   gem "power_assert", github: "k-tsj/power_assert"
   gem "rspec-power_assert", github: "joker1007/rspec-power_assert"
 end
-

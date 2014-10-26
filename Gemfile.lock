@@ -215,7 +215,6 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     active_decorator (0.3.4)
     addressable (2.3.6)
