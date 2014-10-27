@@ -36,10 +36,8 @@ def spawn_process(options = {})
       end
     rescue Timeout::Error, Errno::ESRCH
       STDERR.puts("Failed to start the backend program #{options.inspect}")
-      if File.exist?(log)
-        STDERR.puts(File.read(log))
-      else
-        STDERR.puts("Log file #{log} does not exist")
+      if File.exist?(stdout_log)
+        STDERR.puts(File.read(stdout_log))
       end
     end
   end
