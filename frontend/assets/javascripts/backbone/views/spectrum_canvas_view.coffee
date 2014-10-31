@@ -22,9 +22,11 @@ class SpectrumCanvasView
         0, y, @BAR_WIDTH, @canvas.height - y,
         x, y, @BAR_WIDTH, @canvas.height - y,
       )
-    @req = requestAnimationFrame(_.bind(@start, @))
+    @next = setTimeout =>
+      @start()
+    , 1000 / 30
 
   stop: ->
-    cancelAnimationFrame(@req)
+    clearTimeout(@next)
 
 module.exports = SpectrumCanvasView

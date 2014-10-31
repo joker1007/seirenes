@@ -2,7 +2,7 @@
   <h3 id="pasokara-preview-title">{{title}}</h3>
   <div id="pasokara-preview-player">
     <div id="pasokara-movie-area" v-component="preview_video_player" v-ref="preview_video_player"></div>
-    <div id="pasokara-visualizer-area" v-if="recording">
+    <div id="pasokara-visualizer-area" v-show="recording">
       <div>
         <h4>Music</h4>
         <canvas id="music-level" class="level" width="640" height="256"></canvas>

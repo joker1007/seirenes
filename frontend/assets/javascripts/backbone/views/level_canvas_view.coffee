@@ -32,7 +32,9 @@ class LevelCanvasView
     # @renderSignal(@buffer[@bufferSize / 4 * 2])
     # @renderSignal(@buffer[@bufferSize / 4 * 3])
     # @renderSignal(@buffer[Math.max(@bufferSize / 4 * 4, @bufferSize)])
-    @req = requestAnimationFrame(_.bind(@start, @))
+    @next = setTimeout =>
+      @start()
+    , 1000 / 30
 
   getAvgSignals: (buffer, partitionSize) ->
     result = []
@@ -49,7 +51,7 @@ class LevelCanvasView
     result
 
   stop: ->
-    cancelAnimationFrame(@req)
+    clearTimeout(@next)
 
   renderInit: ->
     @ctx.beginPath()
