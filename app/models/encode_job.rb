@@ -2,10 +2,10 @@ class EncodeJob < Sidekiq::Ffmpeg::BaseJob
   sidekiq_options queue: :seirenes
 
   def perform(input_filename, output_filename, extra_data = {}, format = :mp4)
-    Redis::Mutex.with_lock("seirenes_pasokara_#{extra_data["id"]}_encoding", block: 0, expire: 60.minutes) do
+    RedisMutex.with_lock("seirenes_pasokara_#{extra_data["id"]}_encoding", block: 0, expire: 60.minutes) do
       super
     end
-  rescue Redis::Mutex::LockError
+  rescue RedisMutex::LockError
     puts "Already encoding"
   end
 
