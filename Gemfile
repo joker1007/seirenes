@@ -1,18 +1,22 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', github: 'rails/rails'
-gem 'arel', github: 'rails/arel'
-gem 'rack', github: 'rack/rack'
-gem 'rack-cache', '~> 1.2'
-gem 'turbolinks', github: 'rails/turbolinks', branch: 'master'
-gem 'i18n', github: 'svenfuchs/i18n', branch: 'master'
+gem 'rails', '~> 4.2.0'
+gem 'sass-rails', '~> 5.0'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'turbolinks'
+
+# gem 'rails', github: 'rails/rails'
+# gem 'arel', github: 'rails/arel'
+# gem 'rack', github: 'rack/rack'
+# gem 'rack-cache', '~> 1.2'
+# gem 'turbolinks', github: 'rails/turbolinks', branch: 'master'
+# gem 'i18n', github: 'svenfuchs/i18n', branch: 'master'
+# gem 'sprockets-rails',  github: "rails/sprockets-rails"
+# gem 'sass-rails', github: 'rails/sass-rails'
+# gem 'coffee-rails', github: 'rails/coffee-rails'
 
 gem 'mysql2'
 
-gem 'sprockets-rails',  github: "rails/sprockets-rails"
-gem 'sass-rails', github: 'rails/sass-rails'
-gem 'coffee-rails', github: 'rails/coffee-rails'
 gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
 gem 'bootstrap-sass'
 gem 'compass-rails'
@@ -106,9 +110,6 @@ group :development do
 
   gem "annotate", github: "ctran/annotate_models"
 
-  gem 'spring'
-  gem 'spring-commands-rspec'
-
   gem 'quiet_assets'
   gem 'thin'
 
@@ -118,6 +119,11 @@ end
 group :development, :test do
   gem "byebug"
   gem "pry-stack_explorer"
+
+  gem 'web-console', '~> 2.0'
+
+  gem 'spring'
+  gem 'spring-commands-rspec'
 
   gem "rspec", ">= 3.0.0.rc1"
   gem "rspec-rails", ">= 3.0.0.rc1"
