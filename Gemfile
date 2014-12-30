@@ -19,7 +19,7 @@ gem 'mysql2'
 
 gem 'haml_coffee_assets', github: "netzpirat/haml_coffee_assets"
 gem 'bootstrap-sass'
-gem 'compass-rails'
+gem 'compass-rails', github: "Compass/compass-rails"
 gem 'coffee-rails-source-maps'
 gem 'zurui-sass-rails'
 
