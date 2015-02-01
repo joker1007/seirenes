@@ -1,7 +1,5 @@
-lock '3.2.1'
-
 set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.1.3'
+set :rbenv_ruby, '2.2.0'
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 set :application, "seirenes"
@@ -87,7 +85,6 @@ namespace :config do
     on roles(:app) do |host|
       execute :mkdir, "-p", "#{shared_path}/config"
       upload! "config/database.yml", "#{shared_path}/config/database.yml"
-      upload! "config/resque.yml", "#{shared_path}/config/resque.yml"
       upload! "config/settings.yml", "#{shared_path}/config/settings.yml"
     end
   end
