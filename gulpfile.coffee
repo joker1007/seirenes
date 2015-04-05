@@ -12,6 +12,7 @@ rev       = require('gulp-rev')
 extend    = require('gulp-extend')
 rename    = require('gulp-rename')
 manifest  = require('gulp-rev-rails-manifest')
+sourcemaps = require('gulp-sourcemaps')
 
 browserify = require('browserify')
 ts         = require('tsify')
@@ -129,18 +130,17 @@ gulp.task 'glyphicon', ->
     .pipe(gulp.dest("public/assets/fonts/bootstrap"))
 
 gulp.task 'sass', ['glyphicon'], ->
-  css = gulp.src(['frontend/assets/stylesheets/**/*.scss', 'frontend/assets/stylesheets/**/*.sass'])
-    .pipe(gulp.dest("public/assets/sass"))
-    .pipe(plumber())
-    .pipe(sass(
-      sourcemap: true
-      sourcemapPath: "./sass"
-      compass: true
-      bundleExec: true
-      loadPath: [
-        "./bower_components"
-      ]
-    ))
+  css = sass('frontend/assets/stylesheets', {
+    sourcemap: true
+    compass: true
+    bundleExec: true
+    loadPath: [
+      "./bower_components"
+    ]
+  }).on('error', (err) ->
+    console.error('Error', err.message)
+  )
+    .pipe(sourcemaps.write())
 
   stream = if minify
     css.pipe(minifyCSS())
