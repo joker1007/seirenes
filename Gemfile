@@ -48,6 +48,7 @@ gem "pry-rails"
 
 gem "awesome_print"
 gem "tapp"
+gem "tapp-awesome_print"
 
 gem "factory_girl_rails"
 gem "kaminari"

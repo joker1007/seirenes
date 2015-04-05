@@ -28,7 +28,5 @@ module Tag::Searchable
     mapping do
       indexes :name, store: true, analyzer: "myNgramAnalyzer"
     end
-
-    __elasticsearch__.create_index!
   end
 end

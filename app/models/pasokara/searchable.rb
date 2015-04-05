@@ -38,8 +38,6 @@ module Pasokara::Searchable
       indexes :duration, type: "integer"
       indexes :created_at, type: "date"
     end
-
-    __elasticsearch__.create_index!
   end
 
   def as_indexed_json(_options = {})
