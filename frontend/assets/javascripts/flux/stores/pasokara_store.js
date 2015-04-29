@@ -1,14 +1,15 @@
 import { Store } from 'flummox';
+import _ from 'lodash';
 
 export default class PasokaraStore extends Store {
   constructor(flux) {
     super();
     const pasokaraActionIds = flux.getActionIds('pasokaras');
-    this.register(pasokaraActionIds.init, this.handleInit);
     this.register(pasokaraActionIds.load, this.handleInit);
 
     this.state = {
-      pasokaras: [],
+      pasokaras: {},
+      facets: {},
       meta: {},
     }
   }
@@ -21,10 +22,22 @@ export default class PasokaraStore extends Store {
     return this.state.meta;
   }
 
-  handleInit({pasokaras: pasokaras, meta: meta}) {
+  handleInit({pasokaras, meta, facets}) {
+    let _pasokaras = {};
+    let _facets = {};
+
+    pasokaras.forEach((p) => {
+      _pasokaras[p.id] = p;
+    });
+
+    facets.forEach((f) => {
+      _facets[f.name] = f.count;
+    });
+
     this.setState({
-      pasokaras: pasokaras,
+      pasokaras: _pasokaras,
       meta: meta,
+      facets: _facets,
     });
   }
 }

@@ -1,20 +1,28 @@
 import React from 'react';
 import Flux from './flux';
 import FluxComponent from 'flummox/component';
-import PasokaraList from './components/pasokara_list.jsx';
+import Router from 'react-router';
+import PasokarasRoute from './routes/pasokaras_route.jsx';
+import _ from 'lodash';
+
+var DefaultRoute = Router.DefaultRoute;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
 
 var flux = new Flux();
 
 window.addEventListener("DOMContentLoaded", () => {
-  flux.getActions('pasokaras').load('/pasokaras.json');
-  React.render(
-    <FluxComponent flux={flux} connectToStores={{
-      pasokaras: store => ({
-        pasokaras: store.getAll(),
-      })
-    }}>
-      <PasokaraList />
-    </FluxComponent>,
-    document.getElementById("pasokara-list")
-  );
+  flux.router.run((Handler, state) => {
+    let loadPasokaras = _.some(state.routes, (r) => {
+      return r.handler.loadPasokaras;
+    });
+    if (loadPasokaras) {
+      flux.getActions('pasokaras').load(state.path);
+    }
+    React.render(
+      <FluxComponent flux={flux}>
+        <Handler />
+      </FluxComponent>,
+      document.getElementById("app"));
+  });
 });

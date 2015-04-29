@@ -7,7 +7,7 @@ export default class PasokaraListItem extends React.Component {
   render() {
     let pasokara = this.props.pasokara;
     let pasokaraTags = pasokara.tags.map(t => {
-      return <PasokaraTag tag={t} />
+      return <PasokaraTag key={t} tag={t} />
     });
     let niconicoLink = `http://www.nicovideo.jp/watch/${pasokara.nico_vid}`;
     let duration = moment.duration(pasokara.duration, 'seconds').format("m:ss")

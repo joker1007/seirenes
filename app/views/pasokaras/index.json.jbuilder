@@ -9,3 +9,7 @@ json.meta do |json|
   json.current_page @search.current_page
   json.total_entries @search.total_count
 end
+json.facets(@facets) do |f|
+  json.count f["count"]
+  json.name f["term"]
+end

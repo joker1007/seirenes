@@ -7,10 +7,11 @@ export default class PasokaraList extends React.Component {
     let pasokaras;
 
     if (_.isEmpty(this.props.pasokaras)) {
-      pasokaras = <div />;
+      pasokaras = "";
     } else {
-      pasokaras = this.props.pasokaras.map(p => {
-        return <PasokaraListItem key={p.id} pasokara={p}/>
+      pasokaras = _.map(this.props.pasokaras, p => {
+        let key = `pasokara-${p.id}`
+        return <PasokaraListItem key={key} pasokara={p}/>
       });
     }
 

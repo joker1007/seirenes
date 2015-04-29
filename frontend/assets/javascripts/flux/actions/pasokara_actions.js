@@ -2,11 +2,9 @@ import { Actions } from 'flummox';
 import request from 'superagent';
 
 export default class PasokaraActions extends Actions {
-  init(initialData) {
-    return {
-      pasokaras: initialData.pasokaras,
-      meta: initialData.meta,
-    }
+  constructor(router) {
+    super();
+    this.router = router;
   }
 
   async load(path) {
@@ -15,12 +13,14 @@ export default class PasokaraActions extends Actions {
       return {
         pasokaras: res.body.pasokaras,
         meta: res.body.meta,
+        facets: res.body.facets
       }
     } catch (e) {
       console.log(e);
       return {
         pasokaras: [],
         meta: {},
+        facets: [],
       }
     }
   }
