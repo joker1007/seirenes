@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (loadPasokaras) {
       flux.getActions('pasokaras').load(state.path);
     }
+
     React.render(
       <FluxComponent flux={flux}>
         <Handler />

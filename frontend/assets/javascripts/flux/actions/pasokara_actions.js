@@ -1,5 +1,6 @@
 import { Actions } from 'flummox';
 import request from 'superagent';
+import {getRouteNameFromPath} from '../route';
 
 export default class PasokaraActions extends Actions {
   constructor(router) {
@@ -36,5 +37,11 @@ export default class PasokaraActions extends Actions {
           return resolve(res);
         });
     });
+  }
+
+  changeOrderBy(orderBy) {
+    let currentRouteName = getRouteNameFromPath(this.router.getCurrentPathname());
+    let query = Object.assign({}, this.router.getCurrentQuery(), {page: 1, order_by: orderBy});
+    this.router.transitionTo(currentRouteName, {}, query);
   }
 }
