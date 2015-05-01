@@ -5,10 +5,6 @@ import Router from 'react-router';
 import PasokarasRoute from './routes/pasokaras_route.jsx';
 import _ from 'lodash';
 
-var DefaultRoute = Router.DefaultRoute;
-var Route = Router.Route;
-var RouteHandler = Router.RouteHandler;
-
 var flux = new Flux();
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -19,6 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (loadPasokaras) {
       flux.getActions('pasokaras').load(state.path);
     }
+    flux.getActions('filter_tags').init(state.query.filter_tags);
 
     React.render(
       <FluxComponent flux={flux}>

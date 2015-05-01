@@ -19,7 +19,6 @@ class SortFormSelect extends React.Component {
   constructor(props) {
     super(props);
     let currentOrderBy = this.props.flux.router.getCurrentQuery().order_by || "created_at desc"
-    console.log(this);
     this.state =  {
       value: currentOrderBy
     };

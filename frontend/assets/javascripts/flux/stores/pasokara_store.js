@@ -22,6 +22,10 @@ export default class PasokaraStore extends Store {
     return this.state.meta;
   }
 
+  getFacets() {
+    return this.state.facets;
+  }
+
   handleInit({pasokaras, meta, facets}) {
     let _pasokaras = {};
     let _facets = {};
