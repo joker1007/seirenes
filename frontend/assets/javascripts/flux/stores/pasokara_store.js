@@ -5,7 +5,7 @@ export default class PasokaraStore extends Store {
   constructor(flux) {
     super();
     const pasokaraActionIds = flux.getActionIds('pasokaras');
-    this.register(pasokaraActionIds.load, this.handleInit);
+    this.register(pasokaraActionIds.load, this.handleLoad);
 
     this.state = {
       pasokaras: {},
@@ -26,7 +26,7 @@ export default class PasokaraStore extends Store {
     return this.state.facets;
   }
 
-  handleInit({pasokaras, meta, facets}) {
+  handleLoad({pasokaras, meta, facets}) {
     let _pasokaras = {};
     let _facets = {};
 

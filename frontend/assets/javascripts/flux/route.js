@@ -10,6 +10,7 @@ export var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="root" path="/" handler={PasokarasRoute} />
     <Route name="pasokaras" path="/pasokaras" handler={PasokarasRoute} />
+    <Route name="favorites" path="/favorites" handler={PasokarasRoute} />
   </Route>
 );
 

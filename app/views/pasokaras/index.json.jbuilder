@@ -1,4 +1,4 @@
-json.set! controller.controller_name do |json|
+json.set! "pasokaras" do |json|
   json.array!(@pasokaras) do |pasokara|
     json.partial! "pasokaras/entry", pasokara: pasokara
   end
