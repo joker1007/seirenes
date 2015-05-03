@@ -1,11 +1,14 @@
 import React from 'react';
+import _ from 'lodash';
 import {Link} from 'react-router';
 import {getRouteNameFromPath} from '../route';
 import URI from 'URIjs';
 
 export default class PasokaraTag extends React.Component {
   render() {
-    let routeName = getRouteNameFromPath(this.props.flux.router.getCurrentPathname())
+    let routeName = _.last(this.props.flux.router.getCurrentRoutes()).name;
+    if (!routeName)
+      return <span key={tag} />;
     let tag = this.props.tag;
     let q = this.props.flux.router.getCurrentQuery()["q"]
     let query = {

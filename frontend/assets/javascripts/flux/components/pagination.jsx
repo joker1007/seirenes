@@ -5,7 +5,7 @@ import {getRouteNameFromPath} from '../route';
 
 export default class Pagination extends React.Component {
   render() {
-    let routeName = getRouteNameFromPath(this.props.flux.router.getCurrentPathname());
+    let routeName = _.last(this.props.flux.router.getCurrentRoutes()).name;
 
     if (_.isEmpty(this.props.meta))
       return <div />;
@@ -105,7 +105,7 @@ export default class Pagination extends React.Component {
       }
     }
 
-    for (let i=1; (meta.current_page + i) < meta.total_pages && i <= windowLimit; ++i) {
+    for (let i=1; (meta.current_page + i) <= meta.total_pages && i <= windowLimit; ++i) {
       let key = `page-${meta.current_page + i}`
       pages.push(
 
@@ -116,7 +116,7 @@ export default class Pagination extends React.Component {
         </li>
       );
 
-      if ((meta.current_page + i) < meta.total_pages && i === windowLimit) {
+      if ((meta.current_page + i) <= meta.total_pages && i === windowLimit) {
         pages.push(
           <li key="forward-disabled" className="disabled">
             <a>...</a>

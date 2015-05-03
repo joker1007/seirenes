@@ -7,7 +7,7 @@ import CurrentFilterTags from './current_filter_tags.jsx';
 
 export default class FacetTags extends React.Component {
   render() {
-    let routeName = getRouteNameFromPath(this.props.flux.router.getCurrentPathname());
+    let routeName = _.last(this.props.flux.router.getCurrentRoutes()).name;
     let facets = this.props.facets
     let tags = []
     let q = this.props.flux.router.getCurrentQuery()["q"]

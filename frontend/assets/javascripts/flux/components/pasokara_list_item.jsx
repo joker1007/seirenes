@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 import FluxComponent from 'flummox/component';
 import PasokaraTag from './pasokara_tag.jsx';
 import moment from 'moment';
@@ -24,7 +25,7 @@ export default class PasokaraListItem extends React.Component {
     return (
       <div className="pasokara">
         <div className="title">
-          <a href={pasokara.url}>{pasokara.title}</a>
+          <Link to="pasokara_show" params={{pasokaraId: pasokara.id}}>{pasokara.title}</Link>
           <a className="btn btn-primary">予約する</a>
         </div>
         <div className="info-box">

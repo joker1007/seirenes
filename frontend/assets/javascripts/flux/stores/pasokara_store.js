@@ -6,6 +6,8 @@ export default class PasokaraStore extends Store {
     super();
     const pasokaraActionIds = flux.getActionIds('pasokaras');
     this.register(pasokaraActionIds.load, this.handleLoad);
+    this.register(pasokaraActionIds.loadSingle, this.handleLoadSingle);
+    this.register(pasokaraActionIds.updateMovieUrl, this.handleUpdateMovieUrl);
 
     this.state = {
       pasokaras: {},
@@ -26,6 +28,10 @@ export default class PasokaraStore extends Store {
     return this.state.facets;
   }
 
+  find(id) {
+    return this.state.pasokaras[id];
+  }
+
   handleLoad({pasokaras, meta, facets}) {
     let _pasokaras = {};
     let _facets = {};
@@ -43,5 +49,21 @@ export default class PasokaraStore extends Store {
       meta: meta,
       facets: _facets,
     });
+  }
+
+  handleLoadSingle(pasokara) {
+    if (pasokara && !this.state.pasokaras[pasokara.id]) {
+      let _pasokaras = Object.assign({}, this.state.pasokaras);
+      _pasokaras[pasokara.id] = pasokara;
+      this.setState({pasokaras: _pasokaras});
+    }
+  }
+
+  handleUpdateMovieUrl({id, movie_url}) {
+    let pasokara = this.state.pasokaras[id];
+    pasokara.movie_url = movie_url;
+    let _pasokaras = Object.assign({}, this.state.pasokaras);
+    _pasokaras[id] = pasokara
+    this.setState({pasokaras: _pasokaras});
   }
 }

@@ -7,6 +7,8 @@ import PasokaraStore from './stores/pasokara_store';
 import FilterTagActions from './actions/filter_tag_actions';
 import CurrentFilterTagsStore from './stores/current_filter_tags_store';
 
+import EncodingStore from './stores/encoding_store';
+
 import {routes} from './route';
 
 export default class SeirenesApp extends Flummox {
@@ -21,5 +23,6 @@ export default class SeirenesApp extends Flummox {
     this.createStore('pasokaras', PasokaraStore, this);
     this.createActions('filter_tags', FilterTagActions);
     this.createStore('filter_tags', CurrentFilterTagsStore, this);
+    this.createStore('encodings', EncodingStore, this);
   }
 }

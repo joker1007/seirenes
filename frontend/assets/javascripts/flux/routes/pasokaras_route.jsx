@@ -7,6 +7,15 @@ import FacetTags from '../components/facet_tags.jsx';
 import SearchField from '../components/search_field.jsx';
 
 export default class PasokarasRoute extends React.Component {
+  componentDidMount() {
+    this.props.flux.getActions('pasokaras').load(this.context.router.getCurrentPath());
+    this.props.flux.getActions('filter_tags').init(this.props.query.filter_tags);
+  }
+  componentWillReceiveProps(nextProps) {
+    this.props.flux.getActions('pasokaras').load(this.context.router.getCurrentPath());
+    this.props.flux.getActions('filter_tags').init(this.props.query.filter_tags);
+  }
+
   render() {
     return(
       <div>
@@ -52,4 +61,6 @@ export default class PasokarasRoute extends React.Component {
   }
 }
 
-PasokarasRoute.loadPasokaras = true;
+PasokarasRoute.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};

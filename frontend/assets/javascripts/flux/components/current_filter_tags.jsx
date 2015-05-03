@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {Link} from 'react-router';
 import {getRouteNameFromPath} from '../route';
 
@@ -18,7 +19,8 @@ export default class CurrentFilterTags extends React.Component {
 
 class FilterTag extends React.Component {
   render() {
-    let routeName = getRouteNameFromPath(this.props.flux.router.getCurrentPathname());
+    let currentRoute = _.last(this.props.flux.router.getCurrentRoutes());
+    let routeName = currentRoute.name;
     let idx = this.props.filterTags.indexOf(this.props.tag);
     let q = this.props.flux.router.getCurrentQuery()["q"];
     let query = {
