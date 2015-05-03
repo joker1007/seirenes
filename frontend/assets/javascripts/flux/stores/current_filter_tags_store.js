@@ -20,7 +20,11 @@ export default class CurrentFilterTagsStore extends Store {
   }
 
   handleInit(tags) {
-    this.setState({filterTags: Immutable.List(tags)});
+    if (tags) {
+      this.setState({filterTags: Immutable.List(tags)});
+    } else {
+      this.setState({filterTags: Immutable.List()});
+    }
   }
 
   handleAdd(tag) {

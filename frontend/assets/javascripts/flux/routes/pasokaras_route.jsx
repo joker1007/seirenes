@@ -4,11 +4,15 @@ import Pagination from '../components/pagination.jsx';
 import PasokaraList from '../components/pasokara_list.jsx';
 import SortForm from '../components/sort_form.jsx';
 import FacetTags from '../components/facet_tags.jsx';
+import SearchField from '../components/search_field.jsx';
 
 export default class PasokarasRoute extends React.Component {
   render() {
     return(
       <div>
+        <FluxComponent>
+          <SearchField />
+        </FluxComponent>
         <FluxComponent connectToStores={{
           pasokaras: store => ({
             facets: store.getFacets(),

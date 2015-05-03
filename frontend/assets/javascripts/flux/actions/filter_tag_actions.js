@@ -14,6 +14,7 @@ export default class FilterTagActions extends Actions {
   }
 
   init(tags) {
-    return tags;
+    let _tags = tags || [];
+    return _tags;
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import FluxComponent from 'flummox/component';
 import PasokaraTag from './pasokara_tag.jsx';
 import moment from 'moment';
 import 'moment-duration-format';
@@ -7,7 +8,15 @@ export default class PasokaraListItem extends React.Component {
   render() {
     let pasokara = this.props.pasokara;
     let pasokaraTags = pasokara.tags.map(t => {
-      return <PasokaraTag key={t} tag={t} />
+      return (
+        <FluxComponent key={t} connectToStores={{
+          filter_tags: store => ({
+            filterTags: store.getTags(),
+          }),
+        }}>
+          <PasokaraTag tag={t} />
+        </FluxComponent>
+      );
     });
     let niconicoLink = `http://www.nicovideo.jp/watch/${pasokara.nico_vid}`;
     let duration = moment.duration(pasokara.duration, 'seconds').format("m:ss")

@@ -20,8 +20,10 @@ class FilterTag extends React.Component {
   render() {
     let routeName = getRouteNameFromPath(this.props.flux.router.getCurrentPathname());
     let idx = this.props.filterTags.indexOf(this.props.tag);
+    let q = this.props.flux.router.getCurrentQuery()["q"];
     let query = {
-      filter_tags: this.props.filterTags.remove(idx).toArray()
+      q: q,
+      filter_tags: this.props.filterTags.remove(idx).toArray(),
     };
     return(
       <span key={"remove-" + this.props.tag} className="current-tag">

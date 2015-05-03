@@ -10,11 +10,13 @@ export default class FacetTags extends React.Component {
     let routeName = getRouteNameFromPath(this.props.flux.router.getCurrentPathname());
     let facets = this.props.facets
     let tags = []
+    let q = this.props.flux.router.getCurrentQuery()["q"]
 
     for (let name in facets) {
       let text = `${name}(${facets[name]})`
       let query = {
-        filter_tags: this.props.filterTags.push(name).toArray()
+        q: q,
+        filter_tags: this.props.filterTags.push(name).toArray(),
       };
       tags.push(
         <span key={name} className="facet-tag">
