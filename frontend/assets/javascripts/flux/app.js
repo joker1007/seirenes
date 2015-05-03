@@ -24,3 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("app"));
   });
 });
+
+document.addEventListener("page:load", () => {
+  flux.router.refresh();
+});
