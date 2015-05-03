@@ -69,7 +69,7 @@ export default class Pagination extends React.Component {
   }
   pageLinks(name) {
     let meta = this.props.meta;
-    let windowLimit = 6;
+    let windowLimit = 4;
 
     let pages = [];
     pages.push(
@@ -88,15 +88,17 @@ export default class Pagination extends React.Component {
         </li>
       );
 
-      if (0 < (meta.current_page - i) && i === windowLimit) {
+      if (2 < (meta.current_page - i) && i === windowLimit) {
         pages.unshift(
           <li key="backward-disabled" className="disabled">
             <a>...</a>
           </li>
         );
+      }
 
+      if (1 < (meta.current_page - i) && i === windowLimit) {
         pages.unshift(
-          <li key="page-1">
+          <li key="page-first-1">
             <Link to={name} query={this.pageQueryStatic(1)}>
               1
             </Link>
@@ -116,13 +118,15 @@ export default class Pagination extends React.Component {
         </li>
       );
 
-      if ((meta.current_page + i) <= meta.total_pages && i === windowLimit) {
+      if ((meta.current_page + i) < meta.total_pages - 1 && i === windowLimit) {
         pages.push(
           <li key="forward-disabled" className="disabled">
             <a>...</a>
           </li>
         );
-        let lastPageKey = `page-${meta.total_pages}`
+      }
+      if ((meta.current_page + i) <= meta.total_pages && i === windowLimit) {
+        let lastPageKey = `page-last-${meta.total_pages}`
         pages.push(
           <li key={lastPageKey}>
             <Link to={name} query={this.pageQueryStatic(meta.total_pages)}>
