@@ -9,11 +9,11 @@ require('babel/polyfill')
 # require('./backbone/controllers/player_controller')
 # require('./backbone/controllers/pasokara_show_controller')
 
-# requestAnimationFrameWrap = require('./request_animation_frame_wrap.coffee')
-# window.requestAnimationFrame = requestAnimationFrameWrap.requestAnimationFrame
-# window.cancelAnimationFrame = requestAnimationFrameWrap.cancelAnimationFrame
+requestAnimationFrameWrap = require('./request_animation_frame_wrap.coffee')
+window.requestAnimationFrame = requestAnimationFrameWrap.requestAnimationFrame
+window.cancelAnimationFrame = requestAnimationFrameWrap.cancelAnimationFrame
 
-# navigator.getUserMedia = require('./get_user_media_wrap.coffee')
+navigator.getUserMedia = require('./get_user_media_wrap.coffee')
 
 toastr = require('toastr')
 toastr.options.closeButton = true
