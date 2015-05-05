@@ -16,9 +16,6 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
 
     = csrf_meta_tags
-    :coffee
-      $ ->
-        Seirenes.start(current_user: #{current_user.to_json})
 
   %body
     = yield

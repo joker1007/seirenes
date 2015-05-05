@@ -9,6 +9,10 @@ import CurrentFilterTagsStore from './stores/current_filter_tags_store';
 
 import EncodingStore from './stores/encoding_store';
 
+import SongQueueActions from './actions/song_queue_actions';
+import SongQueuesStore from './stores/song_queues_store';
+import CurrentPlayingStore from './stores/current_playing_store';
+
 import {routes} from './route';
 
 export default class SeirenesApp extends Flummox {
@@ -24,5 +28,8 @@ export default class SeirenesApp extends Flummox {
     this.createActions('filter_tags', FilterTagActions);
     this.createStore('filter_tags', CurrentFilterTagsStore, this);
     this.createStore('encodings', EncodingStore, this);
+    this.createActions('song_queues', SongQueueActions);
+    this.createStore('song_queues', SongQueuesStore, this);
+    this.createStore('current_playing', CurrentPlayingStore, this);
   }
 }

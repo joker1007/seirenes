@@ -1,4 +1,5 @@
 import React from 'react';
+import FluxComponent from 'flummox/component';
 import _ from 'lodash';
 import PasokaraListItem from './pasokara_list_item.jsx';
 
@@ -11,7 +12,12 @@ export default class PasokaraList extends React.Component {
     } else {
       pasokaras = _.map(this.props.pasokaras, p => {
         let key = `pasokara-${p.id}`
-        return <PasokaraListItem key={key} pasokara={p}/>
+
+        return (
+          <FluxComponent key={key}>
+            <PasokaraListItem pasokara={p}/>
+          </FluxComponent>
+        );
       });
     }
 

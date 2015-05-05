@@ -6,6 +6,14 @@ import moment from 'moment';
 import 'moment-duration-format';
 
 export default class PasokaraListItem extends React.Component {
+  enqueue() {
+    let pasokara = this.props.pasokara;
+    let msg = `「${pasokara.title}」を予約しますか？`;
+    if (confirm(msg)) {
+      this.props.flux.getActions('pasokaras').enqueue(pasokara.id);
+    }
+  }
+
   render() {
     let pasokara = this.props.pasokara;
     let pasokaraTags = pasokara.tags.map(t => {
@@ -26,7 +34,7 @@ export default class PasokaraListItem extends React.Component {
       <div className="pasokara">
         <div className="title">
           <Link to="pasokara_show" params={{pasokaraId: pasokara.id}}>{pasokara.title}</Link>
-          <a className="btn btn-primary">予約する</a>
+          <a className="btn btn-primary" onClick={this.enqueue.bind(this)}>予約する</a>
         </div>
         <div className="info-box">
           <div className="thumb">

@@ -37,6 +37,16 @@ export default class PasokaraActions extends Actions {
     }
   }
 
+  async enqueue(id) {
+    try {
+      let res = await this._createSongQueue(id);
+      return res.body;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
+
   changeOrderBy(orderBy) {
     let currentRouteName = _.last(this.router.getCurrentRoutes()).name;
     let query = Object.assign({}, this.router.getCurrentQuery(), {page: 1, order_by: orderBy});
@@ -135,6 +145,21 @@ export default class PasokaraActions extends Actions {
             return resolve(res);
           });
       }, 3000);
+    });
+  }
+
+  _createSongQueue(id) {
+    return new Promise((resolve, reject) => {
+      request.post(`/pasokaras/${id}/song_queues`)
+        .set('Accept', 'application/json')
+        .set('X-CSRF-Token', getCsrfToken())
+        .end((err, res) => {
+          if (err)
+            return reject(err);
+
+          toastr.success(`「${res.body.pasokara.title}」を予約に追加しました`);
+          return resolve(res);
+        });
     });
   }
 }
