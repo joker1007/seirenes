@@ -71,17 +71,15 @@ gulp.task 'browserify', ->
       extname = path.extname(file.path)
       output = path.basename(file.path, extname) + '.js'
 
-      bundler = if extname == ".ts"
-        getBundler(file.path, {
-          extensions: [".ts"]
-          plugins: ["tsify"]
-          transforms: ["browserify-shim", "vueify", "brfs", "espowerify"]
-        }).bundle().pipe(source(output))
-      else
-        getBundler(file.path, {
-          extensions: [".coffee"]
-          transforms: ["coffeeify", "browserify-shim", "vueify", "brfs", "espowerify"]
-        }).bundle().on('error', util.log).pipe(source(output))
+      bundler = browserify({debug: true})
+        .require(file.path, {entry: true})
+        .transform(require("coffeeify"))
+        .transform(require("babelify").configure({
+          optional: ["es7.asyncFunctions"]
+        }))
+        .transform(require("browserify-shim"))
+        .transform(require("brfs"))
+        .bundle().on('error', util.log).pipe(source(output))
 
       stream = if minify
         bundler.pipe(streamify(uglify()))
@@ -105,17 +103,14 @@ gulp.task 'browserify-test', ->
       extname = path.extname(file.path)
       output = path.basename(file.path, extname) + '.js'
 
-      bundler = if extname == ".ts"
-        getBundler(file.path, {
-          extensions: [".ts"]
-          plugins: ["tsify"]
-          transforms: ["browserify-shim", "vueify", "brfs", "espowerify"]
-        }).bundle()
-      else
-        getBundler(file.path, {
-          extensions: [".coffee"]
-          transforms: ["coffeeify", "browserify-shim", "vueify", "brfs", "espowerify"]
-        }).bundle().on('error', util.log)
+      bundler = browserify({debug: true})
+        .transform(require("coffeeify"))
+        .transform(require("babelify").configure({
+          optional: ["es7.asyncFunctions"]
+        }))
+        .transform(require("browserify-shim"))
+        .transform(require("brfs"))
+        .bundle().on('error', util.log).pipe(source(output))
 
       bundler
         .pipe(mold.transformSourcesRelativeTo(__dirname))
@@ -140,7 +135,6 @@ gulp.task 'sass', ['glyphicon'], ->
   }).on('error', (err) ->
     console.error('Error', err.message)
   )
-    .pipe(sourcemaps.write())
 
   stream = if minify
     css.pipe(minifyCSS())
