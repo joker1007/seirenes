@@ -24,7 +24,11 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = current_user.favorites.find(params[:id])
+    if params[:id]
+      @favorite = current_user.favorites.find(params[:id])
+    else
+      @favorite = current_user.favorites.find_by!(pasokara_id: params[:pasokara_id])
+    end
     @favorite.destroy
 
     render :show

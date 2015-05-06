@@ -14,6 +14,16 @@ export default class PasokaraListItem extends React.Component {
     }
   }
 
+  addToFavorite() {
+    let pasokara = this.props.pasokara;
+    this.props.flux.getActions('pasokaras').addToFavorite(pasokara.id);
+  }
+
+  removeFromFavorite() {
+    let pasokara = this.props.pasokara;
+    this.props.flux.getActions('pasokaras').removeFromFavorite(pasokara.id);
+  }
+
   render() {
     let pasokara = this.props.pasokara;
     let pasokaraTags = pasokara.tags.map(t => {
@@ -30,6 +40,14 @@ export default class PasokaraListItem extends React.Component {
     let niconicoLink = `http://www.nicovideo.jp/watch/${pasokara.nico_vid}`;
     let duration = moment.duration(pasokara.duration, 'seconds').format("m:ss")
     let nicoPostedAt = moment(pasokara.nico_posted_at)
+
+    let favoriteLink;
+    if (pasokara.favorited) {
+      favoriteLink = <a className="btn btn-danger" onClick={this.removeFromFavorite.bind(this)}>お気に入りを削除する</a>
+    } else {
+      favoriteLink = <a className="btn btn-primary" onClick={this.addToFavorite.bind(this)}>お気に入りに追加する</a>
+    }
+
     return (
       <div className="pasokara">
         <div className="title">
@@ -73,7 +91,7 @@ export default class PasokaraListItem extends React.Component {
               </div>
             </div>
             <div className="add-favorite">
-              <a href="#">お気に入りに追加する</a>
+              {favoriteLink}
             </div>
           </div>
         </div>

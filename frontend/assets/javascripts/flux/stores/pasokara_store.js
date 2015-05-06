@@ -8,6 +8,8 @@ export default class PasokaraStore extends Store {
     this.register(pasokaraActionIds.load, this.handleLoad);
     this.register(pasokaraActionIds.loadSingle, this.handleLoadSingle);
     this.register(pasokaraActionIds.updateMovieUrl, this.handleUpdateMovieUrl);
+    this.register(pasokaraActionIds.addToFavorite, this.handleFavorite);
+    this.register(pasokaraActionIds.removeFromFavorite, this.handleUnFavorite);
 
     this.state = {
       pasokaras: {},
@@ -64,6 +66,22 @@ export default class PasokaraStore extends Store {
     pasokara.movie_url = movie_url;
     let _pasokaras = Object.assign({}, this.state.pasokaras);
     _pasokaras[id] = pasokara
+    this.setState({pasokaras: _pasokaras});
+  }
+
+  handleFavorite({pasokara_id: id}) {
+    let _pasokaras = Object.assign({}, this.state.pasokaras);
+    let pasokara = this.state.pasokaras[id];
+    let newPasokara = Object.assign({}, pasokara, {favorited: true});
+    _pasokaras[id] = newPasokara
+    this.setState({pasokaras: _pasokaras});
+  }
+
+  handleUnFavorite({pasokara_id: id}) {
+    let _pasokaras = Object.assign({}, this.state.pasokaras);
+    let pasokara = this.state.pasokaras[id];
+    let newPasokara = Object.assign({}, pasokara, {favorited: false});
+    _pasokaras[id] = newPasokara
     this.setState({pasokaras: _pasokaras});
   }
 }

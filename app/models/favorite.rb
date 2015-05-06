@@ -22,4 +22,13 @@ class Favorite < ActiveRecord::Base
 
   DEFAULT_PER_PAGE = 50
   paginates_per DEFAULT_PER_PAGE
+
+  after_create :update_pasokara_index
+  after_destroy :update_pasokara_index
+
+  private
+
+  def update_pasokara_index
+    self.pasokara.tapp.__elasticsearch__.update_document
+  end
 end

@@ -47,6 +47,26 @@ export default class PasokaraActions extends Actions {
     }
   }
 
+  async addToFavorite(id) {
+    try {
+      let res = await this._createFavorite(id);
+      return res.body;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
+
+  async removeFromFavorite(id) {
+    try {
+      let res = await this._deleteFavorite(id);
+      return res.body;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
+
   changeOrderBy(orderBy) {
     let currentRouteName = _.last(this.router.getCurrentRoutes()).name;
     let query = Object.assign({}, this.router.getCurrentQuery(), {page: 1, order_by: orderBy});
@@ -158,6 +178,37 @@ export default class PasokaraActions extends Actions {
             return reject(err);
 
           toastr.success(`「${res.body.pasokara.title}」を予約に追加しました`);
+          return resolve(res);
+        });
+    });
+  }
+
+  _createFavorite(id) {
+    return new Promise((resolve, reject) => {
+      request.post(`/pasokaras/${id}/favorite`)
+        .set('Accept', 'application/json')
+        .set('X-CSRF-Token', getCsrfToken())
+        .end((err, res) => {
+          if (err)
+            return reject(err);
+
+          toastr.success(`「${res.body.pasokara.title}」をお気に入りに追加しました`);
+          return resolve(res);
+        });
+    });
+  }
+
+
+  _deleteFavorite(id) {
+    return new Promise((resolve, reject) => {
+      request.del(`/pasokaras/${id}/favorite`)
+        .set('Accept', 'application/json')
+        .set('X-CSRF-Token', getCsrfToken())
+        .end((err, res) => {
+          if (err)
+            return reject(err);
+
+          toastr.success(`「${res.body.pasokara.title}」をお気に入りから削除しました`);
           return resolve(res);
         });
     });

@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Seirenes::Application.routes.draw do
   resources :pasokaras, only: [:index, :show, :update] do
     resources :song_queues, only: [:create]
-    resources :favorites, only: [:create]
+    resource :favorite, only: [:create, :destroy]
     resource :encoding, only: [:show, :create]
     resources :recordings, only: [:create]
   end
