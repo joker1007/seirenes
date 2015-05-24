@@ -7,18 +7,19 @@ export default class PasokaraList extends React.Component {
   render() {
     let pasokaras;
 
-    if (_.isEmpty(this.props.pasokaras)) {
+    if (this.props.pasokaras.isEmpty()) {
       pasokaras = "";
     } else {
-      pasokaras = _.map(this.props.pasokaras, p => {
-        let key = `pasokara-${p.id}`;
+      pasokaras = this.props.pasokaras.reduce((r, p, id) => {
+        let key = `pasokara-${id}`;
 
-        return (
+        r.push(
           <FluxComponent key={key}>
             <PasokaraListItem pasokara={p} />
           </FluxComponent>
         );
-      });
+        return r;
+      }, []);
     }
 
     return (

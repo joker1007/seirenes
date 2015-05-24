@@ -8,26 +8,26 @@ import 'moment-duration-format';
 export default class PasokaraListItem extends React.Component {
   enqueue() {
     let pasokara = this.props.pasokara;
-    let msg = `「${pasokara.title}」を予約しますか？`;
+    let msg = `「${pasokara.get("title")}」を予約しますか？`;
     if (window.confirm(msg)) {
-      this.props.flux.getActions('pasokaras').enqueue(pasokara.id);
+      this.props.flux.getActions('pasokaras').enqueue(pasokara.get("id"));
     }
   }
 
   addToFavorite() {
     let pasokara = this.props.pasokara;
-    this.props.flux.getActions('pasokaras').addToFavorite(pasokara.id);
+    this.props.flux.getActions('pasokaras').addToFavorite(pasokara.get("id"));
   }
 
   removeFromFavorite() {
     let pasokara = this.props.pasokara;
-    this.props.flux.getActions('pasokaras').removeFromFavorite(pasokara.id);
+    this.props.flux.getActions('pasokaras').removeFromFavorite(pasokara.get("id"));
   }
 
   render() {
     let pasokara = this.props.pasokara;
-    let pasokaraTags = pasokara.tags.map(t => {
-      return (
+    let pasokaraTags = pasokara.get("tags").reduce((r, t) => {
+      r.push(
         <FluxComponent key={t} connectToStores={{
           filter_tags: store => ({
             filterTags: store.getTags()
@@ -36,13 +36,14 @@ export default class PasokaraListItem extends React.Component {
           <PasokaraTag tag={t} />
         </FluxComponent>
       );
-    });
-    let niconicoLink = `http://www.nicovideo.jp/watch/${pasokara.nico_vid}`;
-    let duration = moment.duration(pasokara.duration, 'seconds').format("m:ss");
-    let nicoPostedAt = moment(pasokara.nico_posted_at);
+      return r;
+    }, []);
+    let niconicoLink = `http://www.nicovideo.jp/watch/${pasokara.get("nico_vid")}`;
+    let duration = moment.duration(pasokara.get("duration"), 'seconds').format("m:ss");
+    let nicoPostedAt = moment(pasokara.get("nico_posted_at"));
 
     let favoriteLink;
-    if (pasokara.favorited) {
+    if (pasokara.get("favorited")) {
       favoriteLink = <a className="btn btn-danger" onClick={this.removeFromFavorite.bind(this)}>お気に入りを削除する</a>;
     } else {
       favoriteLink = <a className="btn btn-primary" onClick={this.addToFavorite.bind(this)}>お気に入りに追加する</a>;
@@ -51,12 +52,12 @@ export default class PasokaraListItem extends React.Component {
     return (
       <div className="pasokara">
         <div className="title">
-          <Link to="pasokara_show" params={{pasokaraId: pasokara.id}}>{pasokara.title}</Link>
+          <Link to="pasokara_show" params={{pasokaraId: pasokara.get("id")}}>{pasokara.get("title")}</Link>
           <a className="btn btn-primary" onClick={this.enqueue.bind(this)}>予約する</a>
         </div>
         <div className="info-box">
           <div className="thumb">
-            <img src={pasokara.thumbnail_url} width="160" height="120" />
+            <img src={pasokara.get("thumbnail_url")} width="160" height="120" />
           </div>
           <div className="inner-info-box">
             <div className="tag-box">
@@ -75,7 +76,7 @@ export default class PasokaraListItem extends React.Component {
                 <div className="info-entity">
                   <span className="info-key">ニコニコID:</span>
                   <span className="info-value">
-                    <a href={niconicoLink}>{pasokara.nico_vid}</a>
+                    <a href={niconicoLink}>{pasokara.get("nico_vid")}</a>
                   </span>
                 </div>
                 <div className="info-entity">
@@ -84,9 +85,9 @@ export default class PasokaraListItem extends React.Component {
                 </div>
                 <div className="info-entity">
                   <span className="info-key">再生数:</span>
-                  <span className="info-value">{pasokara.nico_view_count}</span>
+                  <span className="info-value">{pasokara.get("nico_view_count")}</span>
                 </div>
-                <div className="info-entity"><span className="info-key">マイリスト数:</span><span className="info-value">{pasokara.nico_mylist_count}</span>
+                <div className="info-entity"><span className="info-key">マイリスト数:</span><span className="info-value">{pasokara.get("nico_mylist_count")}</span>
                 </div>
               </div>
             </div>

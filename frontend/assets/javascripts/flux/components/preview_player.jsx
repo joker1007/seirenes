@@ -45,12 +45,12 @@ export default class PreviewPlayer extends React.Component {
       );
     }
 
-    if (pasokara.movie_url) {
+    if (pasokara.get("movie_url")) {
       previewPlayer = (
         <div id="pasokara-movie-area">
           <div id="pasokara-preview">
             <video id="preview-player" className="preview" ref="previewPlayer" controls>
-              <source type="video/mp4" src={pasokara.movie_url}></source>
+              <source type="video/mp4" src={pasokara.get("movie_url")}></source>
             </video>
           </div>
           <div id="record-control">
@@ -74,8 +74,9 @@ export default class PreviewPlayer extends React.Component {
 
       // 何故かこうしないと動かない
       setTimeout(() => {
-        if (!encoding)
-          this.props.flux.getActions('pasokaras').encode(pasokara.id);
+        if (!encoding) {
+          this.props.flux.getActions('pasokaras').encode(pasokara.get("id"));
+        }
       }, 1);
     }
 

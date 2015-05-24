@@ -1,5 +1,8 @@
 import { Store } from 'flummox';
 import _ from 'lodash';
+import Immutable from 'immutable';
+
+var OrderedMap = Immutable.OrderedMap;
 
 export default class PasokaraStore extends Store {
   constructor(flux) {
@@ -12,10 +15,10 @@ export default class PasokaraStore extends Store {
     this.register(pasokaraActionIds.removeFromFavorite, this.handleUnFavorite);
 
     this.state = {
-      pasokaras: {},
+      pasokaras: OrderedMap(),
       facets: {},
-      meta: {},
-    }
+      meta: {}
+    };
   }
 
   getAll() {
@@ -31,16 +34,15 @@ export default class PasokaraStore extends Store {
   }
 
   find(id) {
-    return this.state.pasokaras[id];
+    return this.state.pasokaras.get(_.parseInt(id));
   }
 
   handleLoad({pasokaras, meta, facets}) {
-    let _pasokaras = {};
+    let _pasokaras = _.reduce(pasokaras, (map, p) => {
+      let _p = Immutable.fromJS(p, (k, v) => (v.toOrderedMap()));
+      return map.set(p.id, _p);
+    }, OrderedMap());
     let _facets = {};
-
-    pasokaras.forEach((p) => {
-      _pasokaras[p.id] = p;
-    });
 
     facets.forEach((f) => {
       _facets[f.name] = f.count;
@@ -49,39 +51,33 @@ export default class PasokaraStore extends Store {
     this.setState({
       pasokaras: _pasokaras,
       meta: meta,
-      facets: _facets,
+      facets: _facets
     });
   }
 
   handleLoadSingle(pasokara) {
-    if (pasokara && !this.state.pasokaras[pasokara.id]) {
-      let _pasokaras = Object.assign({}, this.state.pasokaras);
-      _pasokaras[pasokara.id] = pasokara;
+    if (pasokara && !this.state.pasokaras.has(pasokara.id)) {
+      let _pasokara = Immutable.fromJS(pasokara, (k, v) => (v.toOrderedMap()));
+      let _pasokaras = this.state.pasokaras.set(pasokara.id, _pasokara);
       this.setState({pasokaras: _pasokaras});
     }
   }
 
   handleUpdateMovieUrl({id, movie_url}) {
-    let pasokara = this.state.pasokaras[id];
-    pasokara.movie_url = movie_url;
-    let _pasokaras = Object.assign({}, this.state.pasokaras);
-    _pasokaras[id] = pasokara
+    let pasokara = this.state.pasokaras.get(id).set("movie_url", movie_url);
+    let _pasokaras = this.state.pasokaras.set(id, pasokara);
     this.setState({pasokaras: _pasokaras});
   }
 
   handleFavorite({pasokara_id: id}) {
-    let _pasokaras = Object.assign({}, this.state.pasokaras);
-    let pasokara = this.state.pasokaras[id];
-    let newPasokara = Object.assign({}, pasokara, {favorited: true});
-    _pasokaras[id] = newPasokara
+    let pasokara = this.state.pasokaras.get(id).set("favorited", true);
+    let _pasokaras = this.state.pasokaras.set(id, pasokara);
     this.setState({pasokaras: _pasokaras});
   }
 
   handleUnFavorite({pasokara_id: id}) {
-    let _pasokaras = Object.assign({}, this.state.pasokaras);
-    let pasokara = this.state.pasokaras[id];
-    let newPasokara = Object.assign({}, pasokara, {favorited: false});
-    _pasokaras[id] = newPasokara
+    let pasokara = this.state.pasokaras.get(id).set("favorited", false);
+    let _pasokaras = this.state.pasokaras.set(id, pasokara);
     this.setState({pasokaras: _pasokaras});
   }
 }

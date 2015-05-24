@@ -9,10 +9,10 @@ export default class PasokaraPreview extends React.Component {
     if (pasokara) {
       component = (
         <div>
-          <h3 id="pasokara-preview-title">{pasokara.title}</h3>
+          <h3 id="pasokara-preview-title">{pasokara.get("title")}</h3>
           <FluxComponent connectToStores={{
             encodings: store => ({
-              encoding: store.find(pasokara.id)
+              encoding: store.find(pasokara.get("id"))
             })
           }}>
             <PreviewPlayer pasokara={pasokara} />
@@ -23,7 +23,7 @@ export default class PasokaraPreview extends React.Component {
 
     return component;
   }
-};
+}
 
 PasokaraPreview.contextTypes = {
   router: React.PropTypes.func.isRequired
