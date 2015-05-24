@@ -3,7 +3,7 @@ import FluxComponent from 'flummox/component';
 
 export default class SortForm extends React.Component {
   render() {
-    return(
+    return (
       <div id="sort-field">
         <div className="form-inline">
           <FluxComponent>
@@ -18,19 +18,23 @@ export default class SortForm extends React.Component {
 class SortFormSelect extends React.Component {
   constructor(props) {
     super(props);
-    let currentOrderBy = this.props.flux.router.getCurrentQuery().order_by || "created_at desc"
-    this.state =  {
+    let currentOrderBy = this.props.flux.router.getCurrentQuery().order_by || "created_at desc";
+    this.state = {
       value: currentOrderBy
     };
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
-    this.props.flux.getActions('pasokaras').changeOrderBy(event.target.value);
+    this.props.flux.getActions('pasokaras').changeOrderBy(
+      this.context.routeName,
+      this.context.router.getCurrentQuery(),
+      event.target.value
+    );
   }
 
   render() {
-    return(
+    return (
       <select name="order_by" id="order_by" className="form-control" value={this.state.value} onChange={this.handleChange.bind(this)}>
         <option value="created_at desc">追加日(新しい順)</option>
         <option value="created_at asc">追加日(古い順)</option>
@@ -45,3 +49,7 @@ class SortFormSelect extends React.Component {
   }
 }
 
+SortFormSelect.contextTypes = {
+  router: React.PropTypes.func,
+  routeName: React.PropTypes.string.isRequired
+};

@@ -19,6 +19,3 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("page:load", () => {
-  flux.router.refresh();
-});

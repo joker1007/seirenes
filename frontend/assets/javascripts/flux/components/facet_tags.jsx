@@ -2,21 +2,20 @@ import React from 'react';
 import FluxComponent from 'flummox/component';
 import {Link} from 'react-router';
 import _ from 'lodash';
-import {getRouteNameFromPath} from '../route';
 import CurrentFilterTags from './current_filter_tags.jsx';
 
 export default class FacetTags extends React.Component {
   render() {
-    let routeName = _.last(this.props.flux.router.getCurrentRoutes()).name;
-    let facets = this.props.facets
-    let tags = []
-    let q = this.props.flux.router.getCurrentQuery()["q"]
+    let routeName = this.context.routeName;
+    let facets = this.props.facets;
+    let tags = [];
+    let q = this.props.flux.router.getCurrentQuery().q;
 
     for (let name in facets) {
-      let text = `${name}(${facets[name]})`
+      let text = `${name}(${facets[name]})`;
       let query = {
         q: q,
-        filter_tags: this.props.filterTags.push(name).toArray(),
+        filter_tags: this.props.filterTags.add(name).toArray(),
       };
       tags.push(
         <span key={name} className="facet-tag">
@@ -27,7 +26,7 @@ export default class FacetTags extends React.Component {
 
     let facetTagList = null;
     if (_.isEmpty(facets)) {
-      facetTagList = <div />
+      facetTagList = <div />;
     } else {
       facetTagList = (
         <div>
@@ -54,3 +53,7 @@ export default class FacetTags extends React.Component {
     return facetTagList;
   }
 }
+
+FacetTags.contextTypes = {
+  routeName: React.PropTypes.string.isRequired
+};

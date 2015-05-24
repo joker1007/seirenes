@@ -11,11 +11,11 @@ export default class PasokaraList extends React.Component {
       pasokaras = "";
     } else {
       pasokaras = _.map(this.props.pasokaras, p => {
-        let key = `pasokara-${p.id}`
+        let key = `pasokara-${p.id}`;
 
         return (
           <FluxComponent key={key}>
-            <PasokaraListItem pasokara={p}/>
+            <PasokaraListItem pasokara={p} />
           </FluxComponent>
         );
       });

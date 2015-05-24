@@ -9,49 +9,59 @@ import SearchField from '../components/search_field.jsx';
 export default class PasokarasRoute extends React.Component {
   componentDidMount() {
     this.props.flux.getActions('pasokaras').load(this.context.router.getCurrentPath());
-    this.props.flux.getActions('filter_tags').init(this.props.query.filter_tags);
+    this.props.flux.getActions('filter_tags').init(this.context.router.getCurrentQuery().filter_tags);
   }
+
   componentWillReceiveProps(nextProps) {
     this.props.flux.getActions('pasokaras').load(this.context.router.getCurrentPath());
-    this.props.flux.getActions('filter_tags').init(this.props.query.filter_tags);
+    this.props.flux.getActions('filter_tags').init(this.context.router.getCurrentQuery().filter_tags);
+  }
+
+  getChildContext() {
+    return {routeName: 'pasokaras'};
   }
 
   render() {
-    return(
+    return (
       <div>
         <FluxComponent>
           <SearchField />
         </FluxComponent>
+
         <FluxComponent connectToStores={{
           pasokaras: store => ({
-            facets: store.getFacets(),
+            facets: store.getFacets()
           }),
           filter_tags: store => ({
-            filterTags: store.getTags(),
-          }),
+            filterTags: store.getTags()
+          })
         }}>
           <FacetTags />
         </FluxComponent>
+
         <SortForm />
+
         <FluxComponent connectToStores={{
           pasokaras: store => ({
-            meta: store.getMeta(),
+            meta: store.getMeta()
           })
         }}>
           <Pagination />
         </FluxComponent>
+
         <div id="pasokara-list">
           <FluxComponent connectToStores={{
             pasokaras: store => ({
-              pasokaras: store.getAll(),
+              pasokaras: store.getAll()
             })
           }}>
             <PasokaraList />
-        </FluxComponent>
+          </FluxComponent>
         </div>
+
         <FluxComponent connectToStores={{
           pasokaras: store => ({
-            meta: store.getMeta(),
+            meta: store.getMeta()
           })
         }}>
           <Pagination />
@@ -63,4 +73,8 @@ export default class PasokarasRoute extends React.Component {
 
 PasokarasRoute.contextTypes = {
   router: React.PropTypes.func.isRequired
+};
+
+PasokarasRoute.childContextTypes = {
+  routeName: React.PropTypes.string.isRequired
 };

@@ -1,5 +1,5 @@
 import { Store } from 'flummox';
-import Immutable from 'immutable';
+import { Set } from 'immutable';
 
 export default class CurrentFilterTagsStore extends Store {
   constructor(flux) {
@@ -7,11 +7,9 @@ export default class CurrentFilterTagsStore extends Store {
 
     const filterActionIds = flux.getActionIds('filter_tags');
     this.register(filterActionIds.init, this.handleInit);
-    this.register(filterActionIds.add, this.handleAdd);
-    this.register(filterActionIds.remove, this.handleRemove);
 
     this.state = {
-      filterTags: Immutable.List()
+      filterTags: Set()
     };
   }
 
@@ -21,14 +19,7 @@ export default class CurrentFilterTagsStore extends Store {
 
   handleInit(tags) {
     if (tags) {
-      this.setState({filterTags: Immutable.List(tags)});
-    } else {
-      this.setState({filterTags: Immutable.List()});
+      this.setState({filterTags: Set(tags)});
     }
-  }
-
-  handleAdd(tag) {
-    let newFilterTags = this.state.filterTags.push(tag);
-    this.setState({filterTags: newFilterTags});
   }
 }

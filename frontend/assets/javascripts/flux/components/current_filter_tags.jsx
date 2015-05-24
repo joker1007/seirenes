@@ -1,12 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
 import {Link} from 'react-router';
-import {getRouteNameFromPath} from '../route';
 
 export default class CurrentFilterTags extends React.Component {
   render() {
     let current = this.props.filterTags.toArray().map((t) => {
-      return <FilterTag key={"filter-tag-" + t} tag={t} flux={this.props.flux} filterTags={this.props.filterTags} />
+      return <FilterTag key={"filter-tag-" + t} tag={t} flux={this.props.flux} filterTags={this.props.filterTags} />;
     });
 
     return (
@@ -19,15 +18,13 @@ export default class CurrentFilterTags extends React.Component {
 
 class FilterTag extends React.Component {
   render() {
-    let currentRoute = _.last(this.props.flux.router.getCurrentRoutes());
-    let routeName = currentRoute.name;
-    let idx = this.props.filterTags.indexOf(this.props.tag);
-    let q = this.props.flux.router.getCurrentQuery()["q"];
+    let routeName = this.context.routeName;
+    let q = this.props.flux.router.getCurrentQuery().q;
     let query = {
       q: q,
-      filter_tags: this.props.filterTags.remove(idx).toArray(),
+      filter_tags: this.props.filterTags.remove(this.props.tag).toArray()
     };
-    return(
+    return (
       <span key={"remove-" + this.props.tag} className="current-tag">
         &gt;
         {this.props.tag}
@@ -40,3 +37,11 @@ class FilterTag extends React.Component {
     );
   }
 }
+
+FilterTag.propTypes = {
+  tag: React.PropTypes.string.isRequired
+};
+
+FilterTag.contextTypes = {
+  routeName: React.PropTypes.string.isRequired
+};

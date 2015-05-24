@@ -3,16 +3,16 @@ import React from 'react';
 export default class SearchField extends React.Component {
   constructor(props) {
     super(props);
-    let q = this.props.flux.router.getCurrentQuery()["q"]
+    let q = this.props.flux.router.getCurrentQuery().q;
     this.state = {value: q};
   }
 
-  handleChange(e) {
+  handleChange(event) {
     this.setState({value: event.target.value});
   }
 
   search() {
-    this.props.flux.router.transitionTo('/pasokaras', {}, {q: this.state.value});
+    this.props.flux.router.transitionTo(this.context.routeName, {}, {q: this.state.value});
   }
 
   render() {
@@ -24,3 +24,7 @@ export default class SearchField extends React.Component {
     );
   }
 }
+
+SearchField.contextTypes = {
+  routeName: React.PropTypes.string.isRequired
+};

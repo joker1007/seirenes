@@ -9,7 +9,7 @@ export default class PasokaraListItem extends React.Component {
   enqueue() {
     let pasokara = this.props.pasokara;
     let msg = `「${pasokara.title}」を予約しますか？`;
-    if (confirm(msg)) {
+    if (window.confirm(msg)) {
       this.props.flux.getActions('pasokaras').enqueue(pasokara.id);
     }
   }
@@ -30,22 +30,22 @@ export default class PasokaraListItem extends React.Component {
       return (
         <FluxComponent key={t} connectToStores={{
           filter_tags: store => ({
-            filterTags: store.getTags(),
-          }),
+            filterTags: store.getTags()
+          })
         }}>
           <PasokaraTag tag={t} />
         </FluxComponent>
       );
     });
     let niconicoLink = `http://www.nicovideo.jp/watch/${pasokara.nico_vid}`;
-    let duration = moment.duration(pasokara.duration, 'seconds').format("m:ss")
-    let nicoPostedAt = moment(pasokara.nico_posted_at)
+    let duration = moment.duration(pasokara.duration, 'seconds').format("m:ss");
+    let nicoPostedAt = moment(pasokara.nico_posted_at);
 
     let favoriteLink;
     if (pasokara.favorited) {
-      favoriteLink = <a className="btn btn-danger" onClick={this.removeFromFavorite.bind(this)}>お気に入りを削除する</a>
+      favoriteLink = <a className="btn btn-danger" onClick={this.removeFromFavorite.bind(this)}>お気に入りを削除する</a>;
     } else {
-      favoriteLink = <a className="btn btn-primary" onClick={this.addToFavorite.bind(this)}>お気に入りに追加する</a>
+      favoriteLink = <a className="btn btn-primary" onClick={this.addToFavorite.bind(this)}>お気に入りに追加する</a>;
     }
 
     return (
@@ -99,3 +99,7 @@ export default class PasokaraListItem extends React.Component {
     );
   }
 }
+
+PasokaraListItem.propTypes = {
+  pasokara: React.PropTypes.object.isRequired
+};

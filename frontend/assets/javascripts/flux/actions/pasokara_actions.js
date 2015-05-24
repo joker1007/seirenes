@@ -67,10 +67,9 @@ export default class PasokaraActions extends Actions {
     }
   }
 
-  changeOrderBy(orderBy) {
-    let currentRouteName = _.last(this.router.getCurrentRoutes()).name;
-    let query = Object.assign({}, this.router.getCurrentQuery(), {page: 1, order_by: orderBy});
-    this.router.transitionTo(currentRouteName, {}, query);
+  changeOrderBy(routeName, currentQuery, orderBy) {
+    let query = Object.assign({}, currentQuery, {page: 1, order_by: orderBy});
+    this.router.transitionTo(routeName, {}, query);
   }
 
   async encode(id) {

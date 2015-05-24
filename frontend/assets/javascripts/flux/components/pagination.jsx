@@ -1,14 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
 import _ from 'lodash';
-import {getRouteNameFromPath} from '../route';
 
 export default class Pagination extends React.Component {
   render() {
-    let routeName = _.last(this.props.flux.router.getCurrentRoutes()).name;
+    let routeName = this.context.routeName;
 
-    if (_.isEmpty(this.props.meta))
+    if (_.isEmpty(this.props.meta)) {
       return <div />;
+    }
 
     return (
       <div className="pagination">
@@ -47,7 +47,7 @@ export default class Pagination extends React.Component {
   }
   nextLink(name) {
     if (this.props.meta.current_page !== this.props.meta.total_pages) {
-      return(
+      return (
         <li>
           <Link to={name} query={this.pageQuery(1)}>›</Link>
         </li>
@@ -58,7 +58,7 @@ export default class Pagination extends React.Component {
   }
   lastLink(name) {
     if (this.props.meta.current_page !== this.props.meta.total_pages) {
-      return(
+      return (
         <li>
           <Link to={name} query={this.pageQueryStatic(this.props.meta.total_pages)}>«</Link>
         </li>
@@ -78,8 +78,8 @@ export default class Pagination extends React.Component {
       </li>
     );
 
-    for (let i=1; 0 < (meta.current_page - i) && i <= windowLimit; ++i) {
-      let key = `page-${meta.current_page - i}`
+    for (let i = 1; 0 < (meta.current_page - i) && i <= windowLimit; ++i) {
+      let key = `page-${meta.current_page - i}`;
       pages.unshift(
         <li key={key}>
           <Link to={name} query={this.pageQuery(-i)}>
@@ -107,8 +107,8 @@ export default class Pagination extends React.Component {
       }
     }
 
-    for (let i=1; (meta.current_page + i) <= meta.total_pages && i <= windowLimit; ++i) {
-      let key = `page-${meta.current_page + i}`
+    for (let i = 1; (meta.current_page + i) <= meta.total_pages && i <= windowLimit; ++i) {
+      let key = `page-${meta.current_page + i}`;
       pages.push(
 
         <li key={key}>
@@ -126,7 +126,7 @@ export default class Pagination extends React.Component {
         );
       }
       if ((meta.current_page + i) <= meta.total_pages && i === windowLimit) {
-        let lastPageKey = `page-last-${meta.total_pages}`
+        let lastPageKey = `page-last-${meta.total_pages}`;
         pages.push(
           <li key={lastPageKey}>
             <Link to={name} query={this.pageQueryStatic(meta.total_pages)}>
@@ -147,3 +147,7 @@ export default class Pagination extends React.Component {
     return Object.assign({}, this.props.flux.router.getCurrentQuery(), {page: pageNum});
   }
 }
+
+Pagination.contextTypes = {
+  routeName: React.PropTypes.string.isRequired
+};
