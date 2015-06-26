@@ -816,3 +816,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   which_browser!
   zurui-sass-rails
+
+BUNDLED WITH
+   1.10.3

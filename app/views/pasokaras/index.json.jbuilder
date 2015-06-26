@@ -1,7 +1,5 @@
 json.set! "pasokaras" do |json|
-  json.array!(@pasokaras) do |pasokara|
-    json.partial! "pasokaras/entry", pasokara: pasokara
-  end
+  json.partial! "pasokaras/entry", collection: @pasokaras, as: :pasokara
 end
 json.meta do |json|
   json.total_pages @search.total_pages
