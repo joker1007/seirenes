@@ -96,6 +96,13 @@ gem "daemons"
 gem "eye"
 
 gem "non-stupid-digest-assets"
+gem 'peek'
+gem 'peek-redis'
+gem 'peek-mysql2'
+gem 'peek-sidekiq'
+gem 'peek-performance_bar'
+gem 'peek-gc'
+gem 'peek-rblineprof'
 
 group :development do
   gem 'capistrano'
@@ -114,6 +121,7 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
 
+  gem 'activerecord-cause'
   gem 'bullet'
 end
 

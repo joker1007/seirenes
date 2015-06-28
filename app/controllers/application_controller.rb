@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
   def trim_filter_tags_param
     params[:filter_tags].try(:reject!, &:blank?)
   end
+
+  def peek_enabled?
+    current_user.try(:admin?)
+  end
 end

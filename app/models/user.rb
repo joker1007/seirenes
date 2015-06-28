@@ -6,6 +6,7 @@
 #  screen_name :string(255)      not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  admin       :boolean          default(FALSE), not null
 #
 
 class User < ActiveRecord::Base

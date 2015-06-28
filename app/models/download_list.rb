@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  url        :string(255)      not null
-#  download   :boolean          default("1"), not null
+#  download   :boolean          default(TRUE), not null
 #  created_at :datetime
 #  updated_at :datetime
 #

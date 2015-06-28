@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Seirenes::Application.routes.draw do
+  mount Peek::Railtie => '/peek'
+
   resources :pasokaras, only: [:index, :show, :update] do
     resources :song_queues, only: [:create]
     resource :favorite, only: [:create, :destroy]
